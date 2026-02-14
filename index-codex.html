@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mezzanine International | Cross-Border Distribution Layer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #0f0f0f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #6b7280;
+            --accent: #6b7280;
+            --accent-light: #9ca3af;
+            --border: #1f1f1f;
+            --grid-line: rgba(107, 114, 128, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 80px 80px;
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        /* Vertical connecting line */
+        .grid-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                var(--accent) 20%,
+                var(--accent) 80%,
+                transparent 100%
+            );
+            opacity: 0.15;
+            transform: translateZ(0);
+        }
+
+        /* Section Base */
+        section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 120px;
+            z-index: 1;
+        }
+
+        @media (max-width: 1024px) {
+            section {
+                padding: 60px 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 40px 24px;
+            }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 48px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 1.125rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 680px;
+        }
+
+        .lead {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            margin-top: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Divider */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin: 24px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent);
+            animation: drawLine 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes drawLine {
+            to { width: 100%; }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            align-items: center;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero h1 {
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .lead {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeUp 1s ease-out 1.2s forwards;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.2); }
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Lists */
+        .content-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .content-list li {
+            font-size: 1.125rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            padding-left: 24px;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .content-list li.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .content-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.3s ease;
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            max-width: none;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        .contact-block h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .contact-block a, 
+        .contact-block address {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--text-primary);
+            font-style: normal;
+            line-height: 1.8;
+        }
+
+        .contact-block a {
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 2px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .contact-block a:hover {
+            color: var(--accent-light);
+            border-color: var(--accent-light);
+        }
+
+        /* Section Number */
+        .section-number {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        /* Final Section */
+        .final {
+            min-height: 50vh;
+            justify-content: flex-end;
+            padding-bottom: 60px;
+        }
+
+        /* Stagger Animation Helper */
+        .stagger > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+        .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+        .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+        .stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+        .stagger.visible > *:nth-child(5) { transition-delay: 0.4s; }
+        .stagger.visible > *:nth-child(6) { transition-delay: 0.5s; }
+        .stagger.visible > *:nth-child(7) { transition-delay: 0.6s; }
+        .stagger.visible > *:nth-child(8) { transition-delay: 0.7s; }
+
+        .stagger.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg" id="gridBg"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Access China<br>Through Structure.</h1>
+            <p class="lead">A cross-border distribution layer for global fashion.</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Section 1: Structural Gap -->
+    <section>
+        <span class="section-number">01</span>
+        <h2 class="reveal">A Structural Gap</h2>
+        <ul class="content-list stagger">
+            <li>Global fashion supply is inherently fragmented.</li>
+            <li>China operates within a distinct regulatory and commercial system.</li>
+            <li>Between them lies a structural gap.</li>
+            <li>Unstructured access creates friction.</li>
+            <li>Structured access enables scale.</li>
+        </ul>
+    </section>
+
+    <!-- Section 2: Distribution Layer -->
+    <section>
+        <span class="section-number">02</span>
+        <h2 class="reveal">A Distribution Layer</h2>
+        <ul class="content-list stagger">
+            <li>Mezzanine operates as a structured distribution layer connecting global supply to China.</li>
+            <li>We convert fragmented supply into compliant, scalable market access.</li>
+            <li>Our role is not transactional.</li>
+            <li>It is infrastructural.</li>
+            <li>Structure enables continuity.</li>
+            <li>Infrastructure enables scale.</li>
+        </ul>
+    </section>
+
+    <!-- Section 3: Integrated Infrastructure -->
+    <section>
+        <span class="section-number">03</span>
+        <h2 class="reveal">Integrated Infrastructure</h2>
+        <ul class="content-list stagger">
+            <li>Our network spans 150+ supply partners, representing 5,000+ brands and over 4 million SKUs across global fashion categories.</li>
+            <li>Supply enters China through a compliant cross-border framework, supporting both B2C and B2B distribution.</li>
+            <li>Technology synchronizes inventory, pricing and orders within a unified operational layer.</li>
+            <li>Our supply chain spans Hong Kong and Milan, ensuring controlled procurement and bonded logistics.</li>
+            <li>Distribution extends through an integrated omnichannel framework, creating structured visibility across digital ecosystems.</li>
+            <li>As a China Customs Authorized Economic Operator (AEO), we operate under certified trade status — reinforcing compliance and clearance efficiency.</li>
+            <li>This is structured distribution.</li>
+            <li>Built for durability.</li>
+        </ul>
+    </section>
+
+    <!-- Section 4: Structured Collaboration -->
+    <section>
+        <span class="section-number">04</span>
+        <h2 class="reveal">Structured Collaboration</h2>
+        <ul class="content-list stagger">
+            <li>We collaborate with boutiques, platforms and brands seeking disciplined access to the Chinese market.</li>
+            <li>Partnerships are grounded in alignment, compliance and operational integration.</li>
+            <li>Structured engagement pathways include:</li>
+        </ul>
+        
+        <div class="cards-grid">
+            <div class="card">
+                <h3>API Integration</h3>
+                <p>Direct system connectivity into our distribution layer.</p>
+            </div>
+            <div class="card">
+                <h3>Coordinated Procurement</h3>
+                <p>Structured spot or forward purchasing aligned with demand planning.</p>
+            </div>
+            <div class="card">
+                <h3>Operational Deployment</h3>
+                <p>Market entry through coordinated operational frameworks.</p>
+            </div>
+        </div>
+
+        <ul class="content-list stagger" style="margin-top: 48px;">
+            <li>Collaboration begins with structure.</li>
+            <li>Growth follows integration.</li>
+        </ul>
+    </section>
+
+    <!-- Section 5: Vision -->
+    <section>
+        <span class="section-number">05</span>
+        <h2 class="reveal">Vision</h2>
+        <ul class="content-list stagger">
+            <li>Building a durable cross-border distribution layer for global fashion.</li>
+        </ul>
+    </section>
+
+    <!-- Section 6: Contact -->
+    <section class="final">
+        <span class="section-number">06</span>
+        <h2 class="reveal">Contact</h2>
+        
+        <div class="contact-grid">
+            <div class="contact-block">
+                <h3>Collaboration inquiries may be directed to:</h3>
+                <a href="mailto:contact@mezzintl.com">contact@mezzintl.com</a>
+            </div>
+            <div class="contact-block">
+                <h3>Registered Address</h3>
+                <address>
+                    FACTORY A ON 6/F, FOU WAH INDUSTRIAL BUILDING<br>
+                    NOS.10/16 PUN SHAN STREET<br>
+                    TSUEN WAN, NEW TERRITORIES<br>
+                    Hong Kong
+                </address>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Parallax effect for grid background
+        const gridBg = document.getElementById('gridBg');
+        
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const translateY = scrollY * 0.15;
+                    gridBg.style.transform = `translateY(${translateY}px)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Intersection Observer for scroll-triggered reveals
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal, .content-list li, .card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Handle stagger groups
+        const staggerGroups = document.querySelectorAll('.stagger');
+        staggerGroups.forEach(group => {
+            observer.observe(group);
+            
+            // Also add class when visible
+            const originalCallback = observer.constructor.prototype.observe;
+            const observeMethod = function(target) {
+                if (target.classList.contains('stagger') && target.isIntersecting) {
+                    target.classList.add('visible');
+                }
+                return originalCallback.call(this, target);
+            };
+        });
+
+        // Custom observer for stagger groups
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        staggerGroups.forEach(group => {
+            staggerObserver.observe(group);
+        });
+    </script>
+</body>
+</html>
