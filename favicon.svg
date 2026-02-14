@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <!-- Mezzanine Icon Only - Favicon/App Icon -->
+  <rect width="60" height="60" fill="#FAF9F6" rx="8"/>
+  
+  <g fill="#1A1A1A">
+    <rect x="12" y="10" width="5" height="40"/>
+    <rect x="43" y="10" width="5" height="40"/>
+    <polygon points="17,10 30,32 33,32 20,10"/>
+    <polygon points="48,10 35,32 32,32 45,10"/>
+  </g>
+  
+  <rect x="12" y="52" width="36" height="2" fill="#8B7355"/>
+</svg>

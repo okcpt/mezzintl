@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <!-- Mezzanine Logo - Milan Minimalism Style -->
+  
+  <!-- Background (transparent) -->
+  <rect width="200" height="60" fill="none"/>
+  
+  <!-- Main Letter M - Architectural Grid Style -->
+  <g fill="#1A1A1A">
+    <!-- Vertical strokes of M -->
+    <rect x="8" y="10" width="4" height="40"/>
+    <rect x="48" y="10" width="4" height="40"/>
+    
+    <!-- Diagonal strokes forming M -->
+    <polygon points="12,10 28,35 32,35 16,10"/>
+    <polygon points="48,10 32,35 28,35 44,10"/>
+  </g>
+  
+  <!-- Accent line - warm brown/gold -->
+  <rect x="8" y="52" width="44" height="1.5" fill="#8B7355"/>
+  
+  <!-- Wordmark: MEZZANINE -->
+  <text x="65" y="38" 
+        font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="16" 
+        font-weight="500" 
+        letter-spacing="0.25em"
+        fill="#1A1A1A">MEZZANINE</text>
+  
+  <!-- Subtle architectural grid lines -->
+  <g stroke="#8B7355" stroke-width="0.5" opacity="0.3">
+    <line x1="8" y1="10" x2="8" y2="55"/>
+    <line x1="52" y1="10" x2="52" y2="55"/>
+    <line x1="8" y1="35" x2="52" y2="35"/>
+  </g>
+</svg>
