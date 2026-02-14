@@ -156,7 +156,7 @@
             --font-primary: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
-        /* Dark Mode Colors */
+        /* Dark Mode Colors - Simplified */
         [data-theme="dark"] {
             --off-white: #0F0F0F;
             --warm-cream: #1A1A1A;
@@ -169,6 +169,67 @@
             --card-bg-hover: rgba(250, 249, 246, 0.08);
             --border: rgba(250, 249, 246, 0.1);
             --header-bg: rgba(15, 15, 15, 0.95);
+        }
+
+        /* ============================================
+           DARK MODE OVERRIDES
+        ============================================ */
+        [data-theme="dark"] .logo,
+        [data-theme="dark"] .nav-links a,
+        [data-theme="dark"] .nav-mobile a,
+        [data-theme="dark"] .theme-toggle,
+        [data-theme="dark"] .lang-toggle,
+        [data-theme="dark"] .menu-toggle span {
+            color: #FAF9F6;
+        }
+
+        [data-theme="dark"] .lang-toggle {
+            border-color: rgba(250, 249, 246, 0.2);
+        }
+
+        [data-theme="dark"] .section-label,
+        [data-theme="dark"] h2,
+        [data-theme="dark"] .timeline-date,
+        [data-theme="dark"] .timeline-content,
+        [data-theme="dark"] .metric-label,
+        [data-theme="dark"] .value-item h3,
+        [data-theme="dark"] .value-item p,
+        [data-theme="dark"] .coop-item h3,
+        [data-theme="dark"] .coop-item p,
+        [data-theme="dark"] .partner-item,
+        [data-theme="dark"] .partner-item strong,
+        [data-theme="dark"] .vision-text,
+        [data-theme="dark"] .form-group label,
+        [data-theme="dark"] .form-group input,
+        [data-theme="dark"] .form-group textarea,
+        [data-theme="dark"] .footer-desc,
+        [data-theme="dark"] .footer-col a,
+        [data-theme="dark"] .footer-bottom {
+            color: #FAF9F6;
+        }
+
+        [data-theme="dark"] .form-group input,
+        [data-theme="dark"] .form-group textarea {
+            border-bottom-color: rgba(250, 249, 246, 0.2);
+        }
+
+        [data-theme="dark"] .form-group input:focus,
+        [data-theme="dark"] .form-group textarea:focus {
+            border-bottom-color: var(--accent);
+        }
+
+        [data-theme="dark"] .timeline-item,
+        [data-theme="dark"] .value-item,
+        [data-theme="dark"] .partner-item {
+            border-color: rgba(250, 249, 246, 0.1);
+        }
+
+        [data-theme="dark"] .brand-logo {
+            color: rgba(250, 249, 246, 0.6);
+        }
+
+        [data-theme="dark"] .brand-logo:hover {
+            color: #FAF9F6;
         }
 
         /* ============================================
