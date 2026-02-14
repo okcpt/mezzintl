@@ -1,1718 +1,883 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mezzanine International | Connecting Global Fashion to China</title>
-    <meta name="description" content="Mezzanine International bridges global fashion with the Chinese market. Cross-border e-commerce solutions.">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://okcpt.github.io/mezzintl/">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://okcpt.github.io/mezzintl/">
-    <meta property="og:title" content="Mezzanine International | Connecting Global Fashion to China">
-    <meta property="og:description" content="Bridging global fashion with the Chinese market. Cross-border e-commerce solutions for international brands.">
-    <meta property="og:image" content="https://okcpt.github.io/mezzintl/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://okcpt.github.io/mezzintl/">
-    <meta property="twitter:title" content="Mezzanine International | Connecting Global Fashion to China">
-    <meta property="twitter:description" content="Bridging global fashion with the Chinese market. Cross-border e-commerce solutions for international brands.">
-    <meta property="twitter:image" content="https://okcpt.github.io/mezzintl/og-image.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        /* ============================================
-           CSS VARIABLES - LIGHT MODE (DEFAULT)
-        ============================================ */
-        :root {
-            --bg-primary: #FAF9F6;
-            --bg-secondary: #F5F4F0;
-            --bg-dark: #1A1A1A;
-            --bg-deep: #0F0F0F;
-            
-            --text-primary: #1A1A1A;
-            --text-secondary: #6B6B6B;
-            --text-light: #FAF9F6;
-            --text-light-secondary: rgba(250, 249, 246, 0.7);
-            
-            --accent: #8B7355;
-            --accent-light: #A68B6A;
-            
-            --border: rgba(26, 26, 26, 0.1);
-            --border-light: rgba(250, 249, 246, 0.1);
-            
-            --card-bg: rgba(26, 26, 26, 0.02);
-            --card-bg-hover: rgba(26, 26, 26, 0.05);
-            
-            --grid-line: rgba(139, 115, 85, 0.08);
-            --shadow: rgba(0, 0, 0, 0.08);
-            
-            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* ============================================
-           DARK MODE VARIABLES
-        ============================================ */
-        [data-theme="dark"] {
-            --bg-primary: #0F0F0F;
-            --bg-secondary: #1A1A1A;
-            --bg-dark: #1A1A1A;
-            --bg-deep: #0F0F0F;
-            
-            --text-primary: #FAF9F6;
-            --text-secondary: #9A9A9A;
-            --text-light: #FAF9F6;
-            --text-light-secondary: rgba(250, 249, 246, 0.7);
-            
-            --border: rgba(250, 249, 246, 0.1);
-            --border-light: rgba(26, 26, 26, 0.1);
-            
-            --card-bg: rgba(250, 249, 246, 0.05);
-            --card-bg-hover: rgba(250, 249, 246, 0.08);
-            
-            --grid-line: rgba(139, 115, 85, 0.05);
-            --shadow: rgba(0, 0, 0, 0.3);
-        }
-
-        /* ============================================
-           BASE STYLES
-        ============================================ */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-weight: 400;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-            letter-spacing: -0.01em;
-            overflow-x: hidden;
-            transition: background-color var(--transition), color var(--transition);
-        }
-
-        /* Grid Background */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            background-image: 
-                linear-gradient(var(--grid-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 80px 80px;
-            animation: gridMove 60s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(80px, 80px); }
-        }
-
-        /* ============================================
-           HEADER
-        ============================================ */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 24px 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all var(--transition);
-            background: transparent;
-        }
-
-        /* Light mode header - always show dark background */
-        [data-theme="light"] header {
-            background: rgba(250, 249, 246, 0.95);
-        }
-
-        [data-theme="light"] .nav-links a {
-            color: #1A1A1A;
-        }
-
-        [data-theme="light"] .theme-toggle,
-        [data-theme="light"] .lang-toggle {
-            color: #1A1A1A;
-        }
-
-        header.scrolled {
-            background: var(--bg-primary);
-            backdrop-filter: blur(20px);
-            padding: 16px 48px;
-            box-shadow: 0 1px 0 var(--border);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo svg {
-            height: 32px;
-            width: auto;
-        }
-
-        .logo svg .logo-text {
-            fill: var(--text-primary);
-        }
-
-        .logo svg .logo-mark {
-            fill: var(--text-primary);
-        }
-
-        .logo svg .logo-accent {
-            fill: var(--accent);
-        }
-
-        .logo svg .logo-grid {
-            stroke: var(--accent);
-        }
-
-        /* Hero logo override - always light */
-        .hero .logo svg .logo-text,
-        .hero .logo svg .logo-mark {
-            fill: #FAF9F6;
-        }
-
-        .nav-desktop {
-            display: flex;
-            align-items: center;
-            gap: 48px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 48px;
-        }
-
-        .nav-links a {
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-primary);
-            text-decoration: none;
-            position: relative;
-            padding-bottom: 4px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width 0.4s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .theme-toggle, .lang-toggle {
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover, .lang-toggle:hover {
-            background: var(--card-bg-hover);
-        }
-
-        .lang-toggle {
-            width: auto;
-            padding: 0 16px;
-            font-size: 13px;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-        }
-
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            padding: 10px;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 24px;
-            height: 1.5px;
-            background: var(--text-primary);
-            transition: all 0.4s ease;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: translateY(3.5px) rotate(45deg);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: translateY(-3.5px) rotate(-45deg);
-        }
-
-        .nav-mobile {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--bg-primary);
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 32px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .nav-mobile.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .nav-mobile a {
-            font-size: 24px;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--text-primary);
-            text-decoration: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-        }
-
-        .nav-mobile.active a {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ============================================
-           HERO SECTION
-        ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 48px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(ellipse at 30% 20%, #151515 0%, #0a0a0a 50%, #050505 100%);
-        }
-
-        .hero-bg svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            min-width: 100vw;
-            min-height: 100vh;
-        }
-
-        /* Hero animation - Node Network */
-        @keyframes node-pulse {
-            0%, 100% { r: 6; opacity: 0.6; }
-            50% { r: 10; opacity: 1; }
-        }
-
-        @keyframes node-pulse-small {
-            0%, 100% { r: 4; opacity: 0.4; }
-            50% { r: 7; opacity: 0.8; }
-        }
-
-        @keyframes flow-line {
-            0%, 100% { stroke-dashoffset: 0; }
-            100% { stroke-dashoffset: -60; }
-        }
-
-        @keyframes float-soft {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(10px, -15px); }
-            66% { transform: translate(-5px, -10px); }
-        }
-
-        @keyframes rotate-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Flow curve animations */
-        @keyframes flow1 {
-            0%, 100% { d: path("M -100 500 Q 480 450 960 500 Q 1440 550 2020 500"); transform: translateY(0); }
-            50% { d: path("M -100 500 Q 480 550 960 500 Q 1440 450 2020 500"); transform: translateY(-10px); }
-        }
-
-        @keyframes flow2 {
-            0%, 100% { d: path("M -100 580 Q 480 530 960 580 Q 1440 630 2020 580"); transform: translateY(0); }
-            50% { d: path("M -100 580 Q 480 630 960 580 Q 1440 530 2020 580"); transform: translateY(10px); }
-        }
-
-        @keyframes flow3 {
-            0%, 100% { d: path("M -100 650 Q 480 600 960 650 Q 1440 700 2020 650"); transform: translateY(0); }
-            50% { d: path("M -100 650 Q 480 700 960 650 Q 1440 600 2020 650"); transform: translateY(-8px); }
-        }
-
-        @keyframes drift {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(15px, -20px); }
-            50% { transform: translate(-10px, -10px); }
-            75% { transform: translate(20px, 10px); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes breathe {
-            0%, 100% { opacity: 0.08; transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(1.05); }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.35; }
-        }
-
-        .hero-curve {
-            fill: none;
-            stroke: rgba(255,255,255,0.1);
-            stroke-width: 1.5;
-            stroke-linecap: round;
-        }
-
-        .hero-curve-1 { animation: flow1 10s ease-in-out infinite; }
-        .hero-curve-2 { animation: flow2 10s ease-in-out infinite; animation-delay: -3s; }
-        .hero-curve-3 { animation: flow3 10s ease-in-out infinite; animation-delay: -6s; }
-        .hero-curve-4 { animation: flow2 10s ease-in-out infinite; animation-delay: -1s; opacity: 0.5; }
-
-        .hero-shape {
-            fill: none;
-            stroke: rgba(255,255,255,0.05);
-            stroke-width: 0.5;
-        }
-
-        .hero-shape-1 { animation: drift 20s ease-in-out infinite; }
-        .hero-shape-2 { animation: float 15s ease-in-out infinite; animation-delay: -5s; }
-
-        .hero-particle {
-            fill: rgba(255,255,255,0.12);
-        }
-
-        .hero-p1 { animation: twinkle 3s ease-in-out infinite; }
-        .hero-p2 { animation: twinkle 3s ease-in-out infinite; animation-delay: -0.5s; }
-        .hero-p3 { animation: twinkle 3s ease-in-out infinite; animation-delay: -1s; }
-        .hero-p4 { animation: twinkle 3s ease-in-out infinite; animation-delay: -1.5s; }
-        .hero-p5 { animation: twinkle 3s ease-in-out infinite; animation-delay: -2s; }
-        .hero-p6 { animation: twinkle 3s ease-in-out infinite; animation-delay: -2.5s; }
-
-        .hero-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: breathe 8s ease-in-out infinite;
-        }
-
-        .hero-orb-1 {
-            width: 500px;
-            height: 500px;
-            background: rgba(139,115,85,0.1);
-            top: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .hero-orb-2 {
-            width: 350px;
-            height: 350px;
-            background: rgba(139,115,85,0.06);
-            bottom: 5%;
-            right: 15%;
-            animation-delay: -4s;
-        }
-
-        .hero-grid {
-            stroke: rgba(139, 115, 85, 0.06);
-            stroke-width: 0.5;
-        }
-
-        .hero-node {
-            fill: rgba(139, 115, 85, 0.6);
-        }
-
-        .hero-node-core {
-            fill: #FAF9F6;
-        }
-
-        .hero-connection {
-            stroke: rgba(139, 115, 85, 0.15);
-            stroke-width: 0.5;
-        }
-
-        .hero-connection-flow {
-            stroke: rgba(139, 115, 85, 0.3);
-            stroke-width: 1;
-            stroke-dasharray: 4 8;
-            animation: flow-line 1.5s linear infinite;
-        }
-
-        .hero-ring {
-            fill: none;
-            stroke: rgba(139, 115, 85, 0.08);
-            stroke-width: 0.5;
-        }
-
-        .hero-dot {
-            fill: rgba(139, 115, 85, 0.4);
-            animation: blink 3s ease-in-out infinite;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(0, 0, 0, 0.6) 0%,
-                rgba(0, 0, 0, 0.3) 50%,
-                rgba(0, 0, 0, 0.5) 100%
-            );
-            z-index: 0;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Hero text is ALWAYS light (on dark background image) */
-        .hero h1 {
-            font-size: clamp(36px, 6vw, 64px);
-            font-weight: 500;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-            color: #FAF9F6;
-        }
-
-        .hero p {
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: 0.02em;
-            color: rgba(250, 249, 246, 0.85);
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 32px;
-        }
-
-        .cta {
-            display: inline-block;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #FAF9F6;
-            text-decoration: none;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(250, 249, 246, 0.6);
-            transition: all 0.3s ease;
-        }
-
-        .cta:hover {
-            padding-bottom: 12px;
-            border-bottom-color: var(--accent);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 48px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(250, 249, 246, 0.6);
-            font-size: 11px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* ============================================
-           CONTENT SECTIONS
-        ============================================ */
-        section {
-            position: relative;
-            z-index: 1;
-            padding: 120px 48px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 32px;
-            opacity: 0.5;
-            color: var(--text-primary);
-        }
-
-        h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 500;
-            line-height: 1.25;
-            letter-spacing: -0.02em;
-            margin-bottom: 48px;
-            color: var(--text-primary);
-        }
-
-        /* Dark Sections - dark background with light text */
-        .dark-section {
-            background: #0F0F0F;
-        }
-
-        .dark-section .section-label,
-        .dark-section h2,
-        .dark-section p,
-        .dark-section .timeline-date,
-        .dark-section .timeline-content,
-        .dark-section .metric-label,
-        .dark-section .value-item h3,
-        .dark-section .value-item p,
-        .dark-section .coop-item h3,
-        .dark-section .coop-item p,
-        .dark-section .partner-item,
-        .dark-section .partner-item strong,
-        .dark-section .vision-text {
-            color: #FAF9F6;
-        }
-
-        .dark-section .value-item,
-        .dark-section .partner-item {
-            border-color: rgba(250, 249, 246, 0.1);
-        }
-
-        .dark-section .coop-item {
-            background: rgba(250, 249, 246, 0.05);
-        }
-
-        .dark-section .coop-item:hover {
-            background: rgba(250, 249, 246, 0.08);
-        }
-
-        /* ============================================
-           BRANDS SECTION
-        ============================================ */
-        .brands-section {
-            padding: 80px 48px;
-            background: var(--bg-secondary);
-        }
-
-        .brands-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 64px;
-            opacity: 0.4;
-        }
-
-        .brand-logo {
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            color: var(--text-primary);
-            transition: opacity 0.3s ease;
-        }
-
-        .brand-logo:hover {
-            opacity: 0.8;
-        }
-
-        /* ============================================
-           TIMELINE
-        ============================================ */
-        .timeline {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 48px;
-            margin-top: 48px;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 24px;
-            border-left: 1px solid var(--border);
-        }
-
-        .timeline-item:hover {
-            border-left-color: var(--accent);
-        }
-
-        .timeline-date {
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            opacity: 0.5;
-            color: var(--text-primary);
-        }
-
-        .timeline-content {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-primary);
-        }
-
-        /* AEO Badge */
-        .aeo-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #C9A962 0%, #E8D5A3 50%, #C9A962 100%);
-            color: #1A1A1A;
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            margin-top: 48px;
-        }
-
-        /* ============================================
-           METRICS
-        ============================================ */
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 64px;
-            margin-top: 48px;
-        }
-
-        .metric {
-            text-align: left;
-        }
-
-        /* Metrics are in dark-section, so ALWAYS light */
-        .metric-number {
-            font-size: clamp(48px, 6vw, 72px);
-            font-weight: 500;
-            line-height: 1;
-            letter-spacing: -0.03em;
-            margin-bottom: 12px;
-            color: #FAF9F6;
-        }
-
-        .metric-label {
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            opacity: 0.6;
-            color: rgba(250, 249, 246, 0.7);
-        }
-
-        /* ============================================
-           VALUE GRID (Why Partner)
-        ============================================ */
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 48px;
-            margin-top: 48px;
-        }
-
-        .value-item {
-            padding: 24px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .value-item h3 {
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-
-        .value-item p {
-            font-size: 14px;
-            line-height: 1.7;
-            opacity: 0.7;
-            color: var(--text-primary);
-        }
-
-        /* ============================================
-           COOPERATION MODELS
-        ============================================ */
-        .coop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 48px;
-            margin-top: 48px;
-        }
-
-        .coop-item {
-            padding: 48px;
-            background: var(--card-bg);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .coop-item:hover {
-            background: var(--card-bg-hover);
-            transform: translateY(-4px);
-        }
-
-        .coop-item h3 {
-            font-size: 20px;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-
-        .coop-item p {
-            font-size: 14px;
-            line-height: 1.7;
-            opacity: 0.7;
-            color: var(--text-primary);
-        }
-
-        /* ============================================
-           PARTNERS
-        ============================================ */
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .partner-item {
-            padding: 24px 0;
-            font-size: 15px;
-            line-height: 1.6;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-primary);
-        }
-
-        .partner-item strong {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        /* ============================================
-           VISION
-        ============================================ */
-        .vision-text {
-            font-size: clamp(20px, 3vw, 28px);
-            font-weight: 300;
-            line-height: 1.6;
-            letter-spacing: 0.01em;
-            max-width: 800px;
-            color: #FAF9F6;
-            opacity: 0.9;
-        }
-
-        /* ============================================
-           CONTACT FORM
-        ============================================ */
-        .contact-section {
-            background: var(--bg-secondary);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .contact-info p {
-            font-size: 16px;
-            line-height: 1.8;
-            opacity: 0.8;
-            margin-bottom: 32px;
-            color: var(--text-primary);
-        }
-
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .contact-links a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        .contact-links a:hover {
-            color: var(--accent);
-        }
-
-        .contact-form {
-            background: var(--bg-primary);
-            padding: 48px;
-            border-radius: 8px;
-            box-shadow: 0 4px 30px var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            opacity: 0.7;
-            color: var(--text-primary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--border);
-            background: transparent;
-            font-family: inherit;
-            font-size: 15px;
-            color: var(--text-primary);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-secondary);
-            opacity: 0.5;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 16px 32px;
-            background: var(--text-primary);
-            color: var(--bg-primary);
-            border: none;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-submit:hover {
-            background: var(--accent);
-        }
-
-        /* ============================================
-           FOOTER
-        ============================================ */
-        footer {
-            background: #0F0F0F;
-            color: #FAF9F6;
-            padding: 80px 48px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 64px;
-        }
-
-        .footer-brand {
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
-        .footer-desc {
-            font-size: 14px;
-            line-height: 1.7;
-            opacity: 0.7;
-            max-width: 360px;
-        }
-
-        .footer-col h4 {
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            opacity: 0.5;
-        }
-
-        .footer-col a {
-            display: block;
-            font-size: 14px;
-            color: #FAF9F6;
-            text-decoration: none;
-            margin-bottom: 12px;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-col a:hover {
-            opacity: 1;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 64px auto 0;
-            padding-top: 24px;
-            border-top: 1px solid rgba(250, 249, 246, 0.1);
-            font-size: 12px;
-            opacity: 0.5;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* ============================================
-           ANIMATIONS
-        ============================================ */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ============================================
-           MOBILE RESPONSIVE
-        ============================================ */
-        @media (max-width: 1024px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 16px 24px;
-            }
-
-            header.scrolled {
-                padding: 12px 24px;
-            }
-
-            .nav-desktop {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            section {
-                padding: 80px 24px;
-            }
-
-            .hero {
-                padding: 100px 24px;
-            }
-
-            .brands-grid {
-                gap: 32px;
-            }
-
-            .contact-form {
-                padding: 32px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 16px;
-            }
-        }
-    </style>
-    
-    <!-- Schema.org Organization -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Mezzanine International",
-        "description": "Cross-border fashion e-commerce platform connecting global brands with the Chinese market",
-        "url": "https://okcpt.github.io/mezzintl/",
-        "logo": "https://okcpt.github.io/mezzintl/logo.svg",
-        "areaServed": {
-            "@type": "Country",
-            "name": "China"
-        },
-        "industry": "E-commerce",
-        "numberOfEmployees": {
-            "@type": "QuantitativeValue",
-            "minValue": 50,
-            "maxValue": 200
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mezzanine International | Access China Through Structure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #0d0d0d;
+      --text-primary: #f5f5f5;
+      --text-secondary: #a0a0a0;
+      --text-muted: #6b6b6b;
+      --accent: #8a8a8a;
+      --accent-subtle: #2a2a2a;
+      --structural: #4a5568;
+      --border: #1a1a1a;
+      --grid-line: rgba(245, 245, 245, 0.03);
     }
-    </script>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    /* Grid Background Pattern */
+    .grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0.5;
+    }
+
+    .grid-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, var(--bg-primary) 100%);
+    }
+
+    /* Animations */
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes drawLine {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes staggerWord {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes subtleZoom {
+      from { transform: scale(1.05); }
+      to { transform: scale(1); }
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+    }
+
+    .nav-brand {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .nav-domain {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+    }
+
+    .hero-headline {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+
+    .hero-headline .word {
+      display: inline-block;
+      opacity: 0;
+      animation: staggerWord 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .hero-headline .word:nth-child(1) { animation-delay: 0.2s; }
+    .hero-headline .word:nth-child(2) { animation-delay: 0.35s; }
+    .hero-headline .word:nth-child(3) { animation-delay: 0.5s; }
+    .hero-headline .word:nth-child(4) { animation-delay: 0.65s; }
+
+    .hero-subheadline {
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 600px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+    }
+
+    .hero-grid-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-grid-line {
+      position: absolute;
+      background: var(--grid-line);
+    }
+
+    .hero-grid-line.horizontal {
+      height: 1px;
+      width: 100%;
+      animation: drawLine 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      transform-origin: left;
+    }
+
+    .hero-grid-line.vertical {
+      width: 1px;
+      height: 100%;
+      animation: drawLine 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      transform-origin: top;
+      transform: rotate(90deg);
+    }
+
+    /* Section Base Styles */
+    .section {
+      padding: 160px 8vw;
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 8vw;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .section-divider.visible {
+      transform: scaleX(1);
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 64px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-content {
+      max-width: 800px;
+    }
+
+    .content-block {
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .content-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .content-block.secondary {
+      font-size: clamp(16px, 1.8vw, 20px);
+      color: var(--text-secondary);
+    }
+
+    /* Infrastructure Section - Numeric Grid */
+    .infrastructure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      margin: 64px 0;
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .metric {
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .metric.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .metric-number {
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .metric-connector {
+      position: absolute;
+      top: 50%;
+      right: -24px;
+      width: 48px;
+      height: 1px;
+      background: var(--accent-subtle);
+      display: none;
+    }
+
+    .infrastructure-details {
+      margin-top: 64px;
+    }
+
+    .infrastructure-item {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .infrastructure-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .infrastructure-item:last-child {
+      border-bottom: none;
+    }
+
+    .infrastructure-marker {
+      width: 8px;
+      height: 8px;
+      background: var(--structural);
+      margin-top: 12px;
+      flex-shrink: 0;
+    }
+
+    .infrastructure-text {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .infrastructure-closing {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .closing-block {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .closing-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Engagement Models */
+    .engagement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin: 64px 0;
+    }
+
+    .engagement-card {
+      border: 1px solid var(--border);
+      padding: 40px 32px;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .engagement-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .engagement-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(245, 245, 245, 0.03);
+    }
+
+    .engagement-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .engagement-card-description {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .engagement-closing {
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Vision Section */
+    .vision {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision-bg {
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      right: -10%;
+      bottom: -10%;
+      background: radial-gradient(ellipse at center, var(--accent-subtle) 0%, var(--bg-primary) 70%);
+      opacity: 0.3;
+      transform: scale(1.1);
+      transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .vision-bg.visible {
+      transform: scale(1);
+    }
+
+    .vision-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 0 8vw;
+    }
+
+    .vision-statement {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .vision-statement.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 120px 8vw 80px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    .contact-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .contact-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .contact-email {
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: border-color 0.3s ease;
+    }
+
+    .contact-email:hover {
+      border-color: var(--accent);
+    }
+
+    .contact-address {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-style: normal;
+    }
+
+    .contact-context {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-weight: 300;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px 8vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-brand {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 20px 24px;
+      }
+      
+      .section {
+        padding: 100px 6vw;
+      }
+      
+      .hero {
+        padding: 0 6vw;
+      }
+      
+      .infrastructure-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      
+      .engagement-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .infrastructure-item {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
-    
-    <!-- Mobile Navigation -->
-    <nav class="nav-mobile" id="navMobile">
-        <a href="#about">About</a>
-        <a href="#metrics">Metrics</a>
-        <a href="#partners">Partners</a>
-        <a href="#cooperation">Cooperation</a>
-        <a href="#contact">Contact</a>
-        <div class="header-controls" style="margin-top: 32px;">
-            <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="lang-toggle" id="langToggleMobile">EN / 中</button>
-        </div>
-    </nav>
+  <!-- Grid Overlay -->
+  <div class="grid-overlay"></div>
 
-    <!-- Header -->
-    <header id="header">
-        <a href="#" class="logo">
-            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-                <g class="logo-mark">
-                    <rect x="8" y="10" width="4" height="40"/>
-                    <rect x="48" y="10" width="4" height="40"/>
-                    <polygon points="12,10 28,35 32,35 16,10"/>
-                    <polygon points="48,10 32,35 28,35 44,10"/>
-                </g>
-                <rect class="logo-accent" x="8" y="52" width="44" height="1.5"/>
-                <text class="logo-text" x="65" y="38" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="500" letter-spacing="0.25em">MEZZANINE</text>
-                <g class="logo-grid" stroke-width="0.5" opacity="0.3">
-                    <line x1="8" y1="10" x2="8" y2="55"/>
-                    <line x1="52" y1="10" x2="52" y2="55"/>
-                    <line x1="8" y1="35" x2="52" y2="35"/>
-                </g>
-            </svg>
-        </a>
-        
-        <div class="nav-desktop">
-            <nav class="nav-links">
-                <a href="#about">About</a>
-                <a href="#metrics">Metrics</a>
-                <a href="#partners">Partners</a>
-                <a href="#cooperation">Cooperation</a>
-                <a href="#contact">Contact</a>
-            </nav>
-            
-            <div class="header-controls">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="lang-toggle" id="langToggle">EN / 中</button>
-            </div>
-        </div>
-        
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#" class="nav-brand">Mezzanine International</a>
+    <span class="nav-domain">mezzintl.com</span>
+  </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-bg">
-            <!-- Gradient orbs -->
-            <div class="hero-orb hero-orb-1"></div>
-            <div class="hero-orb hero-orb-2"></div>
-            
-            <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
-                <!-- Flowing curves -->
-                <path class="hero-curve hero-curve-1" d="M -100 500 Q 480 450 960 500 Q 1440 550 2020 500"/>
-                <path class="hero-curve hero-curve-2" d="M -100 580 Q 480 530 960 580 Q 1440 630 2020 580"/>
-                <path class="hero-curve hero-curve-3" d="M -100 650 Q 480 600 960 650 Q 1440 700 2020 650"/>
-                <path class="hero-curve hero-curve-4" d="M -100 720 Q 480 670 960 720 Q 1440 770 2020 720"/>
-                
-                <!-- Floating shapes -->
-                <g class="hero-shape-1" style="animation-delay: -8s;">
-                    <circle cx="200" cy="300" r="40" class="hero-shape"/>
-                    <circle cx="220" cy="320" r="25" class="hero-shape" style="opacity: 0.5;"/>
-                </g>
-                
-                <g class="hero-shape-2">
-                    <rect x="1650" y="250" width="60" height="60" rx="2" class="hero-shape" transform="rotate(15 1680 280)"/>
-                </g>
-                
-                <g class="hero-shape-1" style="animation-delay: -3s;">
-                    <polygon points="1800,800 1840,860 1760,860" class="hero-shape"/>
-                </g>
-                
-                <g class="hero-shape-2" style="animation-delay: -10s;">
-                    <rect x="100" y="750" width="80" height="50" rx="1" class="hero-shape"/>
-                </g>
-                
-                <!-- Particles -->
-                <circle cx="350" cy="400" r="2" class="hero-particle hero-p1"/>
-                <circle cx="550" cy="320" r="1.5" class="hero-particle hero-p2"/>
-                <circle cx="750" cy="450" r="2" class="hero-particle hero-p3"/>
-                <circle cx="950" cy="350" r="1" class="hero-particle hero-p4"/>
-                <circle cx="1150" cy="420" r="2" class="hero-particle hero-p5"/>
-                <circle cx="1350" cy="380" r="1.5" class="hero-particle hero-p6"/>
-                <circle cx="1550" cy="500" r="2" class="hero-particle hero-p1"/>
-                
-                <circle cx="400" cy="600" r="1" class="hero-particle hero-p3"/>
-                <circle cx="650" cy="680" r="1.5" class="hero-particle hero-p5"/>
-                <circle cx="900" cy="620" r="1" class="hero-particle hero-p2"/>
-                <circle cx="1100" cy="700" r="2" class="hero-particle hero-p4"/>
-                <circle cx="1300" cy="650" r="1" class="hero-particle hero-p6"/>
-                <circle cx="1500" cy="720" r="1.5" class="hero-particle hero-p1"/>
-                
-                <circle cx="500" cy="850" r="1.5" class="hero-particle hero-p2"/>
-                <circle cx="800" cy="800" r="1" class="hero-particle hero-p4"/>
-                <circle cx="1050" cy="880" r="1.5" class="hero-particle hero-p6"/>
-                <circle cx="1250" cy="820" r="1" class="hero-particle hero-p3"/>
-                <circle cx="1450" cy="860" r="1.5" class="hero-particle hero-p5"/>
-            </svg>
-        </div>
-        <div class="hero-overlay"></div>
-        
-        <div class="hero-content">
-            <h1>Access China Through Structure.</h1>
-            <p>A cross-border infrastructure built for global fashion supply.</p>
-            <a href="#cooperation" class="cta">Explore Partnership</a>
-        </div>
-        
-        <div class="scroll-indicator">Scroll</div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-grid-lines">
+      <div class="hero-grid-line horizontal" style="top: 33%;"></div>
+      <div class="hero-grid-line horizontal" style="top: 66%;"></div>
+      <div class="hero-grid-line vertical" style="left: 25%;"></div>
+      <div class="hero-grid-line vertical" style="left: 75%;"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        <span class="word">Access</span>
+        <span class="word">China</span>
+        <span class="word">Through</span>
+        <span class="word">Structure.</span>
+      </h1>
+      <p class="hero-subheadline">A cross-border infrastructure for global fashion supply.</p>
+    </div>
+  </section>
 
-    <!-- About - Structural Gap -->
-    <section id="about">
-        <div class="container">
-            <div class="section-label fade-in">A Structural Gap in Global Distribution</div>
-            <h2 class="fade-in">Global fashion supply operates through independent boutiques, platforms and brand ecosystems. China functions under a distinct regulatory, logistical and commercial framework.</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-date">The Gap</div>
-                    <div class="timeline-content">Between these systems lies a structural gap. Unstructured access creates friction. Structured access creates scalability.</div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-date">The Solution</div>
-                    <div class="timeline-content">Mezzanine operates as a structured distribution layer connecting global fashion supply to the Chinese market.</div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-date">The Approach</div>
-                    <div class="timeline-content">We integrate fragmented supply into a compliant, scalable and market-ready framework.</div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-date">The Difference</div>
-                    <div class="timeline-content">Rather than acting as a traditional reseller or intermediary, we organize distribution through infrastructure.</div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-date">Structure</div>
-                    <div class="timeline-content">Structure enables continuity. Infrastructure enables scale.</div>
-                </div>
-            </div>
-            
-            <div style="text-align: center;">
-                <div class="aeo-badge fade-in">
-                    <i class="fas fa-certificate"></i>
-                    <span>China Customs AEO Certified Enterprise</span>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Section: Structural Gap -->
+  <div class="section-divider"></div>
+  <section class="section" id="structural-gap">
+    <h2 class="section-title">A Structural Gap</h2>
+    <div class="section-content">
+      <p class="content-block">Global fashion supply is inherently fragmented.</p>
+      <p class="content-block secondary">China operates within a distinct regulatory and commercial system.</p>
+      <p class="content-block">Between them lies a structural gap.</p>
+      <p class="content-block secondary">Unstructured access creates friction.</p>
+      <p class="content-block">Structured access enables scale.</p>
+    </div>
+  </section>
 
-    <!-- Infrastructure Section (Dark Section) -->
-    <section id="metrics" class="dark-section">
-        <div class="container">
-            <div class="section-label fade-in">Built on Integrated Market Infrastructure</div>
-            <h2 class="fade-in">A coordinated global sourcing and distribution architecture</h2>
-            
-            <div class="metrics">
-                <div class="metric fade-in">
-                    <div class="metric-number" data-count="150" data-suffix="+">0</div>
-                    <div class="metric-label">Established Supply Partners</div>
-                </div>
-                <div class="metric fade-in">
-                    <div class="metric-number" data-count="2" data-suffix="">0</div>
-                    <div class="metric-label">Core Markets (EU + NA)</div>
-                </div>
-                <div class="metric fade-in">
-                    <div class="metric-number" data-count="2" data-suffix="">0</div>
-                    <div class="metric-label">Hub Locations</div>
-                </div>
-                <div class="metric fade-in">
-                    <div class="metric-number" data-count="2" data-suffix="">0</div>
-                    <div class="metric-label">Distribution Channels</div>
-                </div>
-                <div class="metric fade-in">
-                    <div class="metric-number" data-count="1" data-suffix="">0</div>
-                    <div class="metric-label">AEO Certification</div>
-                </div>
-                <div class="metric fade-in">
-                    <div class="metric-number" data-count="1" data-suffix="">0</div>
-                    <div class="metric-label">Unified Distribution Layer</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Section: Distribution Layer -->
+  <div class="section-divider"></div>
+  <section class="section" id="distribution-layer">
+    <h2 class="section-title">A Distribution Layer</h2>
+    <div class="section-content">
+      <p class="content-block">Mezzanine operates as a structured distribution layer connecting global supply to China.</p>
+      <p class="content-block secondary">We convert fragmented supply into compliant, scalable market access.</p>
+      <p class="content-block">Our role is not transactional.</p>
+      <p class="content-block secondary">It is infrastructural.</p>
+      <p class="content-block">Structure enables continuity.</p>
+      <p class="content-block secondary">Infrastructure enables scale.</p>
+    </div>
+  </section>
 
-    <!-- Structured Collaboration -->
-    <section id="why-partner">
-        <div class="container">
-            <div class="section-label fade-in">Structured Collaboration</div>
-            <h2 class="fade-in">Built on integrated market infrastructure</h2>
-            
-            <div class="value-grid">
-                <div class="value-item fade-in">
-                    <h3>Global Sourcing Network</h3>
-                    <p>Our network includes over 150 established supply partners across Europe and North America — curated for authenticity, stability and long-term alignment.</p>
-                </div>
-                <div class="value-item fade-in">
-                    <h3>Compliant Cross-Border Framework</h3>
-                    <p>Supply flows directly into China through a compliant cross-border framework, supporting both B2C and B2B distribution while reducing structural inefficiencies.</p>
-                </div>
-                <div class="value-item fade-in">
-                    <h3>Technology Backbone</h3>
-                    <p>Inventory, pricing and order systems are synchronized into a unified distribution layer, powered by continuous data analysis.</p>
-                </div>
-                <div class="value-item fade-in">
-                    <h3>Supply Chain Infrastructure</h3>
-                    <p>Our supply chain spans Hong Kong and Milan, enabling controlled procurement, bonded logistics and reliable fulfillment.</p>
-                </div>
-                <div class="value-item fade-in">
-                    <h3>Omnichannel Distribution</h3>
-                    <p>Distribution is amplified through an integrated omnichannel framework, ensuring structured market visibility across digital and platform ecosystems.</p>
-                </div>
-                <div class="value-item fade-in">
-                    <h3>AEO Certified Trade Status</h3>
-                    <p>As a China Customs Authorized Economic Operator (AEO), we operate under certified trade status — enhancing compliance reliability and streamlining customs clearance. This is not opportunistic trade. It is institutionalized distribution.</p>
-                </div>
-            </div>
+  <!-- Section: Integrated Infrastructure -->
+  <div class="section-divider"></div>
+  <section class="section" id="integrated-infrastructure">
+    <h2 class="section-title">Integrated Infrastructure</h2>
+    <div class="section-content">
+      <!-- Metrics Grid -->
+      <div class="infrastructure-grid">
+        <div class="metric" data-target="150">
+          <div class="metric-number"><span class="count">0</span>+</div>
+          <div class="metric-label">Supply Partners</div>
+          <div class="metric-connector"></div>
         </div>
-    </section>
+        <div class="metric" data-target="5000">
+          <div class="metric-number"><span class="count">0</span>+</div>
+          <div class="metric-label">Brands Represented</div>
+          <div class="metric-connector"></div>
+        </div>
+        <div class="metric" data-target="4">
+          <div class="metric-number"><span class="count">0</span>M+</div>
+          <div class="metric-label">SKUs Across Categories</div>
+        </div>
+      </div>
 
-    <!-- Structured Engagement Models (Dark Section) -->
-    <section id="cooperation" class="dark-section">
-        <div class="container">
-            <div class="section-label fade-in">Structured Engagement Models</div>
-            <h2 class="fade-in">Three pathways to structured collaboration</h2>
-            
-            <div class="coop-grid">
-                <div class="coop-item fade-in">
-                    <h3>API-Based System Integration</h3>
-                    <p>Supply can be connected directly into our distribution layer through API integration, enabling synchronized inventory, pricing and order management.</p>
-                </div>
-                <div class="coop-item fade-in">
-                    <h3>Coordinated Procurement</h3>
-                    <p>Products may be integrated through structured spot or forward procurement mechanisms, ensuring alignment between supply planning and market demand.</p>
-                </div>
-                <div class="coop-item fade-in">
-                    <h3>Operational Deployment</h3>
-                    <p>For partners seeking deeper market entry, distribution can be extended through coordinated operational frameworks adapted to the Chinese e-commerce environment.</p>
-                </div>
-            </div>
-            
-            <p class="vision-text fade-in" style="margin-top: 48px; text-align: center; opacity: 0.7;">
-                Each pathway is built on infrastructure. Each collaboration is structured for scalability.
-            </p>
+      <!-- Infrastructure Details -->
+      <div class="infrastructure-details">
+        <div class="infrastructure-item">
+          <div class="infrastructure-marker"></div>
+          <p class="infrastructure-text">Our network spans 150+ supply partners, representing 5,000+ brands and over 4 million SKUs across global fashion categories.</p>
         </div>
-    </section>
+        <div class="infrastructure-item">
+          <div class="infrastructure-marker"></div>
+          <p class="infrastructure-text">Supply enters China through a compliant cross-border framework, supporting both B2C and B2B distribution.</p>
+        </div>
+        <div class="infrastructure-item">
+          <div class="infrastructure-marker"></div>
+          <p class="infrastructure-text">Technology synchronizes inventory, pricing and orders within a unified operational layer.</p>
+        </div>
+        <div class="infrastructure-item">
+          <div class="infrastructure-marker"></div>
+          <p class="infrastructure-text">Our supply chain spans Hong Kong and Milan, ensuring controlled procurement and bonded logistics.</p>
+        </div>
+        <div class="infrastructure-item">
+          <div class="infrastructure-marker"></div>
+          <p class="infrastructure-text">Distribution extends through an integrated omnichannel framework, creating structured visibility across digital ecosystems.</p>
+        </div>
+        <div class="infrastructure-item">
+          <div class="infrastructure-marker"></div>
+          <p class="infrastructure-text">As a China Customs Authorized Economic Operator (AEO), we operate under certified trade status — reinforcing compliance and clearance efficiency.</p>
+        </div>
+      </div>
 
-    <!-- Partners -->
-    <section id="partners">
-        <div class="container">
-            <div class="section-label fade-in">Structured Collaboration</div>
-            <h2 class="fade-in">Partners seeking structured market access</h2>
-            
-            <div class="partners-grid">
-                <div class="partner-item fade-in">
-                    <strong>Boutiques</strong>
-                    Seeking structured access to the Chinese market through coordinated distribution frameworks
-                </div>
-                <div class="partner-item fade-in">
-                    <strong>Platforms</strong>
-                    Looking for compliant, scalable supply integration with operational alignment
-                </div>
-                <div class="partner-item fade-in">
-                    <strong>Brands</strong>
-                    Building long-term market presence through infrastructure rather than opportunistic trade
-                </div>
-                <div class="partner-item fade-in">
-                    <strong>Partnership Framework</strong>
-                    Collaborations built on supply alignment, compliance standards and operational integration — not open listings
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="infrastructure-closing">
+        <p class="closing-block">This is structured distribution.</p>
+        <p class="closing-block">Built for durability.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Vision (Dark Section) -->
-    <section id="vision" class="dark-section">
-        <div class="container">
-            <div class="section-label fade-in">Vision</div>
-            <h2 class="fade-in">Building a durable cross-border distribution layer</h2>
-            <p class="vision-text fade-in">
-                Global fashion supply will continue to expand across borders. Market access, however, requires structure. Our long-term objective is to build a durable cross-border distribution layer — integrating supply, compliance, logistics and channel ecosystems into a coherent infrastructure.
-            </p>
-            <p class="vision-text fade-in" style="margin-top: 24px;">
-                As distribution evolves beyond single-market models, we aim to extend this structured framework across broader Asian markets. Not as a trading company. But as a lasting layer within global fashion distribution.
-            </p>
-        </div>
-    </section>
+  <!-- Section: Structured Collaboration -->
+  <div class="section-divider"></div>
+  <section class="section" id="structured-collaboration">
+    <h2 class="section-title">Structured Collaboration</h2>
+    <div class="section-content">
+      <p class="content-block">We collaborate with boutiques, platforms and brands seeking disciplined access to the Chinese market.</p>
+      <p class="content-block secondary">Partnerships are grounded in alignment, compliance and operational integration.</p>
+      <p class="content-block">Structured engagement pathways include:</p>
 
-    <!-- Contact -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="section-label fade-in">Get in Touch</div>
-                    <h2 class="fade-in">Let's discuss your partnership</h2>
-                    <p class="fade-in">Ready to bring your fashion brand to China? Fill out the form and our partnership team will get back to you within 24 hours.</p>
-                    
-                    <div class="contact-links fade-in">
-                        <a href="mailto:partner@mezzintl.com">
-                            <i class="fas fa-envelope"></i>
-                            partner@mezzintl.com
-                        </a>
-                        <a href="https://chillcy-gz.feishu.cn" target="_blank">
-                            <i class="fas fa-comment-dots"></i>
-                            Feishu
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="contact-form fade-in">
-                    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your full name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company" name="company" placeholder="Your company name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your brand and goals..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-submit">Send Message</button>
-                    </form>
-                </div>
-            </div>
+      <!-- Engagement Models -->
+      <div class="engagement-grid">
+        <div class="engagement-card">
+          <h3 class="engagement-card-title">API Integration</h3>
+          <p class="engagement-card-description">Direct system connectivity into our distribution layer.</p>
         </div>
-    </section>
+        <div class="engagement-card">
+          <h3 class="engagement-card-title">Coordinated Procurement</h3>
+          <p class="engagement-card-description">Structured spot or forward purchasing aligned with demand planning.</p>
+        </div>
+        <div class="engagement-card">
+          <h3 class="engagement-card-title">Operational Deployment</h3>
+          <p class="engagement-card-description">Market entry through coordinated operational frameworks.</p>
+        </div>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div>
-                <div class="footer-brand">Mezzanine International</div>
-                <p class="footer-desc">Access China Through Structure. A cross-border infrastructure built for global fashion supply.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <a href="mailto:partner@mezzintl.com">partner@mezzintl.com</a>
-                <a href="https://chillcy-gz.feishu.cn" target="_blank">Feishu</a>
-            </div>
-            <div class="footer-col">
-                <h4>Platforms</h4>
-                <a href="#">Mezzanine App</a>
-                <a href="#">ALFAMODA App</a>
-                <a href="#">Taobao Store</a>
-                <a href="#">JD Flagship</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>© 2025 Mezzanine International. All rights reserved.</span>
-            <span><i class="fas fa-shield-alt"></i> AEO Certified Enterprise</span>
-        </div>
-    </footer>
+      <div class="engagement-closing">
+        <p class="content-block">Collaboration begins with structure.</p>
+        <p class="content-block secondary">Growth follows integration.</p>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Theme Toggle
-        function initTheme() {
-            const savedTheme = localStorage.getItem('mezzanine-theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else if (systemPrefersDark) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+  <!-- Section: Vision -->
+  <div class="section-divider"></div>
+  <section class="vision" id="vision">
+    <div class="vision-bg"></div>
+    <div class="vision-content">
+      <p class="vision-statement">Building a durable cross-border distribution layer for global fashion.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="contact-content">
+      <div class="contact-section">
+        <h3 class="contact-label">Contact</h3>
+        <p class="contact-context">Collaboration inquiries may be directed to:</p>
+        <a href="mailto:contact@mezzintl.com" class="contact-email">contact@mezzintl.com</a>
+      </div>
+      <div class="contact-section">
+        <h3 class="contact-label">Registered Address</h3>
+        <address class="contact-address">
+          FACTORY A ON 6/F, FOU WAH INDUSTRIAL BUILDING<br>
+          NOS.10/16 PUN SHAN STREET<br>
+          TSUEN WAN, NEW TERRITORIES<br>
+          Hong Kong
+        </address>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-brand">Mezzanine International</span>
+    <span class="footer-copyright">© 2026 All rights reserved.</span>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Trigger count-up animation for metrics
+          if (entry.target.classList.contains('metric')) {
+            const countElement = entry.target.querySelector('.count');
+            const target = parseInt(entry.target.dataset.target);
+            if (countElement && target) {
+              animateCount(countElement, target);
             }
+          }
         }
+      });
+    }, observerOptions);
 
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('mezzanine-theme', newTheme);
+    // Count-up animation
+    function animateCount(element, target) {
+      const duration = 2000;
+      const start = 0;
+      const startTime = performance.now();
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(start + (target - start) * easeOut);
+        
+        element.textContent = current.toLocaleString();
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          element.textContent = target.toLocaleString();
         }
+      }
+      
+      requestAnimationFrame(update);
+    }
 
-        // Mobile Menu
-        function initMobileMenu() {
-            const menuToggle = document.getElementById('menuToggle');
-            const navMobile = document.getElementById('navMobile');
-            
-            menuToggle.addEventListener('click', () => {
-                menuToggle.classList.toggle('active');
-                navMobile.classList.toggle('active');
-                document.body.style.overflow = navMobile.classList.contains('active') ? 'hidden' : '';
-            });
-            
-            navMobile.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuToggle.classList.remove('active');
-                    navMobile.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
+    // Observe all animatable elements
+    document.querySelectorAll('.section-divider, .section-title, .content-block, .metric, .infrastructure-item, .closing-block, .engagement-card, .contact-section').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Vision section special observer for background
+    const visionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelector('.vision-bg').classList.add('visible');
+          entry.target.querySelector('.vision-statement').classList.add('visible');
         }
+      });
+    }, { threshold: 0.3 });
 
-        // Header Scroll
-        function initHeaderScroll() {
-            const header = document.getElementById('header');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            }, { passive: true });
-        }
+    document.querySelectorAll('.vision').forEach(el => {
+      visionObserver.observe(el);
+    });
 
-        // Fade In Animations
-        function initFadeInAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        }
-
-        // Number Counter Animation
-        function initCounterAnimations() {
-            const counters = document.querySelectorAll('[data-count]');
-            
-            const countUp = (el, target, suffix) => {
-                const duration = 2000;
-                const increment = target / (duration / 16);
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    el.textContent = Math.floor(current) + suffix;
-                }, 16);
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                        entry.target.classList.add('counted');
-                        const target = parseInt(entry.target.getAttribute('data-count'));
-                        const suffix = entry.target.getAttribute('data-suffix') || '';
-                        countUp(entry.target, target, suffix);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            counters.forEach(counter => observer.observe(counter));
-        }
-
-        // Contact Form
-        function initContactForm() {
-            const form = document.getElementById('contactForm');
-            
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const submitBtn = form.querySelector('.btn-submit');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Sending...';
-                
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: new FormData(form),
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    
-                    if (response.ok) {
-                        alert('Message sent! We will get back to you soon.');
-                        form.reset();
-                    } else {
-                        throw new Error('Failed');
-                    }
-                } catch (error) {
-                    alert('Failed to send. Please try again or email us directly.');
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Message';
-                }
-            });
-        }
-
-        // Smooth Scroll
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const offset = 80;
-                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
-                });
-            });
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            initTheme();
-            initMobileMenu();
-            initHeaderScroll();
-            initFadeInAnimations();
-            initCounterAnimations();
-            initContactForm();
-            initSmoothScroll();
-            
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-            document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+    // Parallax effect for grid overlay
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+          const grid = document.querySelector('.grid-overlay');
+          if (grid) {
+            grid.style.transform = `translateY(${scrolled * 0.02}px)`;
+          }
+          ticking = false;
         });
-    </script>
+        ticking = true;
+      }
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
