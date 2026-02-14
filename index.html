@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mezzanine International | Connecting Global Fashion to China</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --off-white: #FAF9F6;
+            --warm-dark: #1A1A1A;
+            --warm-gray: #2D2D2D;
+            --text-dark: #1A1A1A;
+            --text-light: #FAF9F6;
+            --accent: #8B7355;
+            --grid-line: rgba(139, 115, 85, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 400;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+            overflow-x: hidden;
+        }
+
+        /* Architectural Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridMove 60s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(80px, 80px); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: var(--off-white);
+            padding: 16px 48px;
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 48px;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.4s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 500;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 48px;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        .cta {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            text-decoration: none;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .cta:hover {
+            padding-bottom: 12px;
+            border-bottom-color: var(--accent);
+        }
+
+        /* Content Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 160px 48px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 64px;
+            opacity: 0.5;
+        }
+
+        h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 500;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+        }
+
+        /* Dark Sections */
+        .dark-section {
+            background: var(--warm-dark);
+            color: var(--text-light);
+        }
+
+        .dark-section .section-label,
+        .dark-section h2,
+        .dark-section p,
+        .dark-section .cta {
+            color: var(--text-light);
+        }
+
+        .dark-section .cta {
+            border-bottom-color: var(--text-light);
+        }
+
+        /* About Timeline */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 64px;
+            margin-top: 64px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 32px;
+            border-left: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .dark-section .timeline-item {
+            border-left-color: rgba(250, 249, 246, 0.1);
+        }
+
+        .timeline-date {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .timeline-content {
+            font-size: 15px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 80px;
+            margin-top: 64px;
+        }
+
+        .metric {
+            text-align: left;
+        }
+
+        .metric-number {
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            opacity: 0.6;
+        }
+
+        /* Why Partner Grid */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        .value-item {
+            padding: 32px 0;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .dark-section .value-item {
+            border-top-color: rgba(250, 249, 246, 0.1);
+        }
+
+        .value-item h3 {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+
+        .value-item p {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.7;
+        }
+
+        /* Cooperation Models */
+        .coop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        .coop-item {
+            padding: 48px;
+            background: rgba(26, 26, 26, 0.02);
+            transition: background 0.3s ease;
+        }
+
+        .dark-section .coop-item {
+            background: rgba(250, 249, 246, 0.05);
+        }
+
+        .coop-item:hover {
+            background: rgba(26, 26, 26, 0.05);
+        }
+
+        .dark-section .coop-item:hover {
+            background: rgba(250, 249, 246, 0.08);
+        }
+
+        .coop-item h3 {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+
+        .coop-item p {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.7;
+        }
+
+        /* Partners */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .partner-item {
+            padding: 32px 0;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .dark-section .partner-item {
+            border-bottom-color: rgba(250, 249, 246, 0.1);
+        }
+
+        .partner-item strong {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        /* Vision */
+        .vision-text {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 300;
+            line-height: 1.6;
+            letter-spacing: 0.01em;
+            max-width: 800px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--warm-dark);
+            color: var(--text-light);
+            padding: 80px 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 64px;
+        }
+
+        .footer-brand {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .footer-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.7;
+            max-width: 360px;
+        }
+
+        .footer-col h4 {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0.5;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: none;
+            margin-bottom: 12px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding-top: 32px;
+            border-top: 1px solid rgba(250, 249, 246, 0.1);
+            font-size: 12px;
+            opacity: 0.5;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 24px;
+            }
+
+            header.scrolled {
+                padding: 12px 24px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            section {
+                padding: 100px 24px;
+            }
+
+            .hero {
+                padding: 100px 24px;
+            }
+
+            .timeline,
+            .metrics,
+            .value-grid,
+            .coop-grid,
+            .partners-grid {
+                gap: 32px;
+            }
+
+            .coop-item {
+                padding: 32px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    
+    <header id="header">
+        <a href="#" class="logo">Mezzanine</a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#metrics">Metrics</a>
+            <a href="#partners">Partners</a>
+            <a href="#cooperation">Cooperation</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connecting Global Fashion to China</h1>
+            <p>We seamlessly bridge the world's finest fashion with the Chinese market. Through technology-driven cross-border solutions, we empower global suppliers to reach millions of Chinese consumers.</p>
+            <a href="#partners" class="cta">Explore Partnership</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-label fade-in">Our History</div>
+            <h2 class="fade-in">A decade of bridging global fashion with Chinese consumers</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">October 2012</div>
+                    <div class="timeline-content">Launched our first online store on Taobao, beginning the journey of bringing global fashion to China.</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">December 2015</div>
+                    <div class="timeline-content">Surpassed 10,000 customers, achieving annual sales revenue of over 25 million RMB.</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">January 2018</div>
+                    <div class="timeline-content">Opened flagship store on JD.com and launched Mezzanine WeChat Mini Program.</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">December 2018</div>
+                    <div class="timeline-content">Reached 50,000 customers, with annual sales exceeding 80 million RMB.</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">June 2019</div>
+                    <div class="timeline-content">Launched the Mezzanine App, expanding our direct-to-consumer offering.</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">December 2023</div>
+                    <div class="timeline-content">Exceeded 300,000 registered users, with annual sales surpassing 280 million RMB.</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">February 2024</div>
+                    <div class="timeline-content">Received China Customs AEO certification, enhancing cross-border trade efficiency.</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">May 2025</div>
+                    <div class="timeline-content">Officially launched the ALFAMODA App, focused on developing and serving the fashion wholesale market.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metrics" class="dark-section">
+        <div class="container">
+            <div class="section-label fade-in">Key Metrics</div>
+            <h2 class="fade-in">Our impact in numbers</h2>
+            <div class="metrics">
+                <div class="metric fade-in">
+                    <div class="metric-number">¥500M+</div>
+                    <div class="metric-label">2024 GMV</div>
+                </div>
+                <div class="metric fade-in">
+                    <div class="metric-number">600K+</div>
+                    <div class="metric-label">Registered Users</div>
+                </div>
+                <div class="metric fade-in">
+                    <div class="metric-number">150+</div>
+                    <div class="metric-label">Global Suppliers</div>
+                </div>
+                <div class="metric fade-in">
+                    <div class="metric-number">5,000+</div>
+                    <div class="metric-label">Brands in Stock</div>
+                </div>
+                <div class="metric fade-in">
+                    <div class="metric-number">4M+</div>
+                    <div class="metric-label">SKU Catalog</div>
+                </div>
+                <div class="metric fade-in">
+                    <div class="metric-number">20%+</div>
+                    <div class="metric-label">Annual Growth Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-partner">
+        <div class="container">
+            <div class="section-label fade-in">Why Partner</div>
+            <h2 class="fade-in">Six reasons to collaborate with us</h2>
+            <div class="value-grid">
+                <div class="value-item fade-in">
+                    <h3>Global Sourcing Network</h3>
+                    <p>Established partnerships with renowned e-commerce platforms and buyer stores worldwide, ensuring product diversity and authenticity.</p>
+                </div>
+                <div class="value-item fade-in">
+                    <h3>Convenient Sales Channels</h3>
+                    <p>Suppliers can directly sell to the Chinese market through our platform, reducing intermediaries and lowering barriers to entry.</p>
+                </div>
+                <div class="value-item fade-in">
+                    <h3>Professional Tech Team</h3>
+                    <p>Our technology development team efficiently collaborates with suppliers and provides precise data analysis to optimize product strategies.</p>
+                </div>
+                <div class="value-item fade-in">
+                    <h3>Omnichannel Digital Marketing</h3>
+                    <p>Through our omnichannel marketing system, we help partners increase sales and achieve broader market coverage across China.</p>
+                </div>
+                <div class="value-item fade-in">
+                    <h3>Efficient Supply Chain</h3>
+                    <p>Professional supply chain team skilled in cross-border logistics and warehouse management, ensuring quick and safe delivery.</p>
+                </div>
+                <div class="value-item fade-in">
+                    <h3>AEO Certification</h3>
+                    <p>As a China Customs certified Authorized Economic Operator, we enjoy higher trust and smoother customs clearance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cooperation" class="dark-section">
+        <div class="container">
+            <div class="section-label fade-in">Cooperation Models</div>
+            <h2 class="fade-in">Flexible ways to partner</h2>
+            <div class="coop-grid">
+                <div class="coop-item fade-in">
+                    <h3>API Integration</h3>
+                    <p>Partners can begin selling their products by simply integrating with our supply chain system via API. Fast, seamless, and scalable.</p>
+                </div>
+                <div class="coop-item fade-in">
+                    <h3>Flexible Procurement</h3>
+                    <p>We can procure products in bulk either on a spot (immediate) or futures (pre-purchase) basis, adapting to your inventory needs.</p>
+                </div>
+                <div class="coop-item fade-in">
+                    <h3>Managed Operations</h3>
+                    <p>We offer managed operations services to help partners' e-commerce platforms enter the Chinese market efficiently without operational overhead.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners">
+        <div class="container">
+            <div class="section-label fade-in">Who We Work With</div>
+            <h2 class="fade-in">Partners across the fashion ecosystem</h2>
+            <div class="partners-grid">
+                <div class="partner-item fade-in">
+                    <strong>Boutique Buyers & Designers</strong>
+                    Monetize curated collections in Asia's largest luxury market
+                </div>
+                <div class="partner-item fade-in">
+                    <strong>Global E-Commerce Platforms</strong>
+                    Expand your China footprint without operational overhead
+                </div>
+                <div class="partner-item fade-in">
+                    <strong>Brands with Limited China Experience</strong>
+                    Leverage our infrastructure to avoid costly trial-and-error
+                </div>
+                <div class="partner-item fade-in">
+                    <strong>Outlets</strong>
+                    Access discounted fashion and exclusive products tailored to the value-conscious consumer market
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision" class="dark-section">
+        <div class="container">
+            <div class="section-label fade-in">Vision</div>
+            <h2 class="fade-in">The future of fashion commerce</h2>
+            <p class="vision-text fade-in">
+                Our goal is to provide high-quality global suppliers with a simple and efficient cross-border sales platform. By leveraging our technological expertise, supply chain management, and marketing support, we help our partners achieve greater success in the Chinese market.
+            </p>
+            <p class="vision-text fade-in" style="margin-top: 32px;">
+                Looking ahead, we aim to expand our partnerships beyond China and into the broader Asian market, bringing global fashion to more consumers with seamless cross-border solutions.
+            </p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">Mezzanine International</div>
+                <p class="footer-desc">Seamlessly connecting global fashion to China. We provide efficient cross-border e-commerce solutions for suppliers worldwide.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="mailto:partner@mezzintl.com">partner@mezzintl.com</a>
+                <a href="https://chillcy-gz.feishu.cn" target="_blank">Feishu</a>
+            </div>
+            <div class="footer-col">
+                <h4>Platforms</h4>
+                <a href="#">Mezzanine App</a>
+                <a href="#">ALFAMODA App</a>
+                <a href="#">Taobao Store</a>
+                <a href="#">JD Flagship</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Mezzanine International. All rights reserved.</span>
+            <span>AEO Certified Enterprise</span>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
