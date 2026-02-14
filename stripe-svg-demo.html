@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mezzanine - Stripe SVG Style</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Stripe-style animated SVG background */
+        .svg-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        /* Morphing blob animation */
+        @keyframes morph1 {
+            0%, 100% { d: path("M400,300 Q350,200 450,150 Q550,100 650,150 Q750,200 700,300 Q650,400 550,450 Q450,500 350,450 Q250,400 400,300"); transform: translate(0, 0) scale(1); }
+            25% { d: path("M420,280 Q380,180 480,130 Q580,80 680,130 Q780,180 730,280 Q680,380 580,430 Q480,480 380,430 Q280,380 420,280"); transform: translate(-10px, 10px) scale(1.05); }
+            50% { d: path("M380,320 Q330,220 430,170 Q530,120 630,170 Q730,220 680,320 Q630,420 530,470 Q430,520 330,470 Q230,420 380,320"); transform: translate(10px, -10px) scale(0.95); }
+            75% { d: path("M410,290 Q360,190 460,140 Q560,90 660,140 Q760,190 710,290 Q660,390 560,440 Q460,490 360,440 Q260,390 410,290"); transform: translate(-5px, -5px) scale(1.02); }
+        }
+        
+        @keyframes morph2 {
+            0%, 100% { d: path("M1200,600 Q1150,500 1250,450 Q1350,400 1450,450 Q1550,500 1500,600 Q1450,700 1350,750 Q1250,800 1150,750 Q1050,700 1200,600"); transform: translate(0, 0) scale(1); }
+            33% { d: path("M1220,580 Q1170,480 1270,430 Q1370,380 1470,430 Q1570,480 1520,580 Q1470,680 1370,730 Q1270,780 1170,730 Q1070,680 1220,580"); transform: translate(15px, -15px) scale(1.08); }
+            66% { d: path("M1180,620 Q1130,520 1230,470 Q1330,420 1430,470 Q1530,520 1480,620 Q1430,720 1330,770 Q1230,820 1130,770 Q1030,720 1180,620"); transform: translate(-10px, 10px) scale(0.92); }
+        }
+        
+        /* Stroke animation */
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes float-rotate {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        @keyframes float-rotate-reverse {
+            0%, 100% { transform: translateY(0) rotate(360deg); }
+            50% { transform: translateY(20px) rotate(180deg); }
+        }
+        
+        /* Gradient fills */
+        .morph-shape {
+            fill: url(#gradient1);
+            opacity: 0.7;
+            filter: blur(20px);
+        }
+        
+        .morph-shape-2 {
+            fill: url(#gradient2);
+            opacity: 0.5;
+            filter: blur(30px);
+        }
+        
+        /* Stripe lines animation */
+        .stripe-line {
+            stroke: url(#stripeGradient);
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+        
+        .line-animate {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw 2s ease-in-out forwards;
+        }
+        
+        /* Grid */
+        .grid-line {
+            stroke: rgba(255,255,255,0.03);
+            stroke-width: 0.5;
+        }
+        
+        /* Dots */
+        .dot {
+            fill: url(#dotGradient);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .dot-1 { animation-delay: 0s; }
+        .dot-2 { animation-delay: -0.5s; }
+        .dot-3 { animation-delay: -1s; }
+        .dot-4 { animation-delay: -1.5s; }
+        .dot-5 { animation-delay: -2s; }
+        
+        /* Floating shapes */
+        .float-shape {
+            fill: none;
+            stroke-width: 1;
+            opacity: 0.3;
+        }
+        
+        .shape-circle {
+            stroke: rgba(167, 139, 250, 0.5);
+            animation: float-rotate 15s linear infinite;
+        }
+        
+        .shape-square {
+            stroke: rgba(79, 172, 254, 0.5);
+            animation: float-rotate-reverse 12s linear infinite;
+        }
+        
+        /* Hero content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 24px;
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: clamp(14px, 1.5vw, 18px);
+            color: rgba(255,255,255,0.7);
+            max-width: 500px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #fff;
+            color: #0a0a0a;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(255,255,255,0.15);
+        }
+        
+        /* Scroll */
+        .scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <svg class="svg-bg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <!-- Gradients -->
+                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#818cf8"/>
+                    <stop offset="50%" style="stop-color:#c084fc"/>
+                    <stop offset="100%" style="stop-color:#f472b6"/>
+                </linearGradient>
+                
+                <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#22d3ee"/>
+                    <stop offset="100%" style="stop-color:#3b82f6"/>
+                </linearGradient>
+                
+                <linearGradient id="stripeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#818cf8"/>
+                    <stop offset="50%" style="stop-color:#c084fc"/>
+                    <stop offset="100%" style="stop-color:#f472b6"/>
+                </linearGradient>
+                
+                <radialGradient id="dotGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#fff"/>
+                    <stop offset="100%" style="stop-color:transparent"/>
+                </radialGradient>
+                
+                <!-- Filters -->
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            
+            <!-- Grid background -->
+            <g>
+                <line x1="0" y1="200" x2="1920" y2="200" class="grid-line"/>
+                <line x1="0" y1="400" x2="1920" y2="400" class="grid-line"/>
+                <line x1="0" y1="600" x2="1920" y2="600" class="grid-line"/>
+                <line x1="0" y1="800" x2="1920" y2="800" class="grid-line"/>
+                <line x1="400" y1="0" x2="400" y2="1080" class="grid-line"/>
+                <line x1="800" y1="0" x2="800" y2="1080" class="grid-line"/>
+                <line x1="1200" y1="0" x2="1200" y2="1080" class="grid-line"/>
+                <line x1="1600" y1="0" x2="1600" y2="1080" class="grid-line"/>
+            </g>
+            
+            <!-- Morphing blobs -->
+            <path class="morph-shape" style="animation: morph1 20s ease-in-out infinite;">
+                <animate attributeName="d" 
+                    values="M400,300 Q350,200 450,150 Q550,100 650,150 Q750,200 700,300 Q650,400 550,450 Q450,500 350,450 Q250,400 400,300;
+                            M420,280 Q380,180 480,130 Q580,80 680,130 Q780,180 730,280 Q680,380 580,430 Q480,480 380,430 Q280,380 420,280;
+                            M380,320 Q330,220 430,170 Q530,120 630,170 Q730,220 680,320 Q630,420 530,470 Q430,520 330,470 Q230,420 380,320;
+                            M400,300 Q350,200 450,150 Q550,100 650,150 Q750,200 700,300 Q650,400 550,450 Q450,500 350,450 Q250,400 400,300"
+                    dur="20s" repeatCount="indefinite"/>
+            </path>
+            
+            <path class="morph-shape-2" style="animation: morph2 25s ease-in-out infinite; animation-delay: -5s;">
+                <animate attributeName="d" 
+                    values="M1200,600 Q1150,500 1250,450 Q1350,400 1450,450 Q1550,500 1500,600 Q1450,700 1350,750 Q1250,800 1150,750 Q1050,700 1200,600;
+                            M1220,580 Q1170,480 1270,430 Q1370,380 1470,430 Q1570,480 1520,580 Q1470,680 1370,730 Q1270,780 1170,730 Q1070,680 1220,580;
+                            M1180,620 Q1130,520 1230,470 Q1330,420 1430,470 Q1530,520 1480,620 Q1430,720 1330,770 Q1230,820 1130,770 Q1030,720 1180,620;
+                            M1200,600 Q1150,500 1250,450 Q1350,400 1450,450 Q1550,500 1500,600 Q1450,700 1350,750 Q1250,800 1150,750 Q1050,700 1200,600"
+                    dur="25s" repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Floating geometric shapes -->
+            <g transform="translate(200, 200)">
+                <circle r="30" class="float-shape shape-circle" style="animation-delay: -3s;"/>
+                <circle r="20" class="float-shape shape-circle" style="opacity: 0.5; animation-delay: -6s;"/>
+            </g>
+            
+            <g transform="translate(1700, 800)">
+                <rect x="-25" y="-25" width="50" height="50" rx="4" class="float-shape shape-square"/>
+            </g>
+            
+            <g transform="translate(300, 700)">
+                <rect x="-20" y="-20" width="40" height="40" rx="2" class="float-shape shape-square" style="animation-delay: -5s; animation: float-rotate-reverse 18s linear infinite;"/>
+            </g>
+            
+            <!-- Animated dots -->
+            <circle cx="600" cy="300" r="3" class="dot dot-1"/>
+            <circle cx="800" cy="200" r="2" class="dot dot-2"/>
+            <circle cx="1000" cy="350" r="3" class="dot dot-3"/>
+            <circle cx="1200" cy="250" r="2" class="dot dot-4"/>
+            <circle cx="1400" cy="300" r="3" class="dot dot-5"/>
+            
+            <circle cx="500" cy="600" r="2" class="dot dot-3"/>
+            <circle cx="700" cy="700" r="3" class="dot dot-1"/>
+            <circle cx="900" cy="650" r="2" class="dot dot-4"/>
+            <circle cx="1100" cy="720" r="3" class="dot dot-2"/>
+            <circle cx="1300" cy="680" r="2" class="dot dot-5"/>
+            
+            <!-- Stripe-style lines -->
+            <path d="M 300 500 Q 500 450 700 500 T 1100 500" class="stripe-line line-animate" style="animation-delay: 0.5s;"/>
+            <path d="M 350 520 Q 550 470 750 520 T 1150 520" class="stripe-line line-animate" style="stroke-width: 1; opacity: 0.6; animation-delay: 0.8s;"/>
+            <path d="M 400 540 Q 600 490 800 540 T 1200 540" class="stripe-line line-animate" style="stroke-width: 1; opacity: 0.4; animation-delay: 1.1s;"/>
+            
+            <!-- Center glow -->
+            <circle cx="960" cy="540" r="100" fill="url(#gradient1)" opacity="0.15" filter="url(#glow)">
+                <animate attributeName="r" values="80;120;80" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.1;0.2;0.1" dur="4s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+        
+        <div class="hero-content">
+            <h1>Mezzanine</h1>
+            <p>Connecting Global Fashion to China</p>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+        
+        <div class="scroll">SCROLL</div>
+    </section>
+</body>
+</html>
