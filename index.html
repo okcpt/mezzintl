@@ -1130,66 +1130,69 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg">
-            <!-- Background grid -->
-            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+            <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
                 <defs>
-                    <pattern id="heroGrid" width="5" height="5" patternUnits="userSpaceOnUse">
-                        <path d="M 5 0 L 0 0 0 5" fill="none" class="hero-grid"/>
+                    <pattern id="heroGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+                        <path d="M 80 0 L 0 0 0 80" fill="none" class="hero-grid"/>
                     </pattern>
                 </defs>
                 <rect width="100%" height="100%" fill="url(#heroGrid)"/>
                 
                 <!-- Rotating rings -->
-                <g transform="translate(50, 50)">
-                    <circle r="25" class="hero-ring" style="animation: rotate-slow 60s linear infinite;"/>
-                    <circle r="20" class="hero-ring" style="animation: rotate-slow 45s linear infinite reverse; opacity: 0.5;"/>
-                    <circle r="15" class="hero-ring" style="animation: rotate-slow 30s linear infinite; opacity: 0.3;"/>
+                <g transform="translate(960, 540)">
+                    <circle r="180" class="hero-ring" style="animation: rotate-slow 60s linear infinite;"/>
+                    <circle r="150" class="hero-ring" style="animation: rotate-slow 45s linear infinite reverse; opacity: 0.5;"/>
+                    <circle r="120" class="hero-ring" style="animation: rotate-slow 30s linear infinite; opacity: 0.3;"/>
                 </g>
                 
                 <!-- Node network - Left -->
                 <g>
-                    <line x1="15" y1="35" x2="28" y2="30" class="hero-connection"/>
-                    <line x1="28" y1="30" x2="40" y2="35" class="hero-connection-flow"/>
-                    <line x1="28" y1="30" x2="35" y2="48" class="hero-connection"/>
-                    <line x1="40" y1="35" x2="52" y2="30" class="hero-connection-flow"/>
+                    <line x1="300" y1="400" x2="500" y2="350" class="hero-connection"/>
+                    <line x1="500" y1="350" x2="700" y2="400" class="hero-connection-flow"/>
+                    <line x1="500" y1="350" x2="600" y2="500" class="hero-connection"/>
+                    <line x1="700" y1="400" x2="850" y2="350" class="hero-connection-flow"/>
                     
-                    <circle cx="15" cy="35" r="0.8" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite;"/>
-                    <circle cx="28" cy="30" r="1.2" class="hero-node" style="animation: node-pulse 2s ease-in-out infinite;"/>
-                    <circle cx="40" cy="35" r="0.8" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 0.5s;"/>
-                    <circle cx="52" cy="30" r="0.6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1s;"/>
-                    <circle cx="35" cy="48" r="0.5" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.5s;"/>
+                    <circle cx="300" cy="400" r="6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite;"/>
+                    <circle cx="500" cy="350" r="10" class="hero-node" style="animation: node-pulse 2s ease-in-out infinite;"/>
+                    <circle cx="700" cy="400" r="8" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 0.5s;"/>
+                    <circle cx="850" cy="350" r="6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1s;"/>
+                    <circle cx="600" cy="500" r="5" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.5s;"/>
                 </g>
                 
                 <!-- Node network - Right -->
                 <g>
-                    <line x1="65" y1="30" x2="78" y2="35" class="hero-connection"/>
-                    <line x1="78" y1="35" x2="88" y2="30" class="hero-connection-flow"/>
-                    <line x1="78" y1="35" x2="82" y2="52" class="hero-connection"/>
-                    <line x1="88" y1="30" x2="98" y2="35" class="hero-connection-flow"/>
+                    <line x1="1070" y1="350" x2="1270" y2="400" class="hero-connection"/>
+                    <line x1="1270" y1="400" x2="1420" y2="350" class="hero-connection-flow"/>
+                    <line x1="1270" y1="400" x2="1320" y2="550" class="hero-connection"/>
+                    <line x1="1420" y1="350" x2="1570" y2="400" class="hero-connection-flow"/>
                     
-                    <circle cx="65" cy="30" r="0.6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 0.3s;"/>
-                    <circle cx="78" cy="35" r="1.4" class="hero-node" style="animation: node-pulse 2s ease-in-out infinite; animation-delay: 0.8s;"/>
-                    <circle cx="88" cy="30" r="0.8" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.3s;"/>
-                    <circle cx="98" cy="35" r="0.6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.8s;"/>
-                    <circle cx="82" cy="52" r="0.5" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 2.3s;"/>
+                    <circle cx="1070" cy="350" r="6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 0.3s;"/>
+                    <circle cx="1270" cy="400" r="12" class="hero-node" style="animation: node-pulse 2s ease-in-out infinite; animation-delay: 0.8s;"/>
+                    <circle cx="1420" cy="350" r="8" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.3s;"/>
+                    <circle cx="1570" cy="400" r="6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.8s;"/>
+                    <circle cx="1320" cy="550" r="5" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 2.3s;"/>
                 </g>
                 
                 <!-- Bottom data stream -->
                 <g>
-                    <line x1="20" y1="75" x2="35" y2="68" class="hero-connection-flow" style="animation-duration: 1s;"/>
-                    <line x1="35" y1="68" x2="50" y2="75" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.2s;"/>
-                    <line x1="50" y1="75" x2="65" y2="68" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.4s;"/>
-                    <line x1="65" y1="68" x2="80" y2="75" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.6s;"/>
+                    <line x1="400" y1="750" x2="600" y2="700" class="hero-connection-flow" style="animation-duration: 1s;"/>
+                    <line x1="600" y1="700" x2="800" y2="750" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.2s;"/>
+                    <line x1="800" y1="750" x2="1000" y2="700" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.4s;"/>
+                    <line x1="1000" y1="700" x2="1200" y2="750" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.6s;"/>
+                    <line x1="1200" y1="750" x2="1400" y2="700" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.8s;"/>
+                    <line x1="1400" y1="700" x2="1520" y2="750" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 1s;"/>
                     
-                    <circle cx="20" cy="75" r="0.4" class="hero-dot"/>
-                    <circle cx="35" cy="68" r="0.3" class="hero-dot" style="animation-delay: -0.5s;"/>
-                    <circle cx="50" cy="75" r="0.4" class="hero-dot" style="animation-delay: -1s;"/>
-                    <circle cx="65" cy="68" r="0.3" class="hero-dot" style="animation-delay: -1.5s;"/>
-                    <circle cx="80" cy="75" r="0.4" class="hero-dot" style="animation-delay: -2s;"/>
+                    <circle cx="400" cy="750" r="4" class="hero-dot"/>
+                    <circle cx="600" cy="700" r="3" class="hero-dot" style="animation-delay: -0.5s;"/>
+                    <circle cx="800" cy="750" r="4" class="hero-dot" style="animation-delay: -1s;"/>
+                    <circle cx="1000" cy="700" r="3" class="hero-dot" style="animation-delay: -1.5s;"/>
+                    <circle cx="1200" cy="750" r="4" class="hero-dot" style="animation-delay: -2s;"/>
+                    <circle cx="1400" cy="700" r="3" class="hero-dot" style="animation-delay: -2.5s;"/>
+                    <circle cx="1520" cy="750" r="4" class="hero-dot" style="animation-delay: -3s;"/>
                 </g>
                 
                 <!-- Center core -->
-                <circle cx="50" cy="50" r="0.5" class="hero-node-core">
+                <circle cx="960" cy="540" r="4" class="hero-node-core">
                     <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
                 </circle>
             </svg>
