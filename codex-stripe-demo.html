@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mezzanine - Connecting Global Fashion to China</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #0a0a1a;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.9;
+    }
+
+    .blob {
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    .b1 {
+      animation: drift1 25s ease-in-out infinite, rotate1 30s linear infinite;
+    }
+
+    .b2 {
+      animation: drift2 28s ease-in-out infinite, rotate2 35s linear infinite;
+    }
+
+    .b3 {
+      animation: drift3 22s ease-in-out infinite, rotate3 40s linear infinite;
+    }
+
+    @keyframes drift1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -20px) scale(1.05); }
+      50% { transform: translate(-20px, 30px) scale(0.95); }
+      75% { transform: translate(20px, 20px) scale(1.02); }
+    }
+
+    @keyframes drift2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-40px, 30px) scale(0.98); }
+      66% { transform: translate(30px, -30px) scale(1.03); }
+    }
+
+    @keyframes drift3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(20px, 40px) scale(1.04); }
+    }
+
+    @keyframes rotate1 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes rotate2 {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    @keyframes rotate3 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    .content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+      max-width: 900px;
+    }
+
+    .content h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, #e0e0ff 50%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .content p {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 5;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-bg">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#d946ef;stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#6366f1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="g3" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+          </linearGradient>
+          <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
+          </filter>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="60" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Blob 1 - Large purple/pink -->
+        <g class="blob b1" filter="url(#glow)">
+          <path fill="url(#g1)" opacity="0.7">
+            <animate attributeName="d" dur="20s" repeatCount="indefinite"
+              values="
+                M200,450 C280,320 420,280 560,340 C700,400 780,520 720,640 C660,760 500,820 340,760 C180,700 120,580 200,450 Z;
+                M180,420 C300,280 480,300 600,380 C720,460 760,600 680,700 C600,800 420,800 280,720 C140,640 60,560 180,420 Z;
+                M220,480 C340,340 460,260 600,320 C740,380 800,540 740,660 C680,780 520,840 360,780 C200,720 100,620 220,480 Z;
+                M200,450 C280,320 420,280 560,340 C700,400 780,520 720,640 C660,760 500,820 340,760 C180,700 120,580 200,450 Z"/>
+          </path>
+        </g>
+
+        <!-- Blob 2 - Blue/pink upper right -->
+        <g class="blob b2" filter="url(#glow)">
+          <path fill="url(#g2)" opacity="0.6">
+            <animate attributeName="d" dur="22s" repeatCount="indefinite"
+              values="
+                M1006,174 C1148,148 1270,256 1278,394 C1286,532 1180,652 1026,670 C872,688 730,604 700,468 C670,332 764,200 904,178 C944,172 970,170 1006,174 Z;
+                M1038,140 C1190,164 1308,296 1270,438 C1232,580 1096,678 944,662 C792,646 680,538 684,402 C688,266 800,158 948,136 C986,130 1002,132 1038,140 Z;
+                M980,190 C1134,118 1290,220 1302,360 C1314,500 1222,650 1070,694 C918,738 744,670 682,548 C620,426 670,274 814,226 C858,212 934,202 980,190 Z;
+                M1006,174 C1148,148 1270,256 1278,394 C1286,532 1180,652 1026,670 C872,688 730,604 700,468 C670,332 764,200 904,178 C944,172 970,170 1006,174 Z"/>
+          </path>
+        </g>
+
+        <!-- Blob 3 - Cyan/purple center -->
+        <g class="blob b3" filter="url(#glow)">
+          <path fill="url(#g3)" opacity="0.5">
+            <animate attributeName="d" dur="25s" repeatCount="indefinite"
+              values="
+                M768,466 C886,420 1012,466 1062,574 C1112,682 1062,816 946,860 C830,904 682,864 616,760 C550,656 586,536 688,492 C716,480 736,478 768,466 Z;
+                M742,448 C870,398 1042,458 1098,578 C1154,698 1086,848 952,882 C818,916 646,846 586,724 C526,602 574,494 686,454 C716,442 712,452 742,448 Z;
+                M796,486 C918,430 1064,488 1096,612 C1128,736 1026,850 900,870 C774,890 642,818 612,698 C582,578 650,500 754,488 C780,484 770,486 796,486 Z;
+                M768,466 C886,420 1012,466 1062,574 C1112,682 1062,816 946,860 C830,904 682,864 616,760 C550,656 586,536 688,492 C716,480 736,478 768,466 Z"/>
+          </path>
+        </g>
+
+        <!-- Additional smaller accent blob -->
+        <g class="blob" style="animation: drift2 18s ease-in-out infinite, rotate1 25s linear infinite;" filter="url(#glow)">
+          <path fill="url(#g2)" opacity="0.4">
+            <animate attributeName="d" dur="15s" repeatCount="indefinite"
+              values="
+                M400,200 C480,180 540,240 520,320 C500,400 420,440 340,420 C260,400 220,320 260,260 C280,220 340,210 400,200 Z;
+                M420,180 C500,200 550,280 520,350 C490,420 400,450 320,430 C240,410 200,340 240,270 C260,220 340,170 420,180 Z;
+                M380,220 C460,190 530,250 540,330 C550,410 470,460 390,440 C310,420 250,350 280,280 C300,230 340,230 380,220 Z;
+                M400,200 C480,180 540,240 520,320 C500,400 420,440 340,420 C260,400 220,320 260,260 C280,220 340,210 400,200 Z"/>
+          </path>
+        </g>
+      </svg>
+    </div>
+
+    <div class="noise"></div>
+
+    <div class="content">
+      <h1>Mezzanine</h1>
+      <p>Connecting Global Fashion to China</p>
+    </div>
+  </section>
+</body>
+</html>
