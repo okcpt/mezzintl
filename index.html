@@ -237,83 +237,26 @@
 
         .gap-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: start;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
         }
 
         .gap-visual {
             position: relative;
-            height: 400px;
-            border: 1px solid var(--border);
+            padding: 2rem;
             background: var(--bg-primary);
-            overflow: hidden;
+            border: 1px solid var(--border);
         }
 
-        .gap-visual::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--border-strong);
+        .gap-visual svg {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .gap-block {
-            position: absolute;
-            width: 120px;
-            height: 80px;
-            border: 1px solid var(--border-strong);
-            background: var(--bg-tertiary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-        }
-
-        .gap-block.global {
-            top: 15%;
-            left: 15%;
-        }
-
-        .gap-block.china {
-            bottom: 15%;
-            right: 15%;
-        }
-
-        .gap-bridge {
-            position: absolute;
-            top: 50%;
-            left: 35%;
-            right: 35%;
-            height: 2px;
-            background: var(--accent);
-            transform: translateY(-50%);
-        }
-
-        .gap-bridge::before,
-        .gap-bridge::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .gap-bridge::before {
-            left: -4px;
-        }
-
-        .gap-bridge::after {
-            right: -4px;
+        .gap-text {
+            max-width: 400px;
         }
 
         .gap-text p {
@@ -321,6 +264,11 @@
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 1.5rem;
+        }
+
+        .gap-text p:last-child {
+            margin-bottom: 0;
+            color: var(--text-primary);
         }
 
         /* Distribution Layer Section */
@@ -748,16 +696,130 @@
         </div>
         <div class="gap-content">
             <div class="gap-visual">
-                <div class="gap-block global">Global Supply</div>
-                <div class="gap-bridge"></div>
-                <div class="gap-block china">China Market</div>
+                <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+                        </pattern>
+                        <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#c9a96e;stop-opacity:0.3" />
+                            <stop offset="50%" style="stop-color:#c9a96e;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#c9a96e;stop-opacity:0.3" />
+                        </linearGradient>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Background grid -->
+                    <rect width="600" height="320" fill="url(#grid)"/>
+                    
+                    <!-- LEFT SIDE: Fragmented Global Supply -->
+                    <g transform="translate(40, 40)">
+                        <!-- Title -->
+                        <text x="0" y="0" fill="#606068" font-family="Space Grotesk, sans-serif" font-size="10" font-weight="500" letter-spacing="0.1em">GLOBAL SUPPLY</text>
+                        
+                        <!-- Fragmented nodes -->
+                        <g transform="translate(0, 30)">
+                            <!-- Boutique 1 -->
+                            <rect x="0" y="0" width="50" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <text x="25" y="22" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Boutique</text>
+                            
+                            <!-- Platform -->
+                            <rect x="60" y="15" width="55" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <text x="87.5" y="37" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Platform</text>
+                            
+                            <!-- Brand -->
+                            <rect x="30" y="60" width="45" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <text x="52.5" y="82" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Brand</text>
+                            
+                            <!-- Boutique 2 -->
+                            <rect x="90" y="50" width="50" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <text x="115" y="72" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Boutique</text>
+                            
+                            <!-- Distributor -->
+                            <rect x="10" y="110" width="60" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <text x="40" y="132" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Distributor</text>
+                            
+                            <!-- Wholesaler -->
+                            <rect x="80" y="100" width="60" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <text x="110" y="122" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Wholesaler</text>
+                            
+                            <!-- Dotted connection lines showing fragmentation -->
+                            <line x1="25" y1="35" x2="25" y2="60" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+                            <line x1="87.5" y1="50" x2="87.5" y2="60" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+                            <line x1="52.5" y1="95" x2="52.5" y2="110" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+                        </g>
+                    </g>
+                    
+                    <!-- THE GAP -->
+                    <g transform="translate(230, 0)">
+                        <!-- Gap divider line -->
+                        <line x1="0" y1="40" x2="0" y2="280" stroke="rgba(201,169,110,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+                        
+                        <!-- Gap label -->
+                        <text x="0" y="165" fill="#c9a96e" font-family="Space Grotesk, sans-serif" font-size="9" font-weight="500" letter-spacing="0.15em" text-anchor="middle" transform="rotate(-90, 0, 165)">STRUCTURAL GAP</text>
+                        
+                        <!-- Barrier indicators -->
+                        <rect x="-8" y="80" width="16" height="2" fill="#c9a96e" opacity="0.4"/>
+                        <rect x="-8" y="250" width="16" height="2" fill="#c9a96e" opacity="0.4"/>
+                    </g>
+                    
+                    <!-- RIGHT SIDE: China's Distinct System -->
+                    <g transform="translate(320, 40)">
+                        <!-- Title -->
+                        <text x="120" y="0" fill="#606068" font-family="Space Grotesk, sans-serif" font-size="10" font-weight="500" letter-spacing="0.1em" text-anchor="end">CHINA MARKET</text>
+                        
+                        <!-- Unified framework container -->
+                        <rect x="0" y="25" width="240" height="170" rx="4" fill="rgba(201,169,110,0.03)" stroke="rgba(201,169,110,0.15)" stroke-width="1"/>
+                        
+                        <!-- Framework label -->
+                        <text x="120" y="45" fill="#c9a96e" font-family="Space Grotesk, sans-serif" font-size="8" font-weight="500" letter-spacing="0.1em" text-anchor="middle">REGULATORY FRAMEWORK</text>
+                        
+                        <!-- Internal structure -->
+                        <g transform="translate(20, 60)">
+                            <!-- Compliance layer -->
+                            <rect x="0" y="0" width="200" height="30" rx="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                            <text x="100" y="19" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="8" text-anchor="middle">Customs · Compliance · AEO</text>
+                            
+                            <!-- Logistics layer -->
+                            <rect x="0" y="40" width="200" height="30" rx="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                            <text x="100" y="59" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="8" text-anchor="middle">Bonded Logistics · Clearance</text>
+                            
+                            <!-- Commercial layer -->
+                            <rect x="0" y="80" width="200" height="30" rx="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                            <text x="100" y="99" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="8" text-anchor="middle">Digital Platforms · Consumers</text>
+                        </g>
+                    </g>
+                    
+                    <!-- MEZZANINE BRIDGE -->
+                    <g transform="translate(150, 230)">
+                        <!-- Bridge structure -->
+                        <rect x="0" y="0" width="300" height="50" rx="4" fill="url(#bridgeGrad)" opacity="0.15"/>
+                        <rect x="0" y="0" width="300" height="50" rx="4" fill="none" stroke="#c9a96e" stroke-width="1.5" filter="url(#glow)"/>
+                        
+                        <!-- Bridge label -->
+                        <text x="150" y="30" fill="#c9a96e" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" letter-spacing="0.15em" text-anchor="middle">MEZZANINE</text>
+                        
+                        <!-- Connection points -->
+                        <circle cx="0" cy="25" r="4" fill="#c9a96e"/>
+                        <circle cx="300" cy="25" r="4" fill="#c9a96e"/>
+                        
+                        <!-- Structural lines -->
+                        <line x1="40" y1="0" x2="40" y2="50" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+                        <line x1="260" y1="0" x2="260" y2="50" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+                        <line x1="0" y1="25" x2="300" y2="25" stroke="#c9a96e" stroke-width="0.5" opacity="0.3"/>
+                    </g>
+                </svg>
             </div>
             <div class="gap-text">
-                <p>Global fashion supply is inherently fragmented.</p>
-                <p>China operates within a distinct regulatory and commercial system.</p>
-                <p>Between them lies a structural gap.</p>
-                <p>Unstructured access creates friction.</p>
-                <p>Structured access enables scale.</p>
+                <p>Global fashion supply is inherently fragmented — boutiques, platforms, brands, distributors operating independently.</p>
+                <p>China operates within a distinct regulatory, logistical, and commercial system.</p>
+                <p>Between them lies a structural gap. Unstructured access creates friction. Structured access enables scale.</p>
             </div>
         </div>
     </section>
