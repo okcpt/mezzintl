@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mezzanine International | Cross-Border Distribution Layer</title>
+    <title>Mezzanine International — Access China Through Structure</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0a0a0a;
-            --bg-secondary: #0f0f0f;
-            --bg-tertiary: #141414;
-            --text-primary: #f5f5f5;
-            --text-secondary: #a3a3a3;
-            --text-muted: #6b7280;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
             --accent: #6b7280;
             --accent-light: #9ca3af;
-            --border: #1f1f1f;
-            --grid-line: rgba(107, 114, 128, 0.06);
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --border: #262626;
+            --border-accent: #404040;
         }
 
         * {
@@ -36,281 +36,119 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            font-weight: 400;
             overflow-x: hidden;
         }
 
-        /* Grid Background */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
-            pointer-events: none;
-            z-index: 0;
-            background-image: 
-                linear-gradient(var(--grid-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 100px 100px;
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        /* Vertical center line */
-        .grid-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 0%,
-                var(--accent) 15%,
-                var(--accent) 85%,
-                transparent 100%
-            );
-            opacity: 0.12;
-        }
-
-        /* Layered planes */
-        .plane {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 1.2s ease-out;
-        }
-
-        .plane-1 {
-            background: linear-gradient(135deg, transparent 40%, rgba(107, 114, 128, 0.02) 60%, transparent 80%);
-            top: 10%;
-        }
-
-        .plane-2 {
-            background: linear-gradient(225deg, transparent 40%, rgba(107, 114, 128, 0.02) 60%, transparent 80%);
-            top: 20%;
-        }
-
-        .plane.active {
-            opacity: 1;
-        }
-
-        /* Section Base */
-        section {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 120px;
-            z-index: 1;
-        }
-
-        @media (max-width: 1024px) {
-            section {
-                padding: 60px 60px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            section {
-                padding: 40px 24px;
-            }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
         }
 
         /* Typography */
         h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 700;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 300;
             letter-spacing: -0.03em;
-            line-height: 1.15;
+            line-height: 1.1;
         }
 
         h2 {
-            font-size: clamp(1.75rem, 4vw, 3rem);
-            font-weight: 600;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 300;
             letter-spacing: -0.02em;
             line-height: 1.2;
-            margin-bottom: 48px;
         }
 
         h3 {
             font-size: 1.25rem;
             font-weight: 500;
             letter-spacing: -0.01em;
-            margin-bottom: 12px;
         }
 
-        p {
-            font-size: 1.125rem;
-            font-weight: 300;
-            color: var(--text-secondary);
-            max-width: 680px;
-        }
-
-        .lead {
-            font-size: 1.375rem;
-            font-weight: 300;
+        .text-muted {
             color: var(--text-muted);
-            margin-top: 24px;
-            letter-spacing: -0.01em;
+        }
+
+        .text-accent {
+            color: var(--accent);
         }
 
         /* Divider */
         .divider {
-            width: 100%;
             height: 1px;
             background: var(--border);
-            margin: 32px 0;
-            position: relative;
-            overflow: hidden;
+            width: 100%;
         }
 
-        .divider.line-draw::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
+        .divider-accent {
             background: var(--accent);
-            animation: drawLine 1.5s ease-out forwards;
-            animation-delay: 0.3s;
+            opacity: 0.3;
+        }
+
+        /* Section Base */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes drawLine {
-            to { width: 100%; }
-        }
-
-        /* Word reveal animation */
-        .word-reveal {
-            display: inline-block;
-            overflow: hidden;
-        }
-
-        .word-reveal span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(100%);
-            animation: wordReveal 0.8s ease-out forwards;
-        }
-
-        @keyframes wordReveal {
             to {
-                opacity: 1;
-                transform: translateY(0);
+                stroke-dashoffset: 0;
             }
-        }
-
-        /* Hero Section */
-        .hero {
-            align-items: flex-start;
-            padding-left: 15vw;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding-left: 24px;
-                padding-right: 24px;
-                align-items: center;
-                text-align: center;
-            }
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0 0.3em;
-        }
-
-        .hero h1 .word {
-            overflow: hidden;
-        }
-
-        .hero h1 .word span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeUpWord 0.7s ease-out forwards;
-        }
-
-        @keyframes fadeUpWord {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero .lead {
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.2s forwards;
         }
 
         @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 60px;
-            left: 15vw;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        @media (max-width: 768px) {
-            .scroll-indicator {
-                left: 50%;
-                transform: translateX(-50%);
-                align-items: center;
+            to {
+                opacity: 1;
             }
         }
 
-        .scroll-indicator span {
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-muted);
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .scroll-line {
-            width: 1px;
-            height: 50px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            animation: scrollPulse 2.5s ease-in-out infinite;
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.6; }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
         }
 
-        /* Section Number */
-        .section-number {
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            letter-spacing: 0.15em;
-        }
-
-        /* Reveal Animations */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .reveal.visible {
@@ -318,114 +156,364 @@
             transform: translateY(0);
         }
 
-        /* Two Column Layout */
-        .two-col {
+        /* ==================== SECTION 1: HERO ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
+            align-items: center;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        @media (max-width: 768px) {
-            .two-col {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
-        .col-block {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .col-block.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .col-block h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-muted);
+        .hero h1 {
             margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 480px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        .grid-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--border-accent);
+        }
+
+        .grid-layer-1 {
+            top: 10%;
+            right: 20%;
+            width: 60%;
+            height: 60%;
+            transform: perspective(500px) rotateY(-15deg);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .grid-layer-2 {
+            top: 20%;
+            right: 10%;
+            width: 50%;
+            height: 50%;
+            border-color: var(--accent);
+            opacity: 0.5;
+            transform: perspective(500px) rotateY(-15deg);
+            animation: float 8s ease-in-out infinite;
+            animation-delay: -2s;
+        }
+
+        .grid-layer-3 {
+            top: 30%;
+            right: 0;
+            width: 40%;
+            height: 40%;
+            border-color: var(--accent);
+            opacity: 0.3;
+            transform: perspective(500px) rotateY(-15deg);
+            animation: float 8s ease-in-out infinite;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: perspective(500px) rotateY(-15deg) translateY(0); }
+            50% { transform: perspective(500px) rotateY(-15deg) translateY(-20px); }
+        }
+
+        .grid-line {
+            position: absolute;
+            background: var(--accent);
+            opacity: 0.2;
+        }
+
+        .grid-line-h {
+            width: 100%;
+            height: 1px;
+        }
+
+        .grid-line-v {
+            width: 1px;
+            height: 100%;
+        }
+
+        /* ==================== SECTION 2: STRUCTURAL GAP ==================== */
+        .structural-gap {
+            background: var(--bg-secondary);
+        }
+
+        .gap-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .gap-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .gap-column {
+            padding: 60px 80px;
+            position: relative;
+        }
+
+        .gap-column-left {
+            border-right: 1px solid var(--border);
+        }
+
+        .gap-column-right {
+            border-left: 1px solid var(--border);
+        }
+
+        .gap-column h3 {
+            color: var(--accent);
+            margin-bottom: 32px;
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .gap-list {
+            list-style: none;
+        }
+
+        .gap-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .gap-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .gap-divider {
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            position: relative;
+        }
+
+        .gap-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .gap-footer {
+            text-align: center;
+            padding: 60px;
+            border-top: 1px solid var(--border);
+        }
+
+        .gap-footer p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        /* ==================== SECTION 3: DISTRIBUTION LAYER ==================== */
+        .distribution-layer {
+            background: var(--bg-primary);
+        }
+
+        .distribution-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+        }
+
+        .diagram-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .diagram-node {
+            width: 320px;
+            padding: 32px 48px;
+            text-align: center;
+            position: relative;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            transition: border-color 0.3s ease;
+        }
+
+        .diagram-node:hover {
+            border-color: var(--accent);
+        }
+
+        .diagram-node.supply {
+            border-radius: 4px 4px 0 0;
+        }
+
+        .diagram-node.market {
+            border-radius: 0 0 4px 4px;
+        }
+
+        .diagram-node.mezzanine {
+            background: var(--bg-tertiary);
+            border-color: var(--accent);
+            padding: 48px 48px;
+            z-index: 2;
+        }
+
+        .diagram-node h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .diagram-node.mezzanine h4 {
+            color: var(--accent-light);
+        }
+
+        .diagram-node p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .diagram-connector {
+            width: 2px;
+            height: 40px;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .diagram-side {
+            position: absolute;
+            right: -280px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .diagram-side ul {
+            list-style: none;
+        }
+
+        .diagram-side li {
+            padding: 12px 0;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .diagram-side li::before {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .distribution-footer {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        {
+            font-size .distribution-footer p: 1.25rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        /* ==================== SECTION 4: INTEGRATED INFRASTRUCTURE ==================== */
+        .infrastructure {
+            background: var(--bg-secondary);
+        }
+
+        .infrastructure-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .infrastructure-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .infrastructure-col {
+            background: var(--bg-secondary);
+            padding: 60px 48px;
+        }
+
+        .infrastructure-col h3 {
+            color: var(--accent);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border);
         }
 
-        /* Gap Line Animation */
-        .gap-line {
-            position: absolute;
-            left: 50%;
-            top: 15%;
-            bottom: 15%;
-            width: 1px;
-            background: var(--accent);
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform 1s ease-out;
-        }
-
-        .gap-line.visible {
-            transform: scaleY(1);
-        }
-
-        /* Central Statement */
-        .central-statement {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .central-statement .divider {
-            max-width: 200px;
-            margin: 40px auto;
-        }
-
-        .punchy-text {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 400;
-            line-height: 1.5;
-            margin: 48px 0;
-        }
-
-        .punchy-text .emphasis {
-            display: block;
-            font-weight: 600;
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            letter-spacing: -0.02em;
-            margin: 24px 0;
-        }
-
-        /* Numeric Triad */
-        .numeric-triad {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 60px;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .numeric-triad {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-        }
-
-        .stat {
-            padding: 32px;
-            border: 1px solid var(--border);
-            background: var(--bg-secondary);
+        .stat-item {
+            margin-bottom: 32px;
         }
 
         .stat-number {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
+            font-size: 3rem;
+            font-weight: 300;
             color: var(--text-primary);
             line-height: 1;
             margin-bottom: 8px;
@@ -433,641 +521,542 @@
 
         .stat-label {
             font-size: 0.875rem;
-            font-weight: 400;
             color: var(--text-muted);
-            letter-spacing: 0.05em;
         }
 
-        /* AEO Badge */
-        .aeo-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            margin-bottom: 24px;
-            text-transform: uppercase;
+        .ops-item, .sys-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1rem;
+            color: var(--text-secondary);
         }
 
-        /* Content Lists */
-        .content-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        .ops-item:last-child, .sys-item:last-child {
+            border-bottom: none;
         }
 
-        .content-list li {
-            font-size: 1.0625rem;
+        .infrastructure-footer {
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .infrastructure-footer p {
+            font-size: 1.25rem;
             font-weight: 300;
             color: var(--text-secondary);
-            padding-left: 24px;
-            position: relative;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .content-list li.visible {
-            opacity: 1;
-            transform: translateX(0);
+        /* ==================== SECTION 5: STRUCTURED COLLABORATION ==================== */
+        .collaboration {
+            background: var(--bg-primary);
         }
 
-        .content-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 1px;
-            background: var(--accent);
+        .collaboration-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        /* Two column text */
-        .text-cols {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+        .collaboration-intro {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 80px;
+            text-align: center;
+            font-weight: 300;
         }
 
-        @media (max-width: 768px) {
-            .text-cols {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
-
-        /* Cards */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 32px;
-        }
-
-        @media (max-width: 1024px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
+            gap: 1px;
+            background: var(--border);
         }
 
         .card {
             background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 36px;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.3s ease, background 0.3s ease;
-        }
-
-        .card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
+            padding: 48px;
+            transition: background 0.3s ease;
         }
 
         .card:hover {
-            border-color: var(--accent-light);
             background: var(--bg-tertiary);
         }
 
-        .card h3 {
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
+        }
+
+        .card h4 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 16px;
             color: var(--text-primary);
         }
 
         .card p {
-            font-size: 0.9375rem;
+            font-size: 0.875rem;
             color: var(--text-muted);
-            max-width: none;
+            line-height: 1.7;
         }
 
-        /* Vision Section */
-        .vision-section {
+        .collaboration-footer {
             text-align: center;
-            align-items: center;
+            padding-top: 60px;
         }
 
-        .vision-section h2 {
-            margin-bottom: 24px;
+        .collaboration-footer p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--text-secondary);
         }
 
-        .vision-zoom {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.3;
-            background: radial-gradient(circle at 50% 50%, rgba(107, 114, 128, 0.03) 0%, transparent 60%);
-            animation: slowZoom 20s ease-in-out infinite alternate;
+        /* ==================== SECTION 6: VISION ==================== */
+        .vision {
+            background: var(--bg-secondary);
+            padding: 160px 0;
+            text-align: center;
         }
 
-        @keyframes slowZoom {
-            from { transform: scale(1); opacity: 0.2; }
-            to { transform: scale(1.2); opacity: 0.4; }
+        .vision p {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            color: var(--text-primary);
+            max-width: 900px;
+            margin: 0 auto;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
         }
 
-        /* Contact Section */
-        .final {
-            min-height: 70vh;
-            justify-content: flex-end;
-            padding-bottom: 60px;
+        /* ==================== SECTION 7: CONTACT ==================== */
+        .contact {
+            background: var(--bg-primary);
+            padding: 120px 0;
+        }
+
+        .contact-header {
+            margin-bottom: 60px;
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
-            margin-top: 48px;
         }
 
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-        }
-
-        .contact-block {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .contact-block.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .contact-block h3 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
+        .contact-info h4 {
+            font-size: 0.75rem;
+            font-weight: 500;
             letter-spacing: 0.2em;
-            color: var(--text-muted);
-            margin-bottom: 16px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
         }
 
-        .contact-block a, 
-        .contact-block address {
-            font-size: 1.125rem;
-            font-weight: 300;
-            color: var(--text-primary);
-            font-style: normal;
+        .contact-info p {
+            font-size: 1rem;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
 
-        .contact-block address {
-            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-            font-size: 0.8125rem;
-            letter-spacing: 0.02em;
-            line-height: 1.9;
-            color: var(--text-muted);
-        }
-
-        .contact-block a {
+        .contact-info a {
+            color: var(--text-secondary);
             text-decoration: none;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 2px;
-            transition: color 0.3s ease, border-color 0.3s ease;
+            transition: color 0.3s ease;
         }
 
-        .contact-block a:hover {
-            color: var(--accent-light);
-            border-color: var(--accent-light);
+        .contact-info a:hover {
+            color: var(--text-primary);
         }
 
-        /* Stagger Animation Helper */
-        .stagger > * {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
-        .stagger.visible > *:nth-child(2) { transition-delay: 0.08s; }
-        .stagger.visible > *:nth-child(3) { transition-delay: 0.16s; }
-        .stagger.visible > *:nth-child(4) { transition-delay: 0.24s; }
-        .stagger.visible > *:nth-child(5) { transition-delay: 0.32s; }
-        .stagger.visible > *:nth-child(6) { transition-delay: 0.4s; }
-        .stagger.visible > *:nth-child(7) { transition-delay: 0.48s; }
-        .stagger.visible > *:nth-child(8) { transition-delay: 0.56s; }
-        .stagger.visible > *:nth-child(9) { transition-delay: 0.64s; }
-
-        .stagger.visible > * {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 40px;
             }
-            
-            .word-reveal span,
-            .hero h1 .word span {
-                opacity: 1;
-                transform: none;
+
+            .gap-column {
+                padding: 40px;
             }
-            
-            .hero .lead {
-                opacity: 1;
+
+            .diagram-side {
+                display: none;
             }
-            
-            .reveal, .col-block, .card, .contact-block, .content-list li {
-                opacity: 1;
-                transform: none;
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero-visual {
+                height: 300px;
+                order: -1;
+            }
+
+            .gap-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gap-column-left,
+            .gap-column-right {
+                border: none;
+                border-top: 1px solid var(--border);
+            }
+
+            .gap-divider {
+                display: none;
+            }
+
+            .infrastructure-grid,
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 120px 0 80px;
+            }
+
+            .diagram-node {
+                width: 280px;
+                padding: 24px 32px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="grid-bg" id="gridBg"></div>
-    <div class="plane plane-1" id="plane1"></div>
-    <div class="plane plane-2" id="plane2"></div>
-
-    <!-- Section 0: Hero -->
+    <!-- SECTION 1: HERO -->
     <section class="hero">
-        <div class="hero-content">
-            <h1 id="heroHeadline">
-                <span class="word" data-delay="0">Access</span>
-                <span class="word" data-delay="1">China</span>
-                <span class="word" data-delay="2">Through</span>
-                <span class="word" data-delay="3">Structure.</span>
-            </h1>
-            <p class="lead">A cross-border distribution layer for global fashion.</p>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Access China<br>Through Structure.</h1>
+                    <p class="hero-subtitle">A cross-border distribution layer for global fashion.</p>
+                </div>
+                <div class="hero-visual">
+                    <div class="grid-layer grid-layer-1">
+                        <div class="grid-line grid-line-h" style="top: 25%;"></div>
+                        <div class="grid-line grid-line-h" style="top: 50%;"></div>
+                        <div class="grid-line grid-line-h" style="top: 75%;"></div>
+                        <div class="grid-line grid-line-v" style="left: 25%;"></div>
+                        <div class="grid-line grid-line-v" style="left: 50%;"></div>
+                        <div class="grid-line grid-line-v" style="left: 75%;"></div>
+                    </div>
+                    <div class="grid-layer grid-layer-2">
+                        <div class="grid-line grid-line-h" style="top: 33%;"></div>
+                        <div class="grid-line grid-line-h" style="top: 66%;"></div>
+                        <div class="grid-line grid-line-v" style="left: 33%;"></div>
+                        <div class="grid-line grid-line-v" style="left: 66%;"></div>
+                    </div>
+                    <div class="grid-layer grid-layer-3">
+                        <div class="grid-line grid-line-h" style="top: 50%;"></div>
+                        <div class="grid-line grid-line-v" style="left: 50%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Section 1: Structural Gap -->
-    <section>
-        <span class="section-number">01</span>
-        <h2 class="reveal">A Structural Gap</h2>
-        
-        <div class="two-col">
-            <div class="col-block" data-delay="0">
+    <div class="divider"></div>
+
+    <!-- SECTION 2: STRUCTURAL GAP -->
+    <section class="structural-gap">
+        <div class="container">
+            <div class="gap-header reveal">
+                <span class="section-label">Analysis</span>
+                <h2>A Structural Gap</h2>
+            </div>
+        </div>
+        <div class="gap-grid">
+            <div class="gap-column gap-column-left reveal">
                 <h3>Global Fashion Supply</h3>
-                <ul class="content-list">
-                    <li>Inherently fragmented</li>
-                    <li>Decentralized networks</li>
-                    <li>Multiple touchpoints</li>
-                    <li>Variable compliance</li>
+                <ul class="gap-list">
+                    <li>Decentralized</li>
+                    <li>Boutique-driven</li>
+                    <li>Fragmented</li>
+                    <li>Variable</li>
                 </ul>
             </div>
-            
-            <div class="gap-line" id="gapLine"></div>
-            
-            <div class="col-block" data-delay="1">
+            <div class="gap-divider"></div>
+            <div class="gap-column gap-column-right reveal">
                 <h3>Chinese Market</h3>
-                <ul class="content-list">
-                    <li>Distinct regulatory system</li>
-                    <li>Centralized oversight</li>
-                    <li>Structured requirements</li>
-                    <li>Compliance-driven</li>
+                <ul class="gap-list">
+                    <li>Regulated</li>
+                    <li>System-driven</li>
+                    <li>Integrated</li>
+                    <li>Compliance</li>
                 </ul>
             </div>
         </div>
-        
-        <div class="reveal" style="margin-top: 48px;">
-            <ul class="content-list" style="max-width: 500px;">
-                <li>Between them lies a structural gap.</li>
-                <li>Unstructured access creates friction.</li>
-                <li>Structured access enables scale.</li>
-            </ul>
+        <div class="gap-footer reveal">
+            <p>Alignment bridges the divide.</p>
         </div>
     </section>
 
-    <!-- Section 2: Distribution Layer -->
-    <section>
-        <span class="section-number">02</span>
-        
-        <div class="central-statement">
-            <div class="reveal">
-                <p class="lead" style="margin-bottom: 32px;">A Distribution Layer</p>
+    <div class="divider"></div>
+
+    <!-- SECTION 3: DISTRIBUTION LAYER -->
+    <section class="distribution-layer">
+        <div class="container">
+            <div class="distribution-header reveal">
+                <span class="section-label">Architecture</span>
+                <h2>A Distribution Layer</h2>
             </div>
-            
-            <ul class="content-list stagger" style="text-align: left; max-width: 600px; margin: 0 auto;">
-                <li>Mezzanine operates as a structured distribution layer connecting global supply to China.</li>
-                <li>We convert fragmented supply into compliant, scalable market access.</li>
-            </ul>
-            
-            <div class="divider line-draw"></div>
-            
-            <p class="punchy-text reveal">
-                <span class="emphasis">Our role is not transactional.</span>
-                <span class="emphasis" style="color: var(--text-primary);">It is infrastructural.</span>
-            </p>
-            
-            <div class="divider line-draw"></div>
-            
-            <ul class="content-list stagger" style="text-align: left; max-width: 400px; margin: 0 auto;">
-                <li>Structure enables continuity.</li>
-                <li>Infrastructure enables scale.</li>
-            </ul>
+            <div class="diagram-container reveal">
+                <div class="diagram-main">
+                    <div class="diagram-node supply">
+                        <h4>Global Supply</h4>
+                        <p>International brands & manufacturers</p>
+                    </div>
+                    <div class="diagram-connector"></div>
+                    <div class="diagram-node mezzanine">
+                        <h4>Mezzanine</h4>
+                        <p>Cross-border distribution infrastructure</p>
+                    </div>
+                    <div class="diagram-connector"></div>
+                    <div class="diagram-node market">
+                        <h4>Chinese Market</h4>
+                        <p>Retail channels & consumers</p>
+                    </div>
+                </div>
+                <div class="diagram-side">
+                    <ul>
+                        <li>Regulatory Alignment</li>
+                        <li>Operational Integration</li>
+                        <li>Channel Synchronization</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="distribution-footer reveal">
+                <p>We operate between systems.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Section 3: Integrated Infrastructure -->
-    <section>
-        <span class="section-number">03</span>
-        <h2 class="reveal">Integrated Infrastructure</h2>
-        
-        <div class="numeric-triad">
-            <div class="stat">
-                <div class="stat-number" data-target="150" data-suffix="+">0</div>
-                <div class="stat-label">Supply Partners</div>
+    <div class="divider"></div>
+
+    <!-- SECTION 4: INTEGRATED INFRASTRUCTURE -->
+    <section class="infrastructure">
+        <div class="container">
+            <div class="infrastructure-header reveal">
+                <span class="section-label">Capabilities</span>
+                <h2>Integrated Infrastructure</h2>
             </div>
-            <div class="stat">
-                <div class="stat-number" data-target="5000" data-suffix="+">0</div>
-                <div class="stat-label">Brands</div>
+            <div class="infrastructure-grid reveal">
+                <div class="infrastructure-col">
+                    <h3>Scale</h3>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="150">0</div>
+                        <div class="stat-label">Partners</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="5000">0</div>
+                        <div class="stat-label">Brands</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-label">Million+ SKUs</div>
+                    </div>
+                </div>
+                <div class="infrastructure-col">
+                    <h3>Operations</h3>
+                    <div class="ops-item">Hong Kong</div>
+                    <div class="ops-item">Milan</div>
+                    <div class="ops-item">Cross-border Framework</div>
+                </div>
+                <div class="infrastructure-col">
+                    <h3>Systems</h3>
+                    <div class="sys-item">Technology Integration</div>
+                    <div class="sys-item">Omnichannel</div>
+                    <div class="sys-item">AEO Certified</div>
+                </div>
             </div>
-            <div class="stat">
-                <div class="stat-number" data-target="4" data-suffix="M+">0</div>
-                <div class="stat-label">SKUs</div>
+            <div class="infrastructure-footer reveal">
+                <p>Built for continuity.</p>
             </div>
-        </div>
-        
-        <div class="aeo-badge">China Customs AEO Certified</div>
-        
-        <div class="text-cols">
-            <div class="col-block">
-                <ul class="content-list stagger">
-                    <li>Cross-border framework supporting B2C and B2B distribution</li>
-                    <li>Technology synchronizes inventory, pricing and orders</li>
-                    <li>Supply chain spans Hong Kong and Milan</li>
-                    <li>Controlled procurement and bonded logistics</li>
-                </ul>
-            </div>
-            <div class="col-block">
-                <ul class="content-list stagger">
-                    <li>Integrated omnichannel framework</li>
-                    <li>Structured visibility across digital ecosystems</li>
-                    <li>Certified trade status</li>
-                    <li>Enhanced compliance and clearance efficiency</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="reveal" style="margin-top: 48px;">
-            <ul class="content-list">
-                <li>This is structured distribution.</li>
-                <li>Built for durability.</li>
-            </ul>
         </div>
     </section>
 
-    <!-- Section 4: Structured Collaboration -->
-    <section>
-        <span class="section-number">04</span>
-        <h2 class="reveal">Structured Collaboration</h2>
-        
-        <div class="reveal">
-            <ul class="content-list" style="max-width: 700px;">
-                <li>We collaborate with boutiques, platforms and brands seeking disciplined access to the Chinese market.</li>
-                <li>Partnerships are grounded in alignment, compliance and operational integration.</li>
-                <li>Structured engagement pathways include:</li>
-            </ul>
-        </div>
-        
-        <div class="cards-grid">
-            <div class="card">
-                <h3>API Integration</h3>
-                <p>Direct system connectivity into our distribution layer.</p>
-            </div>
-            <div class="card">
-                <h3>Coordinated Procurement</h3>
-                <p>Structured spot or forward purchasing aligned with demand planning.</p>
-            </div>
-            <div class="card">
-                <h3>Operational Deployment</h3>
-                <p>Market entry through coordinated operational frameworks.</p>
-            </div>
-        </div>
+    <div class="divider"></div>
 
-        <div class="divider line-draw" style="margin-top: 48px;"></div>
-        
-        <div class="reveal">
-            <ul class="content-list" style="max-width: 400px;">
-                <li>Collaboration begins with structure.</li>
-                <li>Growth follows integration.</li>
-            </ul>
+    <!-- SECTION 5: STRUCTURED COLLABORATION -->
+    <section class="collaboration">
+        <div class="container">
+            <div class="collaboration-header reveal">
+                <span class="section-label">Partnership</span>
+                <h2>Structured Collaboration</h2>
+            </div>
+            <p class="collaboration-intro reveal">We collaborate with boutiques, platforms and brands seeking disciplined market entry.</p>
+            <div class="cards-grid reveal">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </div>
+                    <h4>API Integration</h4>
+                    <p>Seamless digital connectivity between systems. Standardized data exchange protocols for real-time synchronization.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                    </div>
+                    <h4>Coordinated Procurement</h4>
+                    <p>Centralized purchasing infrastructure. Consolidated logistics and consolidated inventory management across regions.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                        </svg>
+                    </div>
+                    <h4>Operational Deployment</h4>
+                    <p>End-to-end execution capabilities. Warehouse operations, last-mile delivery, and returns processing infrastructure.</p>
+                </div>
+            </div>
+            <div class="collaboration-footer reveal">
+                <p>Integration precedes expansion.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Section 5: Vision -->
-    <section class="vision-section">
-        <div class="vision-zoom"></div>
-        <span class="section-number">05</span>
-        
-        <h2 class="reveal">Vision</h2>
-        
-        <div class="reveal">
-            <p style="font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 300; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">
-                Building a durable cross-border distribution layer for global fashion.
-            </p>
+    <div class="divider"></div>
+
+    <!-- SECTION 6: VISION -->
+    <section class="vision">
+        <div class="container">
+            <p class="reveal">Building a durable cross-border distribution layer for global fashion.</p>
         </div>
     </section>
 
-    <!-- Section 6: Contact -->
-    <section class="final">
-        <span class="section-number">06</span>
-        <h2 class="reveal">Contact</h2>
-        
-        <div class="contact-grid">
-            <div class="contact-block">
-                <h3>Collaboration inquiries</h3>
-                <a href="mailto:contact@mezzintl.com">contact@mezzintl.com</a>
+    <div class="divider"></div>
+
+    <!-- SECTION 7: CONTACT -->
+    <section class="contact">
+        <div class="container">
+            <div class="contact-header reveal">
+                <span class="section-label">Contact</span>
             </div>
-            <div class="contact-block">
-                <h3>Registered Address</h3>
-                <address>
-                    FACTORY A ON 6/F, FOU WAH INDUSTRIAL BUILDING<br>
-                    NOS.10/16 PUN SHAN STREET<br>
-                    TSUEN WAN, NEW TERRITORIES<br>
-                    HONG KONG
-                </address>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h4>Email</h4>
+                    <p><a href="mailto:contact@mezzintl.com">contact@mezzintl.com</a></p>
+                </div>
+                <div class="contact-info reveal">
+                    <h4>Address</h4>
+                    <p>Factory A 6/F<br>Fou Wah Industrial Building<br>10/16 Pun Shan Street<br>Tsuen Wan, New Territories<br>Hong Kong</p>
+                </div>
             </div>
         </div>
     </section>
 
     <script>
-        // Hero word animation
-        const heroWords = document.querySelectorAll('#heroHeadline .word');
-        heroWords.forEach((word, i) => {
-            const span = document.createElement('span');
-            span.textContent = word.textContent;
-            word.textContent = '';
-            word.appendChild(span);
-            span.style.animationDelay = `${0.2 + i * 0.12}s`;
+        // Intersection Observer for reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         });
 
-        // Parallax effect for grid background
-        const gridBg = document.getElementById('gridBg');
-        const plane1 = document.getElementById('plane1');
-        const plane2 = document.getElementById('plane2');
-        
-        let ticking = false;
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const scrollY = window.scrollY;
-                    const windowHeight = window.innerHeight;
-                    const docHeight = document.documentElement.scrollHeight;
-                    
-                    // Grid parallax
-                    gridBg.style.transform = `translateY(${scrollY * 0.12}px)`;
-                    
-                    // Activate planes based on scroll position
-                    const section2Start = windowHeight;
-                    const section3Start = windowHeight * 2;
-                    
-                    if (scrollY > section2Start - windowHeight / 2) {
-                        plane1.classList.add('active');
-                    } else {
-                        plane1.classList.remove('active');
-                    }
-                    
-                    if (scrollY > section3Start - windowHeight / 2) {
-                        plane2.classList.add('active');
-                    } else {
-                        plane2.classList.remove('active');
-                    }
-                    
-                    ticking = false;
-                });
-                ticking = true;
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Count-up animation for stats
+        function animateCounter(element, target) {
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (target - start) * easeOut);
+
+                if (target >= 1000) {
+                    element.textContent = current.toLocaleString();
+                } else {
+                    element.textContent = current;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
             }
-        });
 
-        // Intersection Observer for scroll-triggered reveals
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all reveal elements
-        document.querySelectorAll('.reveal, .col-block, .card, .contact-block').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Observe content list items
-        const listObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.content-list li').forEach(el => {
-            listObserver.observe(el);
-        });
-
-        // Stagger groups observer
-        const staggerObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.stagger').forEach(group => {
-            staggerObserver.observe(group);
-        });
-
-        // Gap line observer
-        const gapLine = document.getElementById('gapLine');
-        const gapObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    gapLine.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.3 });
-        gapObserver.observe(gapLine.parentElement);
-
-        // Count-up animation
-        const countUpObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const stats = entry.target.querySelectorAll('.stat-number');
-                    stats.forEach(stat => {
-                        const target = parseInt(stat.dataset.target);
-                        const suffix = stat.dataset.suffix;
-                        const duration = 1500;
-                        const startTime = performance.now();
-                        
-                        const animate = (currentTime) => {
-                            const elapsed = currentTime - startTime;
-                            const progress = Math.min(elapsed / duration, 1);
-                            const easeOut = 1 - Math.pow(1 - progress, 3);
-                            const current = Math.floor(target * easeOut);
-                            
-                            stat.textContent = current.toLocaleString() + suffix;
-                            
-                            if (progress < 1) {
-                                requestAnimationFrame(animate);
-                            }
-                        };
-                        
-                        requestAnimationFrame(animate);
-                    });
-                    countUpObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        const triad = document.querySelector('.numeric-triad');
-        if (triad) countUpObserver.observe(triad);
-
-        // Reduced motion check
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        if (prefersReducedMotion.matches) {
-            document.querySelectorAll('.word-reveal span, .hero h1 .word span, .hero .lead').forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'none';
-            });
+            requestAnimationFrame(update);
         }
+
+        // Trigger counter animation when stats are visible
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let countersAnimated = false;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+                    statNumbers.forEach((num, index) => {
+                        const target = parseInt(num.dataset.target);
+                        setTimeout(() => {
+                            animateCounter(num, target);
+                        }, index * 200);
+                    });
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        const statsSection = document.querySelector('.infrastructure');
+        if (statsSection) {
+            counterObserver.observe(statsSection);
+        }
+
+        // Smooth scroll for any anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
