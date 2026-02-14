@@ -148,6 +148,20 @@
             background: transparent;
         }
 
+        /* Light mode header - always show dark background */
+        [data-theme="light"] header {
+            background: rgba(250, 249, 246, 0.95);
+        }
+
+        [data-theme="light"] .nav-links a {
+            color: #1A1A1A;
+        }
+
+        [data-theme="light"] .theme-toggle,
+        [data-theme="light"] .lang-toggle {
+            color: #1A1A1A;
+        }
+
         header.scrolled {
             background: var(--bg-primary);
             backdrop-filter: blur(20px);
