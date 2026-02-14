@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mezzanine - Stripe Style Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Stripe-style gradient background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.3), transparent),
+                radial-gradient(ellipse 60% 50% at 90% 50%, rgba(168, 85, 247, 0.15), transparent),
+                radial-gradient(ellipse 60% 50% at 10% 50%, rgba(59, 130, 246, 0.15), transparent),
+                #0a0a0a;
+        }
+        
+        /* Animated gradient orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: float-orb 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            top: -200px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+        
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -5s;
+            opacity: 0.3;
+        }
+        
+        @keyframes float-orb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(20px, 10px) scale(1.02); }
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fade-up 0.8s ease-out;
+        }
+        
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fade-up 0.8s ease-out 0.1s both;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fade-up 0.8s ease-out 0.2s both;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: #fff;
+            color: #0a0a0a;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255,255,255,0.2);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.3);
+        }
+        
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Cards Section */
+        .cards-section {
+            padding: 80px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: -0.02em;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .card p {
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        
+        /* Floating elements */
+        .floating-card {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 16px 20px;
+            animation: float-card 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .float-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .float-2 {
+            top: 30%;
+            right: 10%;
+            animation-delay: -2s;
+        }
+        
+        .float-3 {
+            bottom: 25%;
+            left: 15%;
+            animation-delay: -4s;
+        }
+        
+        @keyframes float-card {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        .float-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #00d4ff 0%, #5c7cfa 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .float-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .float-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+        
+        /* Stats */
+        .stats-section {
+            padding: 80px 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-value {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: stat-appear 1s ease-out;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        @keyframes stat-appear {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .scroll-indicator span {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.4);
+        }
+        
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .floating-card { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    
+    <!-- Floating cards -->
+    <div class="floating-card float-1">
+        <div class="float-icon">💰</div>
+        <div>
+            <div class="float-text">Revenue</div>
+            <div class="float-value">¥5.2M</div>
+        </div>
+    </div>
+    
+    <div class="floating-card float-2">
+        <div class="float-icon">📈</div>
+        <div>
+            <div class="float-text">Growth</div>
+            <div class="float-value">+24%</div>
+        </div>
+    </div>
+    
+    <div class="floating-card float-3">
+        <div class="float-icon">🛒</div>
+        <div>
+            <div class="float-text">Orders</div>
+            <div class="float-value">12.8K</div>
+        </div>
+    </div>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connecting Global Fashion to China</h1>
+            <p>We seamlessly bridge the world's finest fashion with the Chinese market. Through technology-driven cross-border solutions.</p>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">Start Now</a>
+                <a href="#" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+    
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">¥5亿+</div>
+                <div class="stat-label">2024 GMV</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">60万+</div>
+                <div class="stat-label">Registered Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">150+</div>
+                <div class="stat-label">Global Suppliers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cards -->
+    <section class="cards-section">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <h3>Global Network</h3>
+                <p>Established partnerships with renowned e-commerce platforms and buyer stores worldwide.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3>Fast Integration</h3>
+                <p>Begin selling through our API in minutes with seamless integration.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>Data Insights</h3>
+                <p>Precise analytics to optimize your product strategy and boost sales.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3>Secure Payments</h3>
+                <p>AEO certified with secure cross-border transactions.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h3>Smart Logistics</h3>
+                <p>Professional supply chain with efficient warehouse management.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>24/7 Support</h3>
+                <p>Dedicated team ready to help you at any time.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
