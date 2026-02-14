@@ -1,21 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mezzanine International | Connecting Global Fashion to China</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Mezzanine International seamlessly connects global fashion suppliers to the Chinese market. Cross-border e-commerce solutions with 500M+ RMB GMV, 600K+ users, and 150+ global suppliers.">
+    <meta name="keywords" content="fashion, e-commerce, China, cross-border, luxury, wholesale, Mezzanine, ALFAMODA">
+    <meta name="author" content="Mezzanine International">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mezzintl.com">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mezzanine International | Connecting Global Fashion to China">
+    <meta property="og:description" content="Seamlessly connecting global fashion suppliers to the Chinese market. Cross-border e-commerce solutions.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=630&fit=crop">
+    <meta property="og:url" content="https://mezzintl.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mezzanine International">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mezzanine International | Connecting Global Fashion to China">
+    <meta name="twitter:description" content="Seamlessly connecting global fashion suppliers to the Chinese market.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=630&fit=crop">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EM%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23FAF9F6' width='100' height='100'/%3E%3Ctext x='50' y='70' text-anchor='middle' font-size='50' fill='%231A1A1A'%3EM%3C/text%3E%3C/svg%3E">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://mezzintl.com/#organization",
+                "name": "Mezzanine International",
+                "alternateName": "Mezzanine",
+                "url": "https://mezzintl.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://mezzintl.com/logo.png"
+                },
+                "sameAs": [
+                    "https://github.com/okcpt/mezzintl"
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "Partnership Inquiries",
+                    "email": "partner@mezzintl.com",
+                    "availableLanguage": ["English", "Chinese"]
+                }
+            },
+            {
+                "@type": "LocalBusiness",
+                "@id": "https://mezzintl.com/#localbusiness",
+                "name": "Mezzanine International",
+                "description": "Cross-border fashion e-commerce platform connecting global suppliers to China",
+                "url": "https://mezzintl.com",
+                "areaServed": {
+                    "@type": "Country",
+                    "name": "China"
+                },
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Fashion E-commerce Services",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "API Integration"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Flexible Procurement"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Managed Operations"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+    </script>
+    
     <style>
         :root {
             --off-white: #FAF9F6;
             --warm-dark: #1A1A1A;
+            --deep-charcoal: #0F0F0F;
             --warm-gray: #2D2D2D;
             --text-dark: #1A1A1A;
             --text-light: #FAF9F6;
+            --text-muted: #666666;
             --accent: #8B7355;
             --grid-line: rgba(139, 115, 85, 0.08);
+            --grid-line-dark: rgba(139, 115, 85, 0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --off-white: #0F0F0F;
+            --warm-dark: #FAF9F6;
+            --text-dark: #FAF9F6;
+            --text-light: #1A1A1A;
+            --text-muted: #999999;
+            --grid-line: var(--grid-line-dark);
         }
 
         * {
@@ -29,13 +137,14 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 400;
             background-color: var(--off-white);
             color: var(--text-dark);
             line-height: 1.7;
             letter-spacing: -0.01em;
             overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         /* Architectural Grid Background */
@@ -52,6 +161,7 @@
                 linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
             background-size: 80px 80px;
             animation: gridMove 60s linear infinite;
+            transition: opacity 0.4s ease;
         }
 
         @keyframes gridMove {
@@ -70,7 +180,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: var(--transition);
             background: transparent;
         }
 
@@ -86,8 +196,76 @@
             text-transform: uppercase;
             color: var(--text-dark);
             text-decoration: none;
+            z-index: 1002;
         }
 
+        /* Header Controls */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            z-index: 1002;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .lang-btn.active {
+            color: var(--text-dark);
+        }
+
+        .lang-btn:hover {
+            color: var(--accent);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+        }
+
+        .theme-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .sun-icon, .moon-icon {
+            display: none;
+        }
+
+        [data-theme="light"] .moon-icon,
+        [data-theme="dark"] .sun-icon {
+            display: block;
+        }
+
+        /* Navigation */
         nav {
             display: flex;
             gap: 48px;
@@ -119,6 +297,70 @@
             width: 100%;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1002;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--off-white);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .mobile-nav.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav a {
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -130,10 +372,44 @@
             padding: 120px 48px;
             position: relative;
             z-index: 1;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+            filter: grayscale(30%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--off-white) 0%, transparent 30%, transparent 70%, var(--off-white) 100%);
+            z-index: 0;
+        }
+
+        [data-theme="dark"] .hero-overlay {
+            background: linear-gradient(to bottom, var(--off-white) 0%, transparent 40%, transparent 60%, var(--off-white) 100%);
         }
 
         .hero-content {
             max-width: 900px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
@@ -205,8 +481,12 @@
 
         /* Dark Sections */
         .dark-section {
-            background: var(--warm-dark);
+            background: var(--deep-charcoal);
             color: var(--text-light);
+        }
+
+        [data-theme="dark"] .dark-section {
+            background: var(--warm-dark);
         }
 
         .dark-section .section-label,
@@ -232,9 +512,10 @@
             position: relative;
             padding-left: 32px;
             border-left: 1px solid rgba(26, 26, 26, 0.1);
+            transition: border-color 0.4s ease;
         }
 
-        .dark-section .timeline-item {
+        [data-theme="dark"] .timeline-item {
             border-left-color: rgba(250, 249, 246, 0.1);
         }
 
@@ -291,9 +572,10 @@
         .value-item {
             padding: 32px 0;
             border-top: 1px solid rgba(26, 26, 26, 0.1);
+            transition: border-color 0.4s ease;
         }
 
-        .dark-section .value-item {
+        [data-theme="dark"] .value-item {
             border-top-color: rgba(250, 249, 246, 0.1);
         }
 
@@ -324,7 +606,7 @@
             transition: background 0.3s ease;
         }
 
-        .dark-section .coop-item {
+        [data-theme="dark"] .coop-item {
             background: rgba(250, 249, 246, 0.05);
         }
 
@@ -332,7 +614,7 @@
             background: rgba(26, 26, 26, 0.05);
         }
 
-        .dark-section .coop-item:hover {
+        [data-theme="dark"] .coop-item:hover {
             background: rgba(250, 249, 246, 0.08);
         }
 
@@ -363,9 +645,10 @@
             font-weight: 400;
             line-height: 1.6;
             border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+            transition: border-color 0.4s ease;
         }
 
-        .dark-section .partner-item {
+        [data-theme="dark"] .partner-item {
             border-bottom-color: rgba(250, 249, 246, 0.1);
         }
 
@@ -374,6 +657,53 @@
             font-weight: 500;
             margin-bottom: 8px;
             font-size: 16px;
+        }
+
+        /* Brand Logos Section */
+        .brand-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 64px;
+            margin-top: 64px;
+            opacity: 0.4;
+        }
+
+        .brand-logo {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            transition: opacity 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            opacity: 0.7;
+        }
+
+        /* AEO Badge */
+        .aeo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            border: 1px solid var(--accent);
+            margin-top: 48px;
+        }
+
+        .aeo-badge svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .aeo-text {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
         }
 
         /* Vision */
@@ -385,13 +715,113 @@
             max-width: 800px;
         }
 
+        /* Contact Form */
+        .contact-section {
+            background: var(--off-white);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin-top: 64px;
+        }
+
+        .form-group {
+            margin-bottom: 32px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 0;
+            font-size: 16px;
+            font-family: inherit;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.2);
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        [data-theme="dark"] .form-group input,
+        [data-theme="dark"] .form-group textarea {
+            border-bottom-color: rgba(250, 249, 246, 0.2);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-bottom-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            background: var(--text-dark);
+            border: none;
+            padding: 16px 48px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .form-submit {
+            color: var(--text-dark);
+            background: var(--text-light);
+        }
+
+        .form-submit:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        .form-message {
+            margin-top: 24px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-message.show {
+            opacity: 1;
+        }
+
+        .form-message.success {
+            color: #4CAF50;
+        }
+
+        .form-message.error {
+            color: #f44336;
+        }
+
         /* Footer */
         footer {
-            background: var(--warm-dark);
+            background: var(--deep-charcoal);
             color: var(--text-light);
             padding: 80px 48px;
             position: relative;
             z-index: 1;
+        }
+
+        [data-theme="dark"] footer {
+            background: var(--warm-dark);
         }
 
         .footer-content {
@@ -463,7 +893,30 @@
             transform: translateY(0);
         }
 
-        /* Mobile */
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: flex;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 48px;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 padding: 16px 24px;
@@ -473,8 +926,8 @@
                 padding: 12px 24px;
             }
 
-            nav {
-                display: none;
+            .header-controls {
+                gap: 16px;
             }
 
             section {
@@ -493,6 +946,10 @@
                 gap: 32px;
             }
 
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
             .coop-item {
                 padding: 32px;
             }
@@ -506,100 +963,211 @@
                 flex-direction: column;
                 gap: 16px;
             }
+
+            .brand-logos {
+                gap: 32px;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .grid-bg {
+                animation: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="grid-bg"></div>
     
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#about" data-en="About" data-cn="关于">About</a>
+        <a href="#metrics" data-en="Metrics" data-cn="数据">Metrics</a>
+        <a href="#partners" data-en="Partners" data-cn="合作">Partners</a>
+        <a href="#cooperation" data-en="Cooperation" data-cn="模式">Cooperation</a>
+        <a href="#contact" data-en="Contact" data-cn="联系">Contact</a>
+    </div>
+    
     <header id="header">
         <a href="#" class="logo">Mezzanine</a>
+        
         <nav>
-            <a href="#about">About</a>
-            <a href="#metrics">Metrics</a>
-            <a href="#partners">Partners</a>
-            <a href="#cooperation">Cooperation</a>
-            <a href="#contact">Contact</a>
+            <a href="#about" data-en="About" data-cn="关于">About</a>
+            <a href="#metrics" data-en="Metrics" data-cn="数据">Metrics</a>
+            <a href="#partners" data-en="Partners" data-cn="合作">Partners</a>
+            <a href="#cooperation" data-en="Cooperation" data-cn="模式">Cooperation</a>
+            <a href="#contact" data-en="Contact" data-cn="联系">Contact</a>
         </nav>
+        
+        <div class="header-controls">
+            <!-- Language Toggle -->
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+                <span style="opacity: 0.3;">/</span>
+                <button class="lang-btn" data-lang="cn" onclick="setLanguage('cn')">中</button>
+            </div>
+            
+            <!-- Theme Toggle -->
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </header>
 
     <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80" alt="Fashion retail" loading="eager">
+            <div class="hero-overlay"></div>
+        </div>
         <div class="hero-content">
-            <h1>Connecting Global Fashion to China</h1>
-            <p>We seamlessly bridge the world's finest fashion with the Chinese market. Through technology-driven cross-border solutions, we empower global suppliers to reach millions of Chinese consumers.</p>
-            <a href="#partners" class="cta">Explore Partnership</a>
+            <h1 data-en="Connecting Global Fashion to China" data-cn="连接全球时尚与中国">Connecting Global Fashion to China</h1>
+            <p data-en="We seamlessly bridge the world's finest fashion with the Chinese market. Through technology-driven cross-border solutions, we empower global suppliers to reach millions of Chinese consumers."
+               data-cn="我们无缝连接世界顶级时尚与中国市场。通过技术驱动的跨境解决方案，我们赋能全球供应商触达数百万中国消费者。">
+                We seamlessly bridge the world's finest fashion with the Chinese market. Through technology-driven cross-border solutions, we empower global suppliers to reach millions of Chinese consumers.
+            </p>
+            <a href="#partners" class="cta" data-en="Explore Partnership" data-cn="探索合作">Explore Partnership</a>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <div class="section-label fade-in">Our History</div>
-            <h2 class="fade-in">A decade of bridging global fashion with Chinese consumers</h2>
+            <div class="section-label fade-in" data-en="Our History" data-cn="发展历程">Our History</div>
+            <h2 class="fade-in" data-en="A decade of bridging global fashion with Chinese consumers" data-cn="十年 bridging 全球时尚与中国消费者">A decade of bridging global fashion with Chinese consumers</h2>
+            
+            <!-- Brand Logos -->
+            <div class="brand-logos fade-in">
+                <div class="brand-logo">SSENSE</div>
+                <div class="brand-logo">Farfetch</div>
+                <div class="brand-logo">NET-A-PORTER</div>
+                <div class="brand-logo">Matchesfashion</div>
+                <div class="brand-logo">Mytheresa</div>
+            </div>
+            
             <div class="timeline">
                 <div class="timeline-item fade-in">
-                    <div class="timeline-date">October 2012</div>
-                    <div class="timeline-content">Launched our first online store on Taobao, beginning the journey of bringing global fashion to China.</div>
+                    <div class="timeline-date">2012.10</div>
+                    <div class="timeline-content" data-en="Launched our first online store on Taobao, beginning the journey of bringing global fashion to China."
+                         data-cn="在淘宝开设第一家网店，开启将全球时尚引入中国的旅程。">
+                        Launched our first online store on Taobao, beginning the journey of bringing global fashion to China.
+                    </div>
                 </div>
                 <div class="timeline-item fade-in">
-                    <div class="timeline-date">December 2015</div>
-                    <div class="timeline-content">Surpassed 10,000 customers, achieving annual sales revenue of over 25 million RMB.</div>
+                    <div class="timeline-date">2015.12</div>
+                    <div class="timeline-content" data-en="Surpassed 10,000 customers, achieving annual sales revenue of over 25 million RMB."
+                         data-cn="客户突破1万，年销售额超2500万人民币。">
+                        Surpassed 10,000 customers, achieving annual sales revenue of over 25 million RMB.
+                    </div>
                 </div>
                 <div class="timeline-item fade-in">
-                    <div class="timeline-date">January 2018</div>
-                    <div class="timeline-content">Opened flagship store on JD.com and launched Mezzanine WeChat Mini Program.</div>
+                    <div class="timeline-date">2018.01</div>
+                    <div class="timeline-content" data-en="Opened flagship store on JD.com and launched Mezzanine WeChat Mini Program."
+                         data-cn="开设京东旗舰店，上线 Mezzanine 微信小程序。">
+                        Opened flagship store on JD.com and launched Mezzanine WeChat Mini Program.
+                    </div>
                 </div>
                 <div class="timeline-item fade-in">
-                    <div class="timeline-date">December 2018</div>
-                    <div class="timeline-content">Reached 50,000 customers, with annual sales exceeding 80 million RMB.</div>
+                    <div class="timeline-date">2018.12</div>
+                    <div class="timeline-content" data-en="Reached 50,000 customers, with annual sales exceeding 80 million RMB."
+                         data-cn="客户达5万，年销售额超8000万人民币。">
+                        Reached 50,000 customers, with annual sales exceeding 80 million RMB.
+                    </div>
                 </div>
                 <div class="timeline-item fade-in">
-                    <div class="timeline-date">June 2019</div>
-                    <div class="timeline-content">Launched the Mezzanine App, expanding our direct-to-consumer offering.</div>
+                    <div class="timeline-date">2019.06</div>
+                    <div class="timeline-content" data-en="Launched the Mezzanine App, expanding our direct-to-consumer offering."
+                         data-cn="上线 Mezzanine App，拓展直营业务。">
+                        Launched the Mezzanine App, expanding our direct-to-consumer offering.
+                    </div>
                 </div>
                 <div class="timeline-item fade-in">
-                    <div class="timeline-date">December 2023</div>
-                    <div class="timeline-content">Exceeded 300,000 registered users, with annual sales surpassing 280 million RMB.</div>
+                    <div class="timeline-date">2023.12</div>
+                    <div class="timeline-content" data-en="Exceeded 300,000 registered users, with annual sales surpassing 280 million RMB."
+                         data-cn="注册用户超30万，年销售额突破2.8亿人民币。">
+                        Exceeded 300,000 registered users, with annual sales surpassing 280 million RMB.
+                    </div>
                 </div>
                 <div class="timeline-item fade-in">
-                    <div class="timeline-date">February 2024</div>
-                    <div class="timeline-content">Received China Customs AEO certification, enhancing cross-border trade efficiency.</div>
+                    <div class="timeline-date">2024.02</div>
+                    <div class="timeline-content" data-en="Received China Customs AEO certification, enhancing cross-border trade efficiency."
+                         data-cn="获得中国海关 AEO 认证，提升跨境贸易效率。">
+                        Received China Customs AEO certification, enhancing cross-border trade efficiency.
+                    </div>
                 </div>
                 <div class="timeline-item fade-in">
-                    <div class="timeline-date">May 2025</div>
-                    <div class="timeline-content">Officially launched the ALFAMODA App, focused on developing and serving the fashion wholesale market.</div>
+                    <div class="timeline-date">2025.05</div>
+                    <div class="timeline-content" data-en="Officially launched the ALFAMODA App, focused on developing and serving the fashion wholesale market."
+                         data-cn="正式上线 ALFAMODA App，专注时尚批发市场的开发与服务。">
+                        Officially launched the ALFAMODA App, focused on developing and serving the fashion wholesale market.
+                    </div>
                 </div>
+            </div>
+            
+            <!-- AEO Badge -->
+            <div class="aeo-badge fade-in">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 12l2 2 4-4"></path>
+                    <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"></path>
+                </svg>
+                <span class="aeo-text" data-en="AEO Certified Enterprise" data-cn="AEO 认证企业">AEO Certified Enterprise</span>
             </div>
         </div>
     </section>
 
     <section id="metrics" class="dark-section">
         <div class="container">
-            <div class="section-label fade-in">Key Metrics</div>
-            <h2 class="fade-in">Our impact in numbers</h2>
+            <div class="section-label fade-in" data-en="Key Metrics" data-cn="核心数据">Key Metrics</div>
+            <h2 class="fade-in" data-en="Our impact in numbers" data-cn="数字见证影响">Our impact in numbers</h2>
             <div class="metrics">
                 <div class="metric fade-in">
-                    <div class="metric-number">¥500M+</div>
-                    <div class="metric-label">2024 GMV</div>
+                    <div class="metric-number" data-target="500" data-prefix="¥" data-suffix="M+">0</div>
+                    <div class="metric-label" data-en="2024 GMV" data-cn="2024年交易额">2024 GMV</div>
                 </div>
                 <div class="metric fade-in">
-                    <div class="metric-number">600K+</div>
-                    <div class="metric-label">Registered Users</div>
+                    <div class="metric-number" data-target="600" data-prefix="" data-suffix="K+">0</div>
+                    <div class="metric-label" data-en="Registered Users" data-cn="注册用户">Registered Users</div>
                 </div>
                 <div class="metric fade-in">
-                    <div class="metric-number">150+</div>
-                    <div class="metric-label">Global Suppliers</div>
+                    <div class="metric-number" data-target="150" data-prefix="" data-suffix="+">0</div>
+                    <div class="metric-label" data-en="Global Suppliers" data-cn="全球供应商">Global Suppliers</div>
                 </div>
                 <div class="metric fade-in">
-                    <div class="metric-number">5,000+</div>
-                    <div class="metric-label">Brands in Stock</div>
+                    <div class="metric-number" data-target="5000" data-prefix="" data-suffix="+">0</div>
+                    <div class="metric-label" data-en="Brands in Stock" data-cn="库存品牌">Brands in Stock</div>
                 </div>
                 <div class="metric fade-in">
-                    <div class="metric-number">4M+</div>
-                    <div class="metric-label">SKU Catalog</div>
+                    <div class="metric-number" data-target="4" data-prefix="" data-suffix="M+">0</div>
+                    <div class="metric-label" data-en="SKU Catalog" data-cn="SKU数量">SKU Catalog</div>
                 </div>
                 <div class="metric fade-in">
-                    <div class="metric-number">20%+</div>
-                    <div class="metric-label">Annual Growth Rate</div>
+                    <div class="metric-number" data-target="20" data-prefix="" data-suffix="%+">0</div>
+                    <div class="metric-label" data-en="Annual Growth" data-cn="年增长率">Annual Growth</div>
                 </div>
             </div>
         </div>
@@ -607,32 +1175,50 @@
 
     <section id="why-partner">
         <div class="container">
-            <div class="section-label fade-in">Why Partner</div>
-            <h2 class="fade-in">Six reasons to collaborate with us</h2>
+            <div class="section-label fade-in" data-en="Why Partner" data-cn="为何合作">Why Partner</div>
+            <h2 class="fade-in" data-en="Six reasons to collaborate with us" data-cn="六大合作理由">Six reasons to collaborate with us</h2>
             <div class="value-grid">
                 <div class="value-item fade-in">
-                    <h3>Global Sourcing Network</h3>
-                    <p>Established partnerships with renowned e-commerce platforms and buyer stores worldwide, ensuring product diversity and authenticity.</p>
+                    <h3 data-en="Global Sourcing Network" data-cn="全球采购网络">Global Sourcing Network</h3>
+                    <p data-en="Established partnerships with renowned e-commerce platforms and buyer stores worldwide, ensuring product diversity and authenticity."
+                       data-cn="与全球知名电商平台和买手店建立合作，确保产品多样性与正品保障。">
+                        Established partnerships with renowned e-commerce platforms and buyer stores worldwide, ensuring product diversity and authenticity.
+                    </p>
                 </div>
                 <div class="value-item fade-in">
-                    <h3>Convenient Sales Channels</h3>
-                    <p>Suppliers can directly sell to the Chinese market through our platform, reducing intermediaries and lowering barriers to entry.</p>
+                    <h3 data-en="Convenient Sales Channels" data-cn="便捷销售渠道">Convenient Sales Channels</h3>
+                    <p data-en="Suppliers can directly sell to the Chinese market through our platform, reducing intermediaries and lowering barriers to entry."
+                       data-cn="供应商可直接通过我们平台销售至中国市场，减少中间环节，降低准入门槛。">
+                        Suppliers can directly sell to the Chinese market through our platform, reducing intermediaries and lowering barriers to entry.
+                    </p>
                 </div>
                 <div class="value-item fade-in">
-                    <h3>Professional Tech Team</h3>
-                    <p>Our technology development team efficiently collaborates with suppliers and provides precise data analysis to optimize product strategies.</p>
+                    <h3 data-en="Professional Tech Team" data-cn="专业技术团队">Professional Tech Team</h3>
+                    <p data-en="Our technology development team efficiently collaborates with suppliers and provides precise data analysis to optimize product strategies."
+                       data-cn="技术开发团队高效协作供应商，提供精准数据分析，优化产品策略。">
+                        Our technology development team efficiently collaborates with suppliers and provides precise data analysis to optimize product strategies.
+                    </p>
                 </div>
                 <div class="value-item fade-in">
-                    <h3>Omnichannel Digital Marketing</h3>
-                    <p>Through our omnichannel marketing system, we help partners increase sales and achieve broader market coverage across China.</p>
+                    <h3 data-en="Omnichannel Marketing" data-cn="全渠道营销">Omnichannel Marketing</h3>
+                    <p data-en="Through our omnichannel marketing system, we help partners increase sales and achieve broader market coverage across China."
+                       data-cn="通过全渠道营销系统，帮助合作伙伴提升销量，实现更广泛的中国市场覆盖。">
+                        Through our omnichannel marketing system, we help partners increase sales and achieve broader market coverage across China.
+                    </p>
                 </div>
                 <div class="value-item fade-in">
-                    <h3>Efficient Supply Chain</h3>
-                    <p>Professional supply chain team skilled in cross-border logistics and warehouse management, ensuring quick and safe delivery.</p>
+                    <h3 data-en="Efficient Supply Chain" data-cn="高效供应链">Efficient Supply Chain</h3>
+                    <p data-en="Professional supply chain team skilled in cross-border logistics and warehouse management, ensuring quick and safe delivery."
+                       data-cn="专业供应链团队精通跨境物流与仓储管理，确保快速安全交付。">
+                        Professional supply chain team skilled in cross-border logistics and warehouse management, ensuring quick and safe delivery.
+                    </p>
                 </div>
                 <div class="value-item fade-in">
-                    <h3>AEO Certification</h3>
-                    <p>As a China Customs certified Authorized Economic Operator, we enjoy higher trust and smoother customs clearance.</p>
+                    <h3 data-en="AEO Certification" data-cn="AEO 认证">AEO Certification</h3>
+                    <p data-en="As a China Customs certified Authorized Economic Operator, we enjoy higher trust and smoother customs clearance."
+                       data-cn="作为中国海关认证的 AEO 企业，我们享有更高信任度和更顺畅的清关流程。">
+                        As a China Customs certified Authorized Economic Operator, we enjoy higher trust and smoother customs clearance.
+                    </p>
                 </div>
             </div>
         </div>
@@ -640,20 +1226,29 @@
 
     <section id="cooperation" class="dark-section">
         <div class="container">
-            <div class="section-label fade-in">Cooperation Models</div>
-            <h2 class="fade-in">Flexible ways to partner</h2>
+            <div class="section-label fade-in" data-en="Cooperation Models" data-cn="合作模式">Cooperation Models</div>
+            <h2 class="fade-in" data-en="Flexible ways to partner" data-cn="灵活的合作方式">Flexible ways to partner</h2>
             <div class="coop-grid">
                 <div class="coop-item fade-in">
-                    <h3>API Integration</h3>
-                    <p>Partners can begin selling their products by simply integrating with our supply chain system via API. Fast, seamless, and scalable.</p>
+                    <h3 data-en="API Integration" data-cn="API 对接">API Integration</h3>
+                    <p data-en="Partners can begin selling their products by simply integrating with our supply chain system via API. Fast, seamless, and scalable."
+                       data-cn="合作伙伴只需通过 API 对接我们的供应链系统即可开始销售。快速、无缝、可扩展。">
+                        Partners can begin selling their products by simply integrating with our supply chain system via API. Fast, seamless, and scalable.
+                    </p>
                 </div>
                 <div class="coop-item fade-in">
-                    <h3>Flexible Procurement</h3>
-                    <p>We can procure products in bulk either on a spot (immediate) or futures (pre-purchase) basis, adapting to your inventory needs.</p>
+                    <h3 data-en="Flexible Procurement" data-cn="灵活采购">Flexible Procurement</h3>
+                    <p data-en="We can procure products in bulk either on a spot (immediate) or futures (pre-purchase) basis, adapting to your inventory needs."
+                       data-cn="我们可批量采购现货或期货，灵活适应您的库存需求。">
+                        We can procure products in bulk either on a spot (immediate) or futures (pre-purchase) basis, adapting to your inventory needs.
+                    </p>
                 </div>
                 <div class="coop-item fade-in">
-                    <h3>Managed Operations</h3>
-                    <p>We offer managed operations services to help partners' e-commerce platforms enter the Chinese market efficiently without operational overhead.</p>
+                    <h3 data-en="Managed Operations" data-cn="代运营服务">Managed Operations</h3>
+                    <p data-en="We offer managed operations services to help partners' e-commerce platforms enter the Chinese market efficiently without operational overhead."
+                       data-cn="提供代运营服务，帮助合作伙伴高效进入中国市场，无需承担运营负担。">
+                        We offer managed operations services to help partners' e-commerce platforms enter the Chinese market efficiently without operational overhead.
+                    </p>
                 </div>
             </div>
         </div>
@@ -661,24 +1256,24 @@
 
     <section id="partners">
         <div class="container">
-            <div class="section-label fade-in">Who We Work With</div>
-            <h2 class="fade-in">Partners across the fashion ecosystem</h2>
+            <div class="section-label fade-in" data-en="Who We Work With" data-cn="合作伙伴">Who We Work With</div>
+            <h2 class="fade-in" data-en="Partners across the fashion ecosystem" data-cn="时尚生态系统中的伙伴">Partners across the fashion ecosystem</h2>
             <div class="partners-grid">
                 <div class="partner-item fade-in">
-                    <strong>Boutique Buyers & Designers</strong>
-                    Monetize curated collections in Asia's largest luxury market
+                    <strong data-en="Boutique Buyers & Designers" data-cn="精品买手与设计师">Boutique Buyers & Designers</strong>
+                    <span data-en="Monetize curated collections in Asia's largest luxury market" data-cn="在亚洲最大的奢侈品市场变现精选系列">Monetize curated collections in Asia's largest luxury market</span>
                 </div>
                 <div class="partner-item fade-in">
-                    <strong>Global E-Commerce Platforms</strong>
-                    Expand your China footprint without operational overhead
+                    <strong data-en="Global E-Commerce Platforms" data-cn="全球电商平台">Global E-Commerce Platforms</strong>
+                    <span data-en="Expand your China footprint without operational overhead" data-cn="无需运营负担即可拓展中国业务">Expand your China footprint without operational overhead</span>
                 </div>
                 <div class="partner-item fade-in">
-                    <strong>Brands with Limited China Experience</strong>
-                    Leverage our infrastructure to avoid costly trial-and-error
+                    <strong data-en="Brands with Limited China Experience" data-cn="中国经验有限的品牌">Brands with Limited China Experience</strong>
+                    <span data-en="Leverage our infrastructure to avoid costly trial-and-error" data-cn="利用我们的基础设施避免昂贵的试错成本">Leverage our infrastructure to avoid costly trial-and-error</span>
                 </div>
                 <div class="partner-item fade-in">
-                    <strong>Outlets</strong>
-                    Access discounted fashion and exclusive products tailored to the value-conscious consumer market
+                    <strong data-en="Outlets" data-cn="奥特莱斯">Outlets</strong>
+                    <span data-en="Access discounted fashion and exclusive products tailored to the value-conscious consumer market" data-cn="触达面向注重性价比消费者的折扣时尚与独家产品">Access discounted fashion and exclusive products tailored to the value-conscious consumer market</span>
                 </div>
             </div>
         </div>
@@ -686,39 +1281,77 @@
 
     <section id="vision" class="dark-section">
         <div class="container">
-            <div class="section-label fade-in">Vision</div>
-            <h2 class="fade-in">The future of fashion commerce</h2>
-            <p class="vision-text fade-in">
+            <div class="section-label fade-in" data-en="Vision" data-cn="愿景">Vision</div>
+            <h2 class="fade-in" data-en="The future of fashion commerce" data-cn="时尚商务的未来">The future of fashion commerce</h2>
+            <p class="vision-text fade-in" data-en="Our goal is to provide high-quality global suppliers with a simple and efficient cross-border sales platform. By leveraging our technological expertise, supply chain management, and marketing support, we help our partners achieve greater success in the Chinese market."
+               data-cn="我们的目标是为优质全球供应商提供简单高效的跨境销售平台。通过我们的技术专长、供应链管理和营销支持，帮助合作伙伴在中国市场取得更大成功。">
                 Our goal is to provide high-quality global suppliers with a simple and efficient cross-border sales platform. By leveraging our technological expertise, supply chain management, and marketing support, we help our partners achieve greater success in the Chinese market.
             </p>
-            <p class="vision-text fade-in" style="margin-top: 32px;">
+            <p class="vision-text fade-in" style="margin-top: 32px;" data-en="Looking ahead, we aim to expand our partnerships beyond China and into the broader Asian market, bringing global fashion to more consumers with seamless cross-border solutions."
+               data-cn="展望未来，我们计划将合作扩展至中国以外的更广泛亚洲市场，以无缝跨境解决方案将全球时尚带给更多消费者。">
                 Looking ahead, we aim to expand our partnerships beyond China and into the broader Asian market, bringing global fashion to more consumers with seamless cross-border solutions.
             </p>
         </div>
     </section>
 
-    <footer id="contact">
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-label fade-in" data-en="Contact" data-cn="联系我们">Contact</div>
+            <h2 class="fade-in" data-en="Let's start a conversation" data-cn="开启对话">Let's start a conversation</h2>
+            
+            <form class="contact-form fade-in" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="name" data-en="Name" data-cn="姓名">Name</label>
+                    <input type="text" id="name" name="name" required data-placeholder-en="Your name" data-placeholder-cn="您的姓名" placeholder="Your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" data-en="Email" data-cn="邮箱">Email</label>
+                    <input type="email" id="email" name="email" required data-placeholder-en="your@email.com" data-placeholder-cn="您的邮箱" placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="company" data-en="Company" data-cn="公司">Company</label>
+                    <input type="text" id="company" name="company" data-placeholder-en="Your company" data-placeholder-cn="您的公司" placeholder="Your company">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" data-en="Message" data-cn="留言">Message</label>
+                    <textarea id="message" name="message" required data-placeholder-en="Tell us about your business..." data-placeholder-cn="介绍您的业务..." placeholder="Tell us about your business..."></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit" data-en="Send Message" data-cn="发送留言">Send Message</button>
+                
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contact-footer">
         <div class="footer-content">
             <div>
                 <div class="footer-brand">Mezzanine International</div>
-                <p class="footer-desc">Seamlessly connecting global fashion to China. We provide efficient cross-border e-commerce solutions for suppliers worldwide.</p>
+                <p class="footer-desc" data-en="Seamlessly connecting global fashion to China. We provide efficient cross-border e-commerce solutions for suppliers worldwide."
+                   data-cn="无缝连接全球时尚与中国。我们为全球供应商提供高效的跨境电商解决方案。">
+                    Seamlessly connecting global fashion to China. We provide efficient cross-border e-commerce solutions for suppliers worldwide.
+                </p>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
+                <h4 data-en="Contact" data-cn="联系">Contact</h4>
                 <a href="mailto:partner@mezzintl.com">partner@mezzintl.com</a>
-                <a href="https://chillcy-gz.feishu.cn" target="_blank">Feishu</a>
+                <a href="https://chillcy-gz.feishu.cn" target="_blank" data-en="Feishu" data-cn="飞书">Feishu</a>
             </div>
             <div class="footer-col">
-                <h4>Platforms</h4>
-                <a href="#">Mezzanine App</a>
-                <a href="#">ALFAMODA App</a>
-                <a href="#">Taobao Store</a>
-                <a href="#">JD Flagship</a>
+                <h4 data-en="Platforms" data-cn="平台">Platforms</h4>
+                <a href="#" data-en="Mezzanine App" data-cn="Mezzanine App">Mezzanine App</a>
+                <a href="#" data-en="ALFAMODA App" data-cn="ALFAMODA App">ALFAMODA App</a>
+                <a href="#" data-en="Taobao Store" data-cn="淘宝店">Taobao Store</a>
+                <a href="#" data-en="JD Flagship" data-cn="京东旗舰店">JD Flagship</a>
             </div>
         </div>
         <div class="footer-bottom">
             <span>© 2025 Mezzanine International. All rights reserved.</span>
-            <span>AEO Certified Enterprise</span>
+            <span data-en="AEO Certified Enterprise" data-cn="AEO 认证企业">AEO Certified Enterprise</span>
         </div>
     </footer>
 
@@ -732,6 +1365,74 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const nav = document.getElementById('mobileNav');
+            btn.classList.toggle('active');
+            nav.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMobileMenu();
+            });
+        });
+
+        // Language Toggle
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-en][data-cn]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-placeholder-${lang}`) || el.getAttribute(`data-${lang}`);
+                } else {
+                    el.textContent = el.getAttribute(`data-${lang}`);
+                }
+            });
+            
+            // Save preference
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            const next = current === 'light' ? 'dark' : 'light';
+            setTheme(next);
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('preferred-theme', theme);
+        }
+
+        // Initialize theme from localStorage or system preference
+        function initTheme() {
+            const saved = localStorage.getItem('preferred-theme');
+            if (saved) {
+                setTheme(saved);
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            }
+        }
+
+        // Initialize language from localStorage
+        function initLanguage() {
+            const saved = localStorage.getItem('preferred-lang');
+            if (saved) {
+                setLanguage(saved);
+            }
+        }
 
         // Intersection Observer for fade-in animations
         const observerOptions = {
@@ -751,6 +1452,45 @@
             observer.observe(el);
         });
 
+        // Number Counter Animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.dataset.target);
+                    const prefix = counter.dataset.prefix || '';
+                    const suffix = counter.dataset.suffix || '';
+                    animateCounter(counter, target, prefix, suffix);
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.metric-number').forEach(el => {
+            counterObserver.observe(el);
+        });
+
+        function animateCounter(element, target, prefix, suffix) {
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(start + (target - start) * easeOutQuart);
+                
+                element.textContent = prefix + current + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -763,6 +1503,64 @@
                     });
                 }
             });
+        });
+
+        // Contact Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const submitBtn = contactForm.querySelector('.form-submit');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = document.documentElement.getAttribute('data-lang') === 'cn' ? '发送中...' : 'Sending...';
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    formMessage.className = 'form-message show success';
+                    formMessage.textContent = document.documentElement.getAttribute('data-lang') === 'cn' 
+                        ? '消息已发送，我们会尽快回复您！' 
+                        : 'Message sent! We will get back to you soon.';
+                    contactForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                formMessage.className = 'form-message show error';
+                formMessage.textContent = document.documentElement.getAttribute('data-lang') === 'cn'
+                    ? '发送失败，请稍后重试或直接发邮件至 partner@mezzintl.com'
+                    : 'Failed to send. Please try again or email us at partner@mezzintl.com';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                
+                setTimeout(() => {
+                    formMessage.classList.remove('show');
+                }, 5000);
+            }
+        });
+
+        // Initialize on load
+        initTheme();
+        initLanguage();
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('preferred-theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
         });
     </script>
 </body>
