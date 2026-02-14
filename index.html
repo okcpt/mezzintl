@@ -367,99 +367,72 @@
             height: 100%;
         }
 
-        /* Hero animation */
-        @keyframes flow1 {
-            0%, 100% { d: path("M -100 500 Q 480 450 960 500 Q 1440 550 2020 500"); transform: translateY(0); }
-            50% { d: path("M -100 500 Q 480 550 960 500 Q 1440 450 2020 500"); transform: translateY(-10px); }
+        /* Hero animation - Node Network */
+        @keyframes node-pulse {
+            0%, 100% { r: 6; opacity: 0.6; }
+            50% { r: 10; opacity: 1; }
         }
 
-        @keyframes flow2 {
-            0%, 100% { d: path("M -100 580 Q 480 530 960 580 Q 1440 630 2020 580"); transform: translateY(0); }
-            50% { d: path("M -100 580 Q 480 630 960 580 Q 1440 530 2020 580"); transform: translateY(10px); }
+        @keyframes node-pulse-small {
+            0%, 100% { r: 4; opacity: 0.4; }
+            50% { r: 7; opacity: 0.8; }
         }
 
-        @keyframes flow3 {
-            0%, 100% { d: path("M -100 650 Q 480 600 960 650 Q 1440 700 2020 650"); transform: translateY(0); }
-            50% { d: path("M -100 650 Q 480 700 960 650 Q 1440 600 2020 650"); transform: translateY(-8px); }
+        @keyframes flow-line {
+            0%, 100% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -60; }
         }
 
-        @keyframes drift {
+        @keyframes float-soft {
             0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(15px, -20px); }
-            50% { transform: translate(-10px, -10px); }
-            75% { transform: translate(20px, 10px); }
+            33% { transform: translate(10px, -15px); }
+            66% { transform: translate(-5px, -10px); }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        @keyframes breathe {
-            0%, 100% { opacity: 0.08; transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(1.05); }
+        @keyframes blink {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.35; }
-        }
-
-        .hero-curve {
-            fill: none;
-            stroke: rgba(255,255,255,0.1);
-            stroke-width: 1.5;
-            stroke-linecap: round;
-        }
-
-        .hero-curve-1 { animation: flow1 10s ease-in-out infinite; }
-        .hero-curve-2 { animation: flow2 10s ease-in-out infinite; animation-delay: -3s; }
-        .hero-curve-3 { animation: flow3 10s ease-in-out infinite; animation-delay: -6s; }
-        .hero-curve-4 { animation: flow2 10s ease-in-out infinite; animation-delay: -1s; opacity: 0.5; }
-
-        .hero-shape {
-            fill: none;
-            stroke: rgba(255,255,255,0.05);
+        .hero-grid {
+            stroke: rgba(139, 115, 85, 0.06);
             stroke-width: 0.5;
         }
 
-        .hero-shape-1 { animation: drift 20s ease-in-out infinite; }
-        .hero-shape-2 { animation: float 15s ease-in-out infinite; animation-delay: -5s; }
-
-        .hero-particle {
-            fill: rgba(255,255,255,0.12);
+        .hero-node {
+            fill: rgba(139, 115, 85, 0.6);
         }
 
-        .hero-p1 { animation: twinkle 3s ease-in-out infinite; }
-        .hero-p2 { animation: twinkle 3s ease-in-out infinite; animation-delay: -0.5s; }
-        .hero-p3 { animation: twinkle 3s ease-in-out infinite; animation-delay: -1s; }
-        .hero-p4 { animation: twinkle 3s ease-in-out infinite; animation-delay: -1.5s; }
-        .hero-p5 { animation: twinkle 3s ease-in-out infinite; animation-delay: -2s; }
-        .hero-p6 { animation: twinkle 3s ease-in-out infinite; animation-delay: -2.5s; }
-
-        .hero-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: breathe 8s ease-in-out infinite;
+        .hero-node-core {
+            fill: #FAF9F6;
         }
 
-        .hero-orb-1 {
-            width: 500px;
-            height: 500px;
-            background: rgba(139,115,85,0.1);
-            top: 15%;
-            left: 50%;
-            transform: translateX(-50%);
+        .hero-connection {
+            stroke: rgba(139, 115, 85, 0.15);
+            stroke-width: 0.5;
         }
 
-        .hero-orb-2 {
-            width: 350px;
-            height: 350px;
-            background: rgba(139,115,85,0.06);
-            bottom: 5%;
-            right: 15%;
-            animation-delay: -4s;
+        .hero-connection-flow {
+            stroke: rgba(139, 115, 85, 0.3);
+            stroke-width: 1;
+            stroke-dasharray: 4 8;
+            animation: flow-line 1.5s linear infinite;
+        }
+
+        .hero-ring {
+            fill: none;
+            stroke: rgba(139, 115, 85, 0.08);
+            stroke-width: 0.5;
+        }
+
+        .hero-dot {
+            fill: rgba(139, 115, 85, 0.4);
+            animation: blink 3s ease-in-out infinite;
         }
 
         .hero-overlay {
@@ -1153,56 +1126,72 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg">
-            <!-- Gradient orbs -->
-            <div class="hero-orb hero-orb-1"></div>
-            <div class="hero-orb hero-orb-2"></div>
-            
+            <!-- Background grid -->
             <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-                <!-- Flowing curves -->
-                <path class="hero-curve hero-curve-1" d="M -100 500 Q 480 450 960 500 Q 1440 550 2020 500"/>
-                <path class="hero-curve hero-curve-2" d="M -100 580 Q 480 530 960 580 Q 1440 630 2020 580"/>
-                <path class="hero-curve hero-curve-3" d="M -100 650 Q 480 600 960 650 Q 1440 700 2020 650"/>
-                <path class="hero-curve hero-curve-4" d="M -100 720 Q 480 670 960 720 Q 1440 770 2020 720"/>
+                <defs>
+                    <pattern id="heroGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+                        <path d="M 80 0 L 0 0 0 80" fill="none" class="hero-grid"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#heroGrid)"/>
                 
-                <!-- Floating shapes -->
-                <g class="hero-shape-1" style="animation-delay: -8s;">
-                    <circle cx="200" cy="300" r="40" class="hero-shape"/>
-                    <circle cx="220" cy="320" r="25" class="hero-shape" style="opacity: 0.5;"/>
+                <!-- Rotating rings -->
+                <g transform="translate(960, 540)">
+                    <circle r="180" class="hero-ring" style="animation: rotate-slow 60s linear infinite;"/>
+                    <circle r="150" class="hero-ring" style="animation: rotate-slow 45s linear infinite reverse; opacity: 0.5;"/>
+                    <circle r="120" class="hero-ring" style="animation: rotate-slow 30s linear infinite; opacity: 0.3;"/>
                 </g>
                 
-                <g class="hero-shape-2">
-                    <rect x="1650" y="250" width="60" height="60" rx="2" class="hero-shape" transform="rotate(15 1680 280)"/>
+                <!-- Node network - Left -->
+                <g>
+                    <line x1="300" y1="400" x2="500" y2="350" class="hero-connection"/>
+                    <line x1="500" y1="350" x2="700" y2="400" class="hero-connection-flow"/>
+                    <line x1="500" y1="350" x2="600" y2="500" class="hero-connection"/>
+                    <line x1="700" y1="400" x2="850" y2="350" class="hero-connection-flow"/>
+                    
+                    <circle cx="300" cy="400" r="6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite;"/>
+                    <circle cx="500" cy="350" r="10" class="hero-node" style="animation: node-pulse 2s ease-in-out infinite;"/>
+                    <circle cx="700" cy="400" r="8" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 0.5s;"/>
+                    <circle cx="850" cy="350" r="6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1s;"/>
+                    <circle cx="600" cy="500" r="5" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.5s;"/>
                 </g>
                 
-                <g class="hero-shape-1" style="animation-delay: -3s;">
-                    <polygon points="1800,800 1840,860 1760,860" class="hero-shape"/>
+                <!-- Node network - Right -->
+                <g>
+                    <line x1="1100" y1="350" x2="1300" y2="400" class="hero-connection"/>
+                    <line x1="1300" y1="400" x2="1450" y2="350" class="hero-connection-flow"/>
+                    <line x1="1300" y1="400" x2="1350" y2="550" class="hero-connection"/>
+                    <line x1="1450" y1="350" x2="1600" y2="400" class="hero-connection-flow"/>
+                    
+                    <circle cx="1100" cy="350" r="6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 0.3s;"/>
+                    <circle cx="1300" cy="400" r="12" class="hero-node" style="animation: node-pulse 2s ease-in-out infinite; animation-delay: 0.8s;"/>
+                    <circle cx="1450" cy="350" r="8" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.3s;"/>
+                    <circle cx="1600" cy="400" r="6" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 1.8s;"/>
+                    <circle cx="1350" cy="550" r="5" class="hero-node" style="animation: node-pulse-small 2s ease-in-out infinite; animation-delay: 2.3s;"/>
                 </g>
                 
-                <g class="hero-shape-2" style="animation-delay: -10s;">
-                    <rect x="100" y="750" width="80" height="50" rx="1" class="hero-shape"/>
+                <!-- Bottom data stream -->
+                <g>
+                    <line x1="400" y1="750" x2="600" y2="700" class="hero-connection-flow" style="animation-duration: 1s;"/>
+                    <line x1="600" y1="700" x2="800" y2="750" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.2s;"/>
+                    <line x1="800" y1="750" x2="1000" y2="700" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.4s;"/>
+                    <line x1="1000" y1="700" x2="1200" y2="750" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.6s;"/>
+                    <line x1="1200" y1="750" x2="1400" y2="700" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 0.8s;"/>
+                    <line x1="1400" y1="700" x2="1520" y2="750" class="hero-connection-flow" style="animation-duration: 1s; animation-delay: 1s;"/>
+                    
+                    <circle cx="400" cy="750" r="4" class="hero-dot"/>
+                    <circle cx="600" cy="700" r="3" class="hero-dot" style="animation-delay: -0.5s;"/>
+                    <circle cx="800" cy="750" r="4" class="hero-dot" style="animation-delay: -1s;"/>
+                    <circle cx="1000" cy="700" r="3" class="hero-dot" style="animation-delay: -1.5s;"/>
+                    <circle cx="1200" cy="750" r="4" class="hero-dot" style="animation-delay: -2s;"/>
+                    <circle cx="1400" cy="700" r="3" class="hero-dot" style="animation-delay: -2.5s;"/>
+                    <circle cx="1520" cy="750" r="4" class="hero-dot" style="animation-delay: -3s;"/>
                 </g>
                 
-                <!-- Particles -->
-                <circle cx="350" cy="400" r="2" class="hero-particle hero-p1"/>
-                <circle cx="550" cy="320" r="1.5" class="hero-particle hero-p2"/>
-                <circle cx="750" cy="450" r="2" class="hero-particle hero-p3"/>
-                <circle cx="950" cy="350" r="1" class="hero-particle hero-p4"/>
-                <circle cx="1150" cy="420" r="2" class="hero-particle hero-p5"/>
-                <circle cx="1350" cy="380" r="1.5" class="hero-particle hero-p6"/>
-                <circle cx="1550" cy="500" r="2" class="hero-particle hero-p1"/>
-                
-                <circle cx="400" cy="600" r="1" class="hero-particle hero-p3"/>
-                <circle cx="650" cy="680" r="1.5" class="hero-particle hero-p5"/>
-                <circle cx="900" cy="620" r="1" class="hero-particle hero-p2"/>
-                <circle cx="1100" cy="700" r="2" class="hero-particle hero-p4"/>
-                <circle cx="1300" cy="650" r="1" class="hero-particle hero-p6"/>
-                <circle cx="1500" cy="720" r="1.5" class="hero-particle hero-p1"/>
-                
-                <circle cx="500" cy="850" r="1.5" class="hero-particle hero-p2"/>
-                <circle cx="800" cy="800" r="1" class="hero-particle hero-p4"/>
-                <circle cx="1050" cy="880" r="1.5" class="hero-particle hero-p6"/>
-                <circle cx="1250" cy="820" r="1" class="hero-particle hero-p3"/>
-                <circle cx="1450" cy="860" r="1.5" class="hero-particle hero-p5"/>
+                <!-- Center core -->
+                <circle cx="960" cy="540" r="4" class="hero-node-core">
+                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                </circle>
             </svg>
         </div>
         <div class="hero-overlay"></div>
