@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mezzanine - Minimal Fashion</title>
+    <title>Mezzanine - Flow</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -33,29 +33,45 @@
             height: 100%;
         }
         
-        @keyframes flow {
-            0%, 100% { 
-                d: path("M 0 500 C 300 480, 600 520, 960 500 C 1320 480, 1620 520, 1920 500");
-            }
-            50% { 
-                d: path("M 0 500 C 300 520, 600 480, 960 500 C 1320 520, 1620 480, 1920 500");
-            }
+        @keyframes flow1 {
+            0%, 100% { d: path("M -100 500 Q 480 450 960 500 Q 1440 550 2020 500"); transform: translateY(0); }
+            50% { d: path("M -100 500 Q 480 550 960 500 Q 1440 450 2020 500"); transform: translateY(-10px); }
+        }
+        
+        @keyframes flow2 {
+            0%, 100% { d: path("M -100 580 Q 480 530 960 580 Q 1440 630 2020 580"); transform: translateY(0); }
+            50% { d: path("M -100 580 Q 480 630 960 580 Q 1440 530 2020 580"); transform: translateY(10px); }
+        }
+        
+        @keyframes flow3 {
+            0%, 100% { d: path("M -100 650 Q 480 600 960 650 Q 1440 700 2020 650"); transform: translateY(0); }
+            50% { d: path("M -100 650 Q 480 700 960 650 Q 1440 600 2020 650"); transform: translateY(-8px); }
         }
         
         @keyframes drift {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-20px) translateX(10px); }
-            50% { transform: translateY(-10px) translateX(-10px); }
-            75% { transform: translateY(-30px) translateX(5px); }
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(15px, -20px); }
+            50% { transform: translate(-10px, -10px); }
+            75% { transform: translate(20px, 10px); }
         }
         
-        @keyframes gentle-pulse {
-            0%, 100% { opacity: 0.15; }
-            50% { opacity: 0.3; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
         
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes breathe {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(1.05); }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.4; }
+        }
+        
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
@@ -63,72 +79,93 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 600px;
             padding: 0 24px;
         }
         
         .hero-content h1 {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 300;
-            letter-spacing: 0.08em;
-            margin-bottom: 16px;
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 200;
+            letter-spacing: 0.2em;
+            margin-bottom: 12px;
             opacity: 0;
-            animation: fade-in 1s ease 0.5s forwards;
+            animation: fade-up 1.2s ease 0.3s forwards;
         }
         
         .hero-content p {
-            font-size: clamp(14px, 1.5vw, 16px);
+            font-size: clamp(13px, 1.4vw, 16px);
             font-weight: 300;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.8;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
             opacity: 0;
-            animation: fade-in 1s ease 0.8s forwards;
+            animation: fade-up 1.2s ease 0.6s forwards;
         }
         
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.5) 100%);
+            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(0,0,0,0.4) 80%);
         }
         
-        /* Fabric-like flowing curves */
-        .fabric {
+        /* Curved lines */
+        .curve {
             fill: none;
-            stroke: rgba(255,255,255,0.1);
-            stroke-width: 1;
+            stroke: rgba(255,255,255,0.12);
+            stroke-width: 1.5;
             stroke-linecap: round;
         }
         
-        .fabric-1 { animation: flow 12s ease-in-out infinite; }
-        .fabric-2 { animation: flow 12s ease-in-out infinite; animation-delay: -4s; opacity: 0.5; }
-        .fabric-3 { animation: flow 12s ease-in-out infinite; animation-delay: -8s; opacity: 0.3; }
+        .curve-1 { animation: flow1 10s ease-in-out infinite; }
+        .curve-2 { animation: flow2 10s ease-in-out infinite; animation-delay: -3s; }
+        .curve-3 { animation: flow3 10s ease-in-out infinite; animation-delay: -6s; }
         
-        /* Floating particles - like fabric fibers or light */
-        .particle {
-            fill: rgba(255,255,255,0.2);
-            animation: gentle-pulse 4s ease-in-out infinite;
-        }
-        
-        .particle-1 { animation-delay: 0s; }
-        .particle-2 { animation-delay: -1s; }
-        .particle-3 { animation-delay: -2s; }
-        .particle-4 { animation-delay: -3s; }
-        
-        /* Subtle gradient background */
-        .bg-gradient {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(139,115,85,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(139,115,85,0.05) 0%, transparent 50%);
-        }
-        
-        /* Minimal line - abstract fashion silhouette */
-        .silhouette {
-            stroke: rgba(255,255,255,0.08);
-            stroke-width: 0.5;
+        /* Floating shapes */
+        .float-shape {
             fill: none;
+            stroke: rgba(255,255,255,0.06);
+            stroke-width: 0.5;
+        }
+        
+        .shape-1 { animation: drift 20s ease-in-out infinite; }
+        .shape-2 { animation: float 15s ease-in-out infinite; animation-delay: -5s; }
+        
+        /* Particles */
+        .particle {
+            fill: rgba(255,255,255,0.15);
+        }
+        
+        .p1 { animation: twinkle 3s ease-in-out infinite; }
+        .p2 { animation: twinkle 3s ease-in-out infinite; animation-delay: -0.5s; }
+        .p3 { animation: twinkle 3s ease-in-out infinite; animation-delay: -1s; }
+        .p4 { animation: twinkle 3s ease-in-out infinite; animation-delay: -1.5s; }
+        .p5 { animation: twinkle 3s ease-in-out infinite; animation-delay: -2s; }
+        .p6 { animation: twinkle 3s ease-in-out infinite; animation-delay: -2.5s; }
+        
+        /* Gradient orbs */
+        .orb {
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: breathe 8s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(139,115,85,0.08);
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: rgba(139,115,85,0.05);
+            position: absolute;
+            bottom: 10%;
+            right: 20%;
+            animation-delay: -4s;
         }
         
         .scroll {
@@ -136,58 +173,73 @@
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 11px;
-            letter-spacing: 0.2em;
-            color: rgba(255,255,255,0.3);
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            color: rgba(255,255,255,0.25);
             opacity: 0;
-            animation: fade-in 1s ease 1.5s forwards;
+            animation: fade-up 1s ease 1.2s forwards;
         }
     </style>
 </head>
 <body>
     <section class="hero">
-        <div class="bg-gradient"></div>
+        <!-- Gradient orbs -->
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
         
         <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-            <!-- Minimal fabric-like curves -->
-            <path class="fabric fabric-1" d="M 0 500 C 300 480, 600 520, 960 500 C 1320 480, 1620 520, 1920 500"/>
-            <path class="fabric fabric-2" d="M 0 550 C 300 530, 600 570, 960 550 C 1320 530, 1620 570, 1920 550"/>
-            <path class="fabric fabric-3" d="M 0 600 C 300 580, 600 620, 960 600 C 1320 580, 1620 620, 1920 600"/>
+            <!-- Flowing curves -->
+            <path class="curve curve-1" d="M -100 500 Q 480 450 960 500 Q 1440 550 2020 500"/>
+            <path class="curve curve-2" d="M -100 580 Q 480 530 960 580 Q 1440 630 2020 580"/>
+            <path class="curve curve-3" d="M -100 650 Q 480 600 960 650 Q 1440 700 2020 650"/>
+            <path class="curve curve-2" d="M -100 720 Q 480 670 960 720 Q 1440 770 2020 720" style="opacity: 0.5;"/>
             
-            <!-- Abstract vertical lines - like hanging garments -->
-            <line x1="400" y1="200" x2="400" y2="900" class="silhouette"/>
-            <line x1="600" y1="180" x2="600" y2="920" class="silhouette" opacity="0.7"/>
-            <line x1="800" y1="160" x2="800" y2="940" class="silhouette" opacity="0.5"/>
-            <line x1="1120" y1="160" x2="1120" y2="940" class="silhouette" opacity="0.5"/>
-            <line x1="1320" y1="180" x2="1320" y2="920" class="silhouette" opacity="0.7"/>
-            <line x1="1520" y1="200" x2="1520" y2="900" class="silhouette"/>
+            <!-- Floating shapes -->
+            <g class="shape-1" style="animation-delay: -8s;">
+                <circle cx="200" cy="300" r="40" class="float-shape"/>
+                <circle cx="220" cy="320" r="25" class="float-shape" style="opacity: 0.5;"/>
+            </g>
             
-            <!-- Floating particles -->
-            <circle cx="300" cy="400" r="2" class="particle particle-1"/>
-            <circle cx="700" cy="350" r="1.5" class="particle particle-2"/>
-            <circle cx="1100" cy="380" r="2" class="particle particle-3"/>
-            <circle cx="1500" cy="420" r="1.5" class="particle particle-4"/>
-            <circle cx="500" cy="600" r="1" class="particle particle-2"/>
-            <circle cx="900" cy="650" r="1.5" class="particle particle-4"/>
-            <circle cx="1300" cy="620" r="1" class="particle particle-1"/>
-            <circle cx="1600" cy="580" r="2" class="particle particle-3"/>
+            <g class="shape-2">
+                <rect x="1650" y="250" width="60" height="60" rx="2" class="float-shape" transform="rotate(15 1680 280)"/>
+            </g>
             
-            <!-- Subtle accent glow -->
-            <ellipse cx="960" cy="540" rx="400" ry="300" fill="url(#glow)" opacity="0.3"/>
+            <g class="shape-1" style="animation-delay: -3s;">
+                <polygon points="1800,800 1840,860 1760,860" class="float-shape"/>
+            </g>
             
-            <defs>
-                <radialGradient id="glow" cx="50%" cy="50%">
-                    <stop offset="0%" style="stop-color:#8B7355;stop-opacity:0.1"/>
-                    <stop offset="100%" style="stop-color:transparent"/>
-                </radialGradient>
-            </defs>
+            <g class="shape-2" style="animation-delay: -10s;">
+                <rect x="100" y="750" width="80" height="50" rx="1" class="float-shape"/>
+            </g>
+            
+            <!-- Particles -->
+            <circle cx="350" cy="400" r="2" class="particle p1"/>
+            <circle cx="550" cy="320" r="1.5" class="particle p2"/>
+            <circle cx="750" cy="450" r="2" class="particle p3"/>
+            <circle cx="950" cy="350" r="1" class="particle p4"/>
+            <circle cx="1150" cy="420" r="2" class="particle p5"/>
+            <circle cx="1350" cy="380" r="1.5" class="particle p6"/>
+            <circle cx="1550" cy="500" r="2" class="particle p1"/>
+            
+            <circle cx="400" cy="600" r="1" class="particle p3"/>
+            <circle cx="650" cy="680" r="1.5" class="particle p5"/>
+            <circle cx="900" cy="620" r="1" class="particle p2"/>
+            <circle cx="1100" cy="700" r="2" class="particle p4"/>
+            <circle cx="1300" cy="650" r="1" class="particle p6"/>
+            <circle cx="1500" cy="720" r="1.5" class="particle p1"/>
+            
+            <circle cx="500" cy="850" r="1.5" class="particle p2"/>
+            <circle cx="800" cy="800" r="1" class="particle p4"/>
+            <circle cx="1050" cy="880" r="1.5" class="particle p6"/>
+            <circle cx="1250" cy="820" r="1" class="particle p3"/>
+            <circle cx="1450" cy="860" r="1.5" class="particle p5"/>
         </svg>
         
         <div class="hero-overlay"></div>
         
         <div class="hero-content">
             <h1>Mezzanine</h1>
-            <p>Connecting global fashion with China</p>
+            <p>Connecting Global Fashion to China</p>
         </div>
         
         <div class="scroll">SCROLL</div>
