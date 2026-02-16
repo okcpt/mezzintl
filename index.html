@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mezzanine International — Access China Through Structure</title>
+    <title>Mezzanine International | Access China Through Structure</title>
+    <meta name="description" content="A cross-border infrastructure built for global fashion supply. Structured distribution connecting global fashion to the Chinese market.">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-primary: #0a0a0b;
-            --bg-secondary: #111114;
-            --bg-tertiary: #1a1a1e;
-            --text-primary: #fafafa;
-            --text-secondary: #a0a0a8;
-            --text-tertiary: #606068;
-            --accent: #c9a96e;
-            --accent-subtle: rgba(201, 169, 110, 0.1);
-            --border: rgba(255, 255, 255, 0.08);
-            --border-strong: rgba(255, 255, 255, 0.15);
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --bg-card: #141416;
+            --text-primary: #faf9f6;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --accent-gold: #a68b6a;
+            --accent-gold-light: #c4a87a;
+            --accent-gold-dark: #8a7356;
+            --border-subtle: #27272a;
+            --border-highlight: #3f3f46;
+            --gradient-hero: linear-gradient(135deg, #0a0a0b 0%, #111113 50%, #0f0f11 100%);
         }
 
         * {
@@ -39,899 +46,1516 @@
             overflow-x: hidden;
         }
 
-        /* Structural Grid Overlay */
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.03;
-            background-image: 
-                linear-gradient(to right, var(--text-primary) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--text-primary) 1px, transparent 1px);
-            background-size: 80px 80px;
+        /* Scroll Animation Base */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Navigation */
-        nav {
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            padding: 1.5rem 4rem;
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        header.scrolled {
+            border-color: var(--border-subtle);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, var(--bg-primary) 60%, transparent);
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            height: 36px;
+            width: auto;
+        }
+
+        .logo-text {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 500;
-            letter-spacing: -0.02em;
+            letter-spacing: 0.2em;
             color: var(--text-primary);
         }
 
-        .logo span {
-            color: var(--text-tertiary);
-            font-weight: 300;
-        }
-
-        .nav-links {
+        nav {
             display: flex;
-            gap: 3rem;
-            list-style: none;
+            gap: 2.5rem;
         }
 
-        .nav-links a {
+        nav a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.875rem;
             font-weight: 400;
             letter-spacing: 0.02em;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
             position: relative;
         }
 
-        .nav-links a::after {
+        nav a::after {
             content: '';
             position: absolute;
             bottom: -4px;
             left: 0;
             width: 0;
             height: 1px;
-            background: var(--accent);
+            background: var(--accent-gold);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
+        nav a:hover {
             color: var(--text-primary);
         }
 
-        .nav-links a:hover::after {
+        nav a:hover::after {
             width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--text-primary);
+            margin: 6px 0;
+            transition: 0.3s ease;
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: 8rem 4rem 4rem;
             position: relative;
+            overflow: hidden;
+            background: var(--gradient-hero);
+            padding: 8rem 2rem 4rem;
         }
 
-        .hero::before {
-            content: '';
+        .hero-bg {
             position: absolute;
-            top: 40%;
-            right: 10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--accent-subtle) 0%, transparent 70%);
-            filter: blur(60px);
-            pointer-events: none;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            text-align: center;
         }
 
         .hero-eyebrow {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.75rem;
             font-weight: 500;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
         }
 
-        .hero-title {
+        .hero h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 8vw, 7rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 300;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            max-width: 1100px;
-            margin-bottom: 2rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
         }
 
-        .hero-title .highlight {
+        .hero h1 strong {
             font-weight: 500;
-            color: var(--accent);
+            color: var(--accent-gold-light);
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 300;
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
             color: var(--text-secondary);
+            font-weight: 300;
             max-width: 600px;
+            margin: 0 auto 3rem;
             line-height: 1.7;
-            margin-bottom: 3rem;
         }
 
-        .hero-meta {
-            display: flex;
-            gap: 4rem;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .meta-item {
+        .hero-cta:hover {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+        }
+
+        .hero-cta svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .meta-label {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
+            align-items: center;
+            gap: 0.75rem;
             color: var(--text-tertiary);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
         }
 
-        .meta-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
         }
 
-        /* Section Base */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Base Styles */
         section {
-            padding: 8rem 4rem;
+            padding: 8rem 2rem;
             position: relative;
         }
 
-        .section-header {
-            margin-bottom: 4rem;
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-eyebrow {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: var(--text-tertiary);
+            color: var(--accent-gold);
             margin-bottom: 1rem;
         }
 
-        .section-title {
+        .section-header {
+            max-width: 800px;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(1.875rem, 4vw, 2.75rem);
             font-weight: 400;
             line-height: 1.2;
-            letter-spacing: -0.02em;
-            max-width: 800px;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
         }
 
-        /* Structural Gap Section */
-        .gap-section {
-            background: var(--bg-secondary);
-        }
-
-        .gap-content {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .gap-visual {
-            position: relative;
-            padding: 2rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-        }
-
-        .gap-visual svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .gap-text {
-            max-width: 400px;
-        }
-
-        .gap-text p {
-            font-size: 1.1rem;
+        .section-header p {
+            font-size: 1.125rem;
             color: var(--text-secondary);
+            font-weight: 300;
             line-height: 1.8;
-            margin-bottom: 1.5rem;
         }
 
-        .gap-text p:last-child {
-            margin-bottom: 0;
-            color: var(--text-primary);
+        /* Section 1: Structural Gap */
+        .section-gap {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
         }
 
-        /* Distribution Layer Section */
-        .distribution-section {
-            background: var(--bg-primary);
-        }
-
-        .distribution-grid {
+        .gap-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 4rem;
+            margin-top: 3rem;
         }
 
-        .dist-card {
+        .gap-card {
             padding: 2.5rem;
-            border: 1px solid var(--border);
-            background: var(--bg-secondary);
-            transition: all 0.4s ease;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            transition: border-color 0.3s ease, transform 0.3s ease;
         }
 
-        .dist-card:hover {
-            border-color: var(--border-strong);
+        .gap-card:hover {
+            border-color: var(--border-highlight);
             transform: translateY(-4px);
         }
 
-        .dist-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent);
+        .gap-card-icon {
+            width: 48px;
+            height: 48px;
             margin-bottom: 1.5rem;
-            letter-spacing: 0.1em;
+            color: var(--accent-gold);
         }
 
-        .dist-title {
+        .gap-card h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.125rem;
             font-weight: 500;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             color: var(--text-primary);
         }
 
-        .dist-desc {
-            font-size: 0.9rem;
+        .gap-card p {
+            font-size: 0.9375rem;
             color: var(--text-secondary);
             line-height: 1.7;
         }
 
-        /* Infrastructure Section */
-        .infra-section {
-            background: var(--bg-secondary);
+        .conclusion-box {
+            margin-top: 3rem;
+            padding: 2rem 2.5rem;
+            background: linear-gradient(135deg, rgba(166, 139, 106, 0.1) 0%, rgba(166, 139, 106, 0.05) 100%);
+            border-left: 3px solid var(--accent-gold);
         }
 
-        .stats-grid {
+        .conclusion-box p {
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        .conclusion-box strong {
+            color: var(--accent-gold-light);
+        }
+
+        /* Section 2: Distribution Layer */
+        .section-layer {
+            background: var(--bg-primary);
+        }
+
+        .layer-content {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--border);
-            margin: 4rem 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .stat-item {
-            background: var(--bg-secondary);
-            padding: 3rem 2rem;
+        .layer-text p {
+            font-size: 1.0625rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .layer-visual {
+            position: relative;
+        }
+
+        .layer-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 3rem;
+            position: relative;
+        }
+
+        .layer-diagram::before {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            border: 1px solid var(--border-subtle);
+            pointer-events: none;
+        }
+
+        .diagram-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 0.75rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .diagram-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .diagram-row.highlight {
+            background: rgba(166, 139, 106, 0.15);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold-light);
+        }
+
+        .diagram-arrow {
             text-align: center;
+            padding: 0.75rem;
+            color: var(--text-tertiary);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        .layer-principles {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .principle {
+            flex: 1;
+        }
+
+        .principle h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .principle p {
+            font-size: 0.9375rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Section 3: Infrastructure */
+        .section-infrastructure {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .infrastructure-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .infra-card {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .infra-card:hover {
+            border-color: var(--accent-gold);
+            background: var(--bg-tertiary);
+        }
+
+        .infra-card.full-width {
+            grid-column: span 2;
+        }
+
+        .infra-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .infra-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(166, 139, 106, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .infra-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .infra-card p {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 3rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
         }
 
         .stat-number {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
-            font-weight: 300;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .stat-number span {
-            color: var(--accent);
+            font-size: 1.75rem;
             font-weight: 500;
+            color: var(--accent-gold);
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.8125rem;
             color: var(--text-tertiary);
-            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
         }
 
-        .infra-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--border-strong);
-            display: flex;
+        .aeo-badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.7rem;
-            color: var(--accent);
-            flex-shrink: 0;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            padding: 0.875rem 1.25rem;
+            background: rgba(166, 139, 106, 0.1);
+            border: 1px solid var(--accent-gold);
+            font-size: 0.8125rem;
+            color: var(--accent-gold-light);
         }
 
-        .feature-text h4 {
+        .aeo-badge svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .institutional-statement {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .institutional-statement p {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 300;
+            font-style: italic;
             color: var(--text-primary);
         }
 
-        .feature-text p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
+        .institutional-statement strong {
+            color: var(--accent-gold-light);
+            font-weight: 400;
         }
 
-        /* Collaboration Section */
-        .collab-section {
+        /* Section 4: Collaboration */
+        .section-collaboration {
             background: var(--bg-primary);
         }
 
-        .collab-intro {
-            max-width: 700px;
-            margin-bottom: 4rem;
+        .collab-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
         }
 
-        .collab-intro p {
-            font-size: 1.15rem;
+        .collab-visual {
+            order: 2;
+        }
+
+        .collab-text {
+            order: 1;
+        }
+
+        .collab-text p {
+            font-size: 1.0625rem;
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
         }
 
-        .models-grid {
+        .partner-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2rem 0;
+        }
+
+        .partner-tag {
+            padding: 0.625rem 1.25rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .partner-tag:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .collab-visual-frame {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .collab-quote {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            line-height: 1.5;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+        }
+
+        .collab-quote-accent {
+            color: var(--accent-gold);
+            font-weight: 400;
+        }
+
+        .collab-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .collab-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .collab-feature svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        /* Section 5: Engagement Models */
+        .section-engagement {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .engagement-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
-        .model-card {
-            position: relative;
+        .engagement-card {
             padding: 2.5rem;
-            border: 1px solid var(--border);
-            background: var(--bg-secondary);
-            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .model-card::before {
+        .engagement-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+        }
+
+        .engagement-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
+            right: 0;
+            height: 3px;
+            background: var(--accent-gold);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
 
-        .model-card:hover::before {
+        .engagement-card:hover::before {
             transform: scaleX(1);
         }
 
-        .model-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .model-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--accent-subtle);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .engagement-number {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
         }
 
-        .model-title {
+        .engagement-card h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
+            font-size: 1.25rem;
             font-weight: 500;
+            margin-bottom: 1rem;
             color: var(--text-primary);
         }
 
-        .model-desc {
-            font-size: 0.9rem;
+        .engagement-card p {
+            font-size: 0.9375rem;
             color: var(--text-secondary);
             line-height: 1.7;
         }
 
-        /* Vision Section */
-        .vision-section {
-            background: var(--bg-secondary);
+        .engagement-footer {
+            margin-top: 3rem;
             text-align: center;
-            padding: 10rem 4rem;
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
         }
 
-        .vision-section .section-title {
-            max-width: 900px;
-            margin: 0 auto 2rem;
-        }
-
-        .vision-text {
-            font-size: 1.25rem;
+        .engagement-footer p {
+            font-size: 1rem;
             color: var(--text-secondary);
-            max-width: 600px;
+        }
+
+        .engagement-footer strong {
+            color: var(--accent-gold-light);
+        }
+
+        /* Section 6: Vision */
+        .section-vision {
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-vision::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(166, 139, 106, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .vision-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
             margin: 0 auto;
-            line-height: 1.8;
+            text-align: center;
+        }
+
+        .vision-content p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-statement {
+            margin-top: 3rem;
+            padding: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+        }
+
+        .vision-statement::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--accent-gold);
+        }
+
+        .vision-statement p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.375rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 0;
+        }
+
+        .vision-statement strong {
+            color: var(--accent-gold-light);
+            font-weight: 400;
         }
 
         /* Footer */
         footer {
-            background: var(--bg-primary);
-            padding: 6rem 4rem 3rem;
-            border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 4rem;
             margin-bottom: 4rem;
         }
 
-        .footer-brand {
-            max-width: 300px;
-        }
-
-        .footer-brand .logo {
-            margin-bottom: 1rem;
-        }
-
         .footer-brand p {
-            font-size: 0.9rem;
+            font-size: 0.9375rem;
             color: var(--text-secondary);
             line-height: 1.7;
+            margin-top: 1.5rem;
+            max-width: 300px;
         }
 
         .footer-col h4 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.75rem;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--text-tertiary);
+            color: var(--text-primary);
             margin-bottom: 1.5rem;
         }
 
-        .footer-col p,
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.75rem;
+        }
+
         .footer-col a {
-            font-size: 0.9rem;
             color: var(--text-secondary);
-            line-height: 1.8;
             text-decoration: none;
-            display: block;
-            transition: color 0.3s ease;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease;
         }
 
         .footer-col a:hover {
-            color: var(--accent);
+            color: var(--accent-gold);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-contact-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-gold);
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .footer-copy {
-            font-size: 0.8rem;
+        .footer-bottom p {
+            font-size: 0.875rem;
             color: var(--text-tertiary);
         }
 
-        .footer-links {
+        .footer-social {
             display: flex;
-            gap: 2rem;
+            gap: 1.25rem;
         }
 
-        .footer-links a {
-            font-size: 0.8rem;
+        .footer-social a {
             color: var(--text-tertiary);
-            text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
         }
 
-        .footer-links a:hover {
-            color: var(--text-secondary);
+        .footer-social a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-social svg {
+            width: 20px;
+            height: 20px;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .gap-content,
-            .distribution-grid,
-            .models-grid {
+            .layer-content,
+            .collab-content {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .collab-visual {
+                order: 1;
             }
 
-            .infra-features {
-                grid-template-columns: 1fr;
+            .collab-text {
+                order: 2;
             }
 
             .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
             }
         }
 
         @media (max-width: 768px) {
             nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
                 display: none;
             }
 
-            section,
-            .hero {
-                padding: 4rem 1.5rem;
+            .mobile-menu-btn {
+                display: block;
             }
 
-            .hero-meta {
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .gap-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .infrastructure-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .infra-card.full-width {
+                grid-column: span 1;
+            }
+
+            .engagement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .layer-principles {
                 flex-direction: column;
                 gap: 1.5rem;
             }
 
-            .stats-grid {
+            .stats-row {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
             }
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Animations for SVG background */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .animate-in {
-            animation: fadeInUp 0.8s ease forwards;
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
-        /* Scroll-triggered animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .animate-float {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 10s ease-in-out infinite;
+            animation-delay: -3s;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .animate-rotate {
+            animation: rotate 60s linear infinite;
+            transform-origin: center;
         }
     </style>
 </head>
 <body>
-    <div class="grid-overlay"></div>
-    
-    <nav>
-        <div class="logo">Mezzanine <span>International</span></div>
-        <ul class="nav-links">
-            <li><a href="#gap">The Gap</a></li>
-            <li><a href="#distribution">Distribution</a></li>
-            <li><a href="#infrastructure">Infrastructure</a></li>
-            <li><a href="#collaboration">Collaboration</a></li>
-            <li><a href="#vision">Vision</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-eyebrow">Cross-Border Infrastructure</div>
-        <h1 class="hero-title">Access China<br>Through <span class="highlight">Structure</span>.</h1>
-        <p class="hero-subtitle">A cross-border infrastructure for global fashion supply.</p>
-        <div class="hero-meta">
-            <div class="meta-item">
-                <span class="meta-label">Headquarters</span>
-                <span class="meta-value">Hong Kong</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Operations</span>
-                <span class="meta-value">Milan · China</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Certification</span>
-                <span class="meta-value">AEO Certified</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="gap-section" id="gap">
-        <div class="section-header">
-            <div class="section-eyebrow">01 — The Challenge</div>
-            <h2 class="section-title">A Structural Gap</h2>
-        </div>
-        <div class="gap-content">
-            <div class="gap-visual">
-                <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
-                        </pattern>
-                        <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#c9a96e;stop-opacity:0.3" />
-                            <stop offset="50%" style="stop-color:#c9a96e;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#c9a96e;stop-opacity:0.3" />
-                        </linearGradient>
-                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                            <feMerge>
-                                <feMergeNode in="coloredBlur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-                    
-                    <!-- Background grid -->
-                    <rect width="600" height="320" fill="url(#grid)"/>
-                    
-                    <!-- LEFT SIDE: Fragmented Global Supply -->
-                    <g transform="translate(40, 40)">
-                        <!-- Title -->
-                        <text x="0" y="0" fill="#606068" font-family="Space Grotesk, sans-serif" font-size="10" font-weight="500" letter-spacing="0.1em">GLOBAL SUPPLY</text>
-                        
-                        <!-- Fragmented nodes -->
-                        <g transform="translate(0, 30)">
-                            <!-- Boutique 1 -->
-                            <rect x="0" y="0" width="50" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="25" y="22" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Boutique</text>
-                            
-                            <!-- Platform -->
-                            <rect x="60" y="15" width="55" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="87.5" y="37" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Platform</text>
-                            
-                            <!-- Brand -->
-                            <rect x="30" y="60" width="45" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="52.5" y="82" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Brand</text>
-                            
-                            <!-- Boutique 2 -->
-                            <rect x="90" y="50" width="50" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="115" y="72" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Boutique</text>
-                            
-                            <!-- Distributor -->
-                            <rect x="10" y="110" width="60" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="40" y="132" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Distributor</text>
-                            
-                            <!-- Wholesaler -->
-                            <rect x="80" y="100" width="60" height="35" rx="2" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="110" y="122" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="7" text-anchor="middle">Wholesaler</text>
-                            
-                            <!-- Dotted connection lines showing fragmentation -->
-                            <line x1="25" y1="35" x2="25" y2="60" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
-                            <line x1="87.5" y1="50" x2="87.5" y2="60" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
-                            <line x1="52.5" y1="95" x2="52.5" y2="110" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
-                        </g>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" height="36">
+                    <g fill="#FAF9F6">
+                        <rect x="8" y="10" width="4" height="40"/>
+                        <rect x="48" y="10" width="4" height="40"/>
+                        <polygon points="12,10 28,35 32,35 16,10"/>
+                        <polygon points="48,10 32,35 28,35 44,10"/>
                     </g>
-                    
-                    <!-- THE GAP -->
-                    <g transform="translate(230, 0)">
-                        <!-- Gap divider line -->
-                        <line x1="0" y1="40" x2="0" y2="280" stroke="rgba(201,169,110,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
-                        
-                        <!-- Gap label -->
-                        <text x="0" y="165" fill="#c9a96e" font-family="Space Grotesk, sans-serif" font-size="9" font-weight="500" letter-spacing="0.15em" text-anchor="middle" transform="rotate(-90, 0, 165)">STRUCTURAL GAP</text>
-                        
-                        <!-- Barrier indicators -->
-                        <rect x="-8" y="80" width="16" height="2" fill="#c9a96e" opacity="0.4"/>
-                        <rect x="-8" y="250" width="16" height="2" fill="#c9a96e" opacity="0.4"/>
-                    </g>
-                    
-                    <!-- RIGHT SIDE: China's Distinct System -->
-                    <g transform="translate(320, 40)">
-                        <!-- Title -->
-                        <text x="120" y="0" fill="#606068" font-family="Space Grotesk, sans-serif" font-size="10" font-weight="500" letter-spacing="0.1em" text-anchor="end">CHINA MARKET</text>
-                        
-                        <!-- Unified framework container -->
-                        <rect x="0" y="25" width="240" height="170" rx="4" fill="rgba(201,169,110,0.03)" stroke="rgba(201,169,110,0.15)" stroke-width="1"/>
-                        
-                        <!-- Framework label -->
-                        <text x="120" y="45" fill="#c9a96e" font-family="Space Grotesk, sans-serif" font-size="8" font-weight="500" letter-spacing="0.1em" text-anchor="middle">REGULATORY FRAMEWORK</text>
-                        
-                        <!-- Internal structure -->
-                        <g transform="translate(20, 60)">
-                            <!-- Compliance layer -->
-                            <rect x="0" y="0" width="200" height="30" rx="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                            <text x="100" y="19" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="8" text-anchor="middle">Customs · Compliance · AEO</text>
-                            
-                            <!-- Logistics layer -->
-                            <rect x="0" y="40" width="200" height="30" rx="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                            <text x="100" y="59" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="8" text-anchor="middle">Bonded Logistics · Clearance</text>
-                            
-                            <!-- Commercial layer -->
-                            <rect x="0" y="80" width="200" height="30" rx="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                            <text x="100" y="99" fill="#a0a0a8" font-family="Inter, sans-serif" font-size="8" text-anchor="middle">Digital Platforms · Consumers</text>
-                        </g>
-                    </g>
-                    
-                    <!-- MEZZANINE BRIDGE -->
-                    <g transform="translate(150, 230)">
-                        <!-- Bridge structure -->
-                        <rect x="0" y="0" width="300" height="50" rx="4" fill="url(#bridgeGrad)" opacity="0.15"/>
-                        <rect x="0" y="0" width="300" height="50" rx="4" fill="none" stroke="#c9a96e" stroke-width="1.5" filter="url(#glow)"/>
-                        
-                        <!-- Bridge label -->
-                        <text x="150" y="30" fill="#c9a96e" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" letter-spacing="0.15em" text-anchor="middle">MEZZANINE</text>
-                        
-                        <!-- Connection points -->
-                        <circle cx="0" cy="25" r="4" fill="#c9a96e"/>
-                        <circle cx="300" cy="25" r="4" fill="#c9a96e"/>
-                        
-                        <!-- Structural lines -->
-                        <line x1="40" y1="0" x2="40" y2="50" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
-                        <line x1="260" y1="0" x2="260" y2="50" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
-                        <line x1="0" y1="25" x2="300" y2="25" stroke="#c9a96e" stroke-width="0.5" opacity="0.3"/>
-                    </g>
+                    <rect x="8" y="52" width="44" height="1.5" fill="#A68B6A"/>
+                    <text x="65" y="38" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500" letter-spacing="0.25em" fill="#FAF9F6">MEZZANINE</text>
                 </svg>
+            </a>
+            <nav>
+                <a href="#gap">The Gap</a>
+                <a href="#layer">Our Layer</a>
+                <a href="#infrastructure">Infrastructure</a>
+                <a href="#collaboration">Collaboration</a>
+                <a href="#engagement">Engagement</a>
+                <a href="#vision">Vision</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <linearGradient id="gridGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#A68B6A;stop-opacity:0.03" />
+                        <stop offset="100%" style="stop-color:#A68B6A;stop-opacity:0.08" />
+                    </linearGradient>
+                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#A68B6A;stop-opacity:0" />
+                        <stop offset="50%" style="stop-color:#A68B6A;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#A68B6A;stop-opacity:0" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Grid Pattern -->
+                <g class="animate-pulse-slow">
+                    <path d="M0 270 L1920 270" stroke="url(#lineGrad)" stroke-width="1" fill="none"/>
+                    <path d="M0 540 L1920 540" stroke="url(#lineGrad)" stroke-width="1" fill="none"/>
+                    <path d="M0 810 L1920 810" stroke="url(#lineGrad)" stroke-width="1" fill="none"/>
+                    <path d="M480 0 L480 1080" stroke="url(#lineGrad)" stroke-width="1" fill="none"/>
+                    <path d="M960 0 L960 1080" stroke="url(#lineGrad)" stroke-width="1" fill="none"/>
+                    <path d="M1440 0 L1440 1080" stroke="url(#lineGrad)" stroke-width="1" fill="none"/>
+                </g>
+                
+                <!-- Floating Geometric Shapes -->
+                <g class="animate-float">
+                    <polygon points="200,200 250,150 300,200 250,250" fill="none" stroke="#A68B6A" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="1700,800 1750,750 1800,800 1750,850" fill="none" stroke="#A68B6A" stroke-width="0.5" opacity="0.15"/>
+                </g>
+                
+                <g class="animate-float-delayed">
+                    <rect x="1500" y="150" width="80" height="80" fill="none" stroke="#A68B6A" stroke-width="0.5" opacity="0.12" transform="rotate(15 1540 190)"/>
+                    <rect x="300" y="850" width="60" height="60" fill="none" stroke="#A68B6A" stroke-width="0.5" opacity="0.1" transform="rotate(-10 330 880)"/>
+                </g>
+                
+                <!-- Connection Lines -->
+                <g opacity="0.1">
+                    <line x1="200" y1="200" x2="480" y2="270" stroke="#A68B6A" stroke-width="0.5"/>
+                    <line x1="1700" y1="800" x2="1440" y2="810" stroke="#A68B6A" stroke-width="0.5"/>
+                    <line x1="1540" y1="190" x2="960" y2="270" stroke="#A68B6A" stroke-width="0.5"/>
+                </g>
+                
+                <!-- Circular Elements -->
+                <g class="animate-rotate" style="transform-origin: 960px 540px;">
+                    <circle cx="960" cy="540" r="300" fill="none" stroke="#A68B6A" stroke-width="0.5" opacity="0.05"/>
+                    <circle cx="960" cy="540" r="400" fill="none" stroke="#A68B6A" stroke-width="0.5" opacity="0.03"/>
+                </g>
+                
+                <!-- Abstract Nodes -->
+                <g>
+                    <circle cx="480" cy="270" r="4" fill="#A68B6A" opacity="0.3"/>
+                    <circle cx="960" cy="540" r="6" fill="#A68B6A" opacity="0.4"/>
+                    <circle cx="1440" cy="810" r="4" fill="#A68B6A" opacity="0.3"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="hero-content">
+            <p class="hero-eyebrow animate-on-scroll">Global Fashion Distribution</p>
+            <h1 class="animate-on-scroll stagger-1">Access China <br><strong>Through Structure</strong></h1>
+            <p class="hero-subtitle animate-on-scroll stagger-2">A cross-border infrastructure built for global fashion supply.</p>
+            <a href="#gap" class="hero-cta animate-on-scroll stagger-3">
+                Explore Our Approach
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Section 1: A Structural Gap -->
+    <section class="section-gap" id="gap">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <p class="section-eyebrow">01 — The Challenge</p>
+                <h2>A Structural Gap in Global Distribution</h2>
+                <p>Global fashion supply operates through independent boutiques, platforms and brand ecosystems. China functions under a distinct regulatory, logistical and commercial framework. Between these systems lies a structural gap.</p>
             </div>
-            <div class="gap-text">
-                <p>Global fashion supply is inherently fragmented — boutiques, platforms, brands, distributors operating independently.</p>
-                <p>China operates within a distinct regulatory, logistical, and commercial system.</p>
-                <p>Between them lies a structural gap. Unstructured access creates friction. Structured access enables scale.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="distribution-section" id="distribution">
-        <div class="section-header">
-            <div class="section-eyebrow">02 — The Solution</div>
-            <h2 class="section-title">A Distribution Layer</h2>
-        </div>
-        <div class="gap-text" style="margin-bottom: 3rem;">
-            <p>Mezzanine operates as a structured distribution layer connecting global supply to China.</p>
-            <p>We convert fragmented supply into compliant, scalable market access.</p>
-            <p>Our role is not transactional.</p>
-            <p>It is infrastructural.</p>
-            <p>Structure enables continuity.</p>
-            <p>Infrastructure enables scale.</p>
-        </div>
-    </section>
-
-    <section class="infra-section" id="infrastructure">
-        <div class="section-header">
-            <div class="section-eyebrow">03 — The Platform</div>
-            <h2 class="section-title">Integrated Infrastructure</h2>
-        </div>
-        <div class="gap-text">
-            <p>Our network spans 150+ supply partners, representing 5,000+ brands and over 4 million SKUs across global fashion categories.</p>
-            <p>Supply enters China through a compliant cross-border framework, supporting both B2C and B2B distribution.</p>
-            <p>Technology synchronizes inventory, pricing and orders within a unified operational layer.</p>
-            <p>Our supply chain spans Hong Kong and Milan, ensuring controlled procurement and bonded logistics.</p>
-            <p>Distribution extends through an integrated omnichannel framework, creating structured visibility across digital ecosystems.</p>
-            <p>As a China Customs Authorized Economic Operator (AEO), we operate under certified trade status — reinforcing compliance and clearance efficiency.</p>
-            <p>This is structured distribution.</p>
-            <p>Built for durability.</p>
-        </div>
-    </section>
-
-    <section class="collab-section" id="collaboration">
-        <div class="section-header">
-            <div class="section-eyebrow">04 — Partnership</div>
-            <h2 class="section-title">Structured Collaboration</h2>
-        </div>
-        <div class="collab-intro">
-            <p>We collaborate with boutiques, platforms and brands seeking disciplined access to the Chinese market.</p>
-            <p>Partnerships are grounded in alignment, compliance and operational integration.</p>
-            <p>Structured engagement pathways include:</p>
-        </div>
-        <div class="models-grid">
-            <div class="model-card">
-                <div class="model-header">
-                    <div class="model-icon">API</div>
-                    <h3 class="model-title">API Integration</h3>
+            
+            <div class="gap-grid">
+                <div class="gap-card animate-on-scroll stagger-1">
+                    <svg class="gap-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M24 4v40M4 24h40M8 8l32 32M40 8L8 40"/>
+                    </svg>
+                    <h3>Regulatory Complexity</h3>
+                    <p>China's distinct regulatory framework creates barriers to entry that unstructured approaches cannot navigate effectively.</p>
                 </div>
-                <p class="model-desc">Direct system connectivity into our distribution layer.</p>
-            </div>
-            <div class="model-card">
-                <div class="model-header">
-                    <div class="model-icon">CO</div>
-                    <h3 class="model-title">Coordinated Procurement</h3>
+                <div class="gap-card animate-on-scroll stagger-2">
+                    <svg class="gap-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="8" y="8" width="32" height="32" rx="4"/>
+                        <path d="M8 16h32M16 8v32"/>
+                    </svg>
+                    <h3>Logistical Fragmentation</h3>
+                    <p>Disconnected systems between global supply and Chinese distribution create inefficiencies and delays.</p>
                 </div>
-                <p class="model-desc">Structured spot or forward purchasing aligned with demand planning.</p>
-            </div>
-            <div class="model-card">
-                <div class="model-header">
-                    <div class="model-icon">OP</div>
-                    <h3 class="model-title">Operational Deployment</h3>
+                <div class="gap-card animate-on-scroll stagger-3">
+                    <svg class="gap-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="24" cy="24" r="20"/>
+                        <path d="M24 12v12l8 8"/>
+                    </svg>
+                    <h3>Commercial Barriers</h3>
+                    <p>Different commercial frameworks require specialized knowledge and established relationships to operate successfully.</p>
                 </div>
-                <p class="model-desc">Market entry through coordinated operational frameworks.</p>
             </div>
-        </div>
-        <div class="collab-intro" style="margin-top: 3rem;">
-            <p>Collaboration begins with structure.</p>
-            <p>Growth follows integration.</p>
+            
+            <div class="conclusion-box animate-on-scroll">
+                <p><strong>Unstructured access creates friction.</strong> <strong>Structured access creates scalability.</strong></p>
+            </div>
         </div>
     </section>
 
-    <section class="vision-section" id="vision">
-        <div class="section-eyebrow">05 — Looking Forward</div>
-        <h2 class="section-title">Vision</h2>
-        <p class="vision-text">Building a durable cross-border distribution layer for global fashion.</p>
-    </section>
-
-    <footer id="contact">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo">Mezzanine <span>International</span></div>
-                <p>A cross-border infrastructure company connecting global fashion supply to the China marketplace through structured distribution systems.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>Collaboration inquiries may be directed to:</p>
-                <a href="mailto:contact@mezzintl.com">contact@mezzintl.com</a>
-            </div>
-            <div class="footer-col">
-                <h4>Registered Address</h4>
-                <p>FACTORY A ON 6/F, FOU WAH INDUSTRIAL BUILDING<br>
-                NOS.10/16 PUN SHAN STREET<br>
-                TSUEN WAN, NEW TERRITORIES<br>
-                Hong Kong</p>
+    <!-- Section 2: Distribution Layer -->
+    <section class="section-layer" id="layer">
+        <div class="section-container">
+            <div class="layer-content">
+                <div class="layer-text">
+                    <div class="animate-on-scroll">
+                        <p class="section-eyebrow">02 — Our Solution</p>
+                        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.875rem, 4vw, 2.75rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem;">A Distribution Layer Between Systems</h2>
+                    </div>
+                    <p class="animate-on-scroll stagger-1">Mezzanine operates as a structured distribution layer connecting global fashion supply to the Chinese market. We integrate fragmented supply into a compliant, scalable and market-ready framework.</p>
+                    <p class="animate-on-scroll stagger-2">Rather than acting as a traditional reseller or intermediary, we organize distribution through infrastructure.</p>
+                    
+                    <div class="layer-principles animate-on-scroll stagger-3">
+                        <div class="principle">
+                            <h4>Structure</h4>
+                            <p>Enables continuity</p>
+                        </div>
+                        <div class="principle">
+                            <h4>Infrastructure</h4>
+                            <p>Enables scale</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="layer-visual animate-on-scroll stagger-2">
+                    <div class="layer-diagram">
+                        <div class="diagram-row">Global Fashion Supply</div>
+                        <div class="diagram-arrow">↓</div>
+                        <div class="diagram-row highlight">Mezzanine Distribution Layer</div>
+                        <div class="diagram-arrow">↓</div>
+                        <div class="diagram-row">Chinese Market</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="footer-copy">© 2024 Mezzanine International. All rights reserved.</div>
-            <div class="footer-links">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-                <a href="#">LinkedIn</a>
+    </section>
+
+    <!-- Section 3: Infrastructure -->
+    <section class="section-infrastructure" id="infrastructure">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <p class="section-eyebrow">03 — Capabilities</p>
+                <h2>Built on Integrated Market Infrastructure</h2>
+                <p>Mezzanine operates through a coordinated global sourcing and distribution architecture, designed for institutional-grade reliability.</p>
+            </div>
+            
+            <div class="infrastructure-grid">
+                <div class="infra-card animate-on-scroll stagger-1">
+                    <div class="infra-card-header">
+                        <div class="infra-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3>Global Supply Network</h3>
+                    </div>
+                    <p>Our network includes over 150 established supply partners across Europe and North America — curated for authenticity, stability and long-term alignment.</p>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Supply Partners</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">Continents</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="infra-card animate-on-scroll stagger-2">
+                    <div class="infra-card-header">
+                        <div class="infra-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h3>Cross-Border Framework</h3>
+                    </div>
+                    <p>Supply flows directly into China through a compliant cross-border framework, supporting both B2C and B2B distribution while reducing structural inefficiencies.</p>
+                </div>
+                
+                <div class="infra-card animate-on-scroll stagger-3">
+                    <div class="infra-card-header">
+                        <div class="infra-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
+                        <h3>Technology Backbone</h3>
+                    </div>
+                    <p>Technology forms the operational backbone. Inventory, pricing and order systems are synchronized into a unified distribution layer, powered by continuous data analysis.</p>
+                </div>
+                
+                <div class="infra-card animate-on-scroll stagger-4">
+                    <div class="infra-card-header">
+                        <div class="infra-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </div>
+                        <h3>Strategic Hubs</h3>
+                    </div>
+                    <p>Our supply chain spans Hong Kong and Milan, enabling controlled procurement, bonded logistics and reliable fulfillment.</p>
+                </div>
+                
+                <div class="infra-card full-width animate-on-scroll">
+                    <div class="infra-card-header">
+                        <div class="infra-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Compliance & Certification</h3>
+                    </div>
+                    <p>As a China Customs Authorized Economic Operator (AEO), we operate under certified trade status — enhancing compliance reliability and streamlining customs clearance. Distribution is amplified through an integrated omnichannel framework, ensuring structured market visibility across digital and platform ecosystems.</p>
+                    <div class="aeo-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                        </svg>
+                        <span>China Customs Authorized Economic Operator (AEO)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="institutional-statement animate-on-scroll">
+                <p>This is not opportunistic trade. It is <strong>institutionalized distribution</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Collaboration -->
+    <section class="section-collaboration" id="collaboration">
+        <div class="section-container">
+            <div class="collab-content">
+                <div class="collab-visual animate-on-scroll stagger-2">
+                    <div class="collab-visual-frame">
+                        <p class="collab-quote">"Collaboration begins with <span class="collab-quote-accent">structure</span>. Growth follows <span class="collab-quote-accent">integration</span>."</p>
+                        <div class="collab-features">
+                            <div class="collab-feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span>Supply alignment protocols</span>
+                            </div>
+                            <div class="collab-feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span>Compliance standards integration</span>
+                            </div>
+                            <div class="collab-feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                <span>Operational system connectivity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="collab-text">
+                    <div class="animate-on-scroll">
+                        <p class="section-eyebrow">04 — Partnership</p>
+                        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.875rem, 4vw, 2.75rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem;">Structured Collaboration</h2>
+                    </div>
+                    <p class="animate-on-scroll stagger-1">We collaborate with boutiques, platforms and brands seeking structured access to the Chinese market. Partnerships are built on supply alignment, compliance standards and operational integration.</p>
+                    <p class="animate-on-scroll stagger-2">Rather than functioning as an open listing environment, we operate through coordinated distribution frameworks designed for stability and long-term scalability.</p>
+                    
+                    <div class="partner-types animate-on-scroll stagger-3">
+                        <span class="partner-tag">Boutiques</span>
+                        <span class="partner-tag">Platforms</span>
+                        <span class="partner-tag">Brands</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Engagement Models -->
+    <section class="section-engagement" id="engagement">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <p class="section-eyebrow">05 — Engagement</p>
+                <h2>Structured Engagement Models</h2>
+                <p>Multiple pathways to integrate with our distribution infrastructure, each designed for scalability and operational efficiency.</p>
+            </div>
+            
+            <div class="engagement-grid">
+                <div class="engagement-card animate-on-scroll stagger-1">
+                    <span class="engagement-number">01</span>
+                    <h3>API-Based System Integration</h3>
+                    <p>Supply can be connected directly into our distribution layer through API integration, enabling synchronized inventory, pricing and order management.</p>
+                </div>
+                
+                <div class="engagement-card animate-on-scroll stagger-2">
+                    <span class="engagement-number">02</span>
+                    <h3>Coordinated Procurement</h3>
+                    <p>Products may be integrated through structured spot or forward procurement mechanisms, ensuring alignment between supply planning and market demand.</p>
+                </div>
+                
+                <div class="engagement-card animate-on-scroll stagger-3">
+                    <span class="engagement-number">03</span>
+                    <h3>Operational Deployment</h3>
+                    <p>For partners seeking deeper market entry, distribution can be extended through coordinated operational frameworks adapted to the Chinese e-commerce environment.</p>
+                </div>
+            </div>
+            
+            <div class="engagement-footer animate-on-scroll">
+                <p>Each pathway is built on <strong>infrastructure</strong>. Each collaboration is structured for <strong>scalability</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Vision -->
+    <section class="section-vision" id="vision">
+        <div class="section-container">
+            <div class="vision-content">
+                <div class="animate-on-scroll">
+                    <p class="section-eyebrow">06 — Vision</p>
+                    <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.875rem, 4vw, 2.75rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem;">Building a Durable Cross-Border Distribution Layer</h2>
+                </div>
+                <p class="animate-on-scroll stagger-1">Global fashion supply will continue to expand across borders. Market access, however, requires structure.</p>
+                <p class="animate-on-scroll stagger-2">Our long-term objective is to build a durable cross-border distribution layer — integrating supply, compliance, logistics and channel ecosystems into a coherent infrastructure.</p>
+                <p class="animate-on-scroll stagger-3">As distribution evolves beyond single-market models, we aim to extend this structured framework across broader Asian markets.</p>
+                
+                <div class="vision-statement animate-on-scroll stagger-4">
+                    <p>Not as a trading company. But as a <strong>lasting layer</strong> within global fashion distribution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" height="40">
+                            <g fill="#FAF9F6">
+                                <rect x="8" y="10" width="4" height="40"/>
+                                <rect x="48" y="10" width="4" height="40"/>
+                                <polygon points="12,10 28,35 32,35 16,10"/>
+                                <polygon points="48,10 32,35 28,35 44,10"/>
+                            </g>
+                            <rect x="8" y="52" width="44" height="1.5" fill="#A68B6A"/>
+                            <text x="65" y="38" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500" letter-spacing="0.25em" fill="#FAF9F6">MEZZANINE</text>
+                        </svg>
+                    </a>
+                    <p>A cross-border infrastructure built for global fashion supply. Structured distribution connecting global fashion to the Chinese market.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#gap">The Gap</a></li>
+                        <li><a href="#layer">Our Layer</a></li>
+                        <li><a href="#infrastructure">Infrastructure</a></li>
+                        <li><a href="#collaboration">Collaboration</a></li>
+                        <li><a href="#engagement">Engagement</a></li>
+                        <li><a href="#vision">Vision</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span>contact@mezzanine-intl.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>Hong Kong & Milan</span>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mezzanine International. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for navigation
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -943,26 +1567,6 @@
                     });
                 }
             });
-        });
-
-        // Reveal animations on scroll
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.dist-card, .stat-item, .feature-item, .model-card').forEach(el => {
-            el.classList.add('reveal');
-            observer.observe(el);
         });
     </script>
 </body>
