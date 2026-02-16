@@ -162,6 +162,33 @@
             transition: 0.3s ease;
         }
 
+        .lang-toggle {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-right: 1rem;
+        }
+
+        .lang-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .lang-toggle {
+                margin-right: 0.5rem;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.7rem;
+            }
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -1126,13 +1153,14 @@
                 </svg>
             </a>
             <nav>
-                <a href="#gap">The Gap</a>
-                <a href="#layer">Our Layer</a>
-                <a href="#infrastructure">Infrastructure</a>
-                <a href="#collaboration">Collaboration</a>
-                <a href="#engagement">Engagement</a>
-                <a href="#vision">Vision</a>
+                <a href="#gap" data-en="The Gap" data-zh="结构性鸿沟">The Gap</a>
+                <a href="#layer" data-en="Our Layer" data-zh="分销层">Our Layer</a>
+                <a href="#infrastructure" data-en="Infrastructure" data-zh="基础设施">Infrastructure</a>
+                <a href="#collaboration" data-en="Collaboration" data-zh="合作">Collaboration</a>
+                <a href="#engagement" data-en="Engagement" data-zh="合作模式">Engagement</a>
+                <a href="#vision" data-en="Vision" data-zh="愿景">Vision</a>
             </nav>
+            <button class="lang-toggle" id="langToggle" aria-label="Toggle Language">EN/中</button>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -1211,10 +1239,10 @@
         </div>
         
         <div class="hero-content">
-            <p class="hero-eyebrow animate-on-scroll">Global Fashion Distribution</p>
-            <h1 class="animate-on-scroll stagger-1">Access China <br><strong>Through Structure</strong></h1>
-            <p class="hero-subtitle animate-on-scroll stagger-2">A cross-border infrastructure built for global fashion supply.</p>
-            <a href="#gap" class="hero-cta animate-on-scroll stagger-3">
+            <p class="hero-eyebrow animate-on-scroll" data-en="Global Fashion Distribution" data-zh="全球时尚分销">Global Fashion Distribution</p>
+            <h1 class="animate-on-scroll stagger-1" data-en="Access China <br><strong>Through Structure</strong>" data-zh="通过架构<br><strong>连接中国</strong>">Access China <br><strong>Through Structure</strong></h1>
+            <p class="hero-subtitle animate-on-scroll stagger-2" data-en="A cross-border infrastructure built for global fashion supply." data-zh="为全球时尚供应链打造的跨境基础设施。">A cross-border infrastructure built for global fashion supply.</p>
+            <a href="#gap" class="hero-cta animate-on-scroll stagger-3" data-en="Explore Our Approach" data-zh="探索我们的方法">
                 Explore Our Approach
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1223,7 +1251,7 @@
         </div>
         
         <div class="scroll-indicator">
-            <span>Scroll</span>
+            <span data-en="Scroll" data-zh="滚动">Scroll</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 5v14M19 12l-7 7-7-7"/>
             </svg>
@@ -1234,9 +1262,9 @@
     <section class="section-gap" id="gap">
         <div class="section-container">
             <div class="section-header animate-on-scroll">
-                <p class="section-eyebrow">01 — The Challenge</p>
-                <h2>A Structural Gap in Global Distribution</h2>
-                <p>Global fashion supply operates through independent boutiques, platforms and brand ecosystems. China functions under a distinct regulatory, logistical and commercial framework. Between these systems lies a structural gap.</p>
+                <p class="section-eyebrow" data-en="01 — The Challenge" data-zh="01 — 挑战">01 — The Challenge</p>
+                <h2 data-en="A Structural Gap in Global Distribution" data-zh="全球分销中的结构性鸿沟">A Structural Gap in Global Distribution</h2>
+                <p data-en="Global fashion supply operates through independent boutiques, platforms and brand ecosystems. China functions under a distinct regulatory, logistical and commercial framework. Between these systems lies a structural gap." data-zh="全球时尚供应链通过独立的精品店、平台和品牌生态系统运作。中国在一个独特的监管、物流和商业框架下运作。这两个系统之间存在着结构性鸿沟。">Global fashion supply operates through independent boutiques, platforms and brand ecosystems. China functions under a distinct regulatory, logistical and commercial framework. Between these systems lies a structural gap.</p>
             </div>
             
             <div class="gap-grid">
@@ -1244,24 +1272,24 @@
                     <svg class="gap-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M24 4v40M4 24h40M8 8l32 32M40 8L8 40"/>
                     </svg>
-                    <h3>Regulatory Complexity</h3>
-                    <p>China's distinct regulatory framework creates barriers to entry that unstructured approaches cannot navigate effectively.</p>
+                    <h3 data-en="Regulatory Complexity" data-zh="监管复杂性">Regulatory Complexity</h3>
+                    <p data-en="China's distinct regulatory framework creates barriers to entry that unstructured approaches cannot navigate effectively." data-zh="中国独特的监管框架创造了非结构化方法无法有效进入的壁垒。">China's distinct regulatory framework creates barriers to entry that unstructured approaches cannot navigate effectively.</p>
                 </div>
                 <div class="gap-card animate-on-scroll stagger-2">
                     <svg class="gap-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
                         <rect x="8" y="8" width="32" height="32" rx="4"/>
                         <path d="M8 16h32M16 8v32"/>
                     </svg>
-                    <h3>Logistical Fragmentation</h3>
-                    <p>Disconnected systems between global supply and Chinese distribution create inefficiencies and delays.</p>
+                    <h3 data-en="Logistical Fragmentation" data-zh="物流碎片化">Logistical Fragmentation</h3>
+                    <p data-en="Disconnected systems between global supply and Chinese distribution create inefficiencies and delays." data-zh="全球供应与中国分销之间脱节的系统造成了低效率和延误。">Disconnected systems between global supply and Chinese distribution create inefficiencies and delays.</p>
                 </div>
                 <div class="gap-card animate-on-scroll stagger-3">
                     <svg class="gap-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
                         <circle cx="24" cy="24" r="20"/>
                         <path d="M24 12v12l8 8"/>
                     </svg>
-                    <h3>Commercial Barriers</h3>
-                    <p>Different commercial frameworks require specialized knowledge and established relationships to operate successfully.</p>
+                    <h3 data-en="Commercial Barriers" data-zh="商业壁垒">Commercial Barriers</h3>
+                    <p data-en="Different commercial frameworks require specialized knowledge and established relationships to operate successfully." data-zh="不同的商业框架需要专业知识和已建立的关系才能成功运营。">Different commercial frameworks require specialized knowledge and established relationships to operate successfully.</p>
                 </div>
             </div>
             
@@ -1628,6 +1656,34 @@
                 });
             });
         }
+
+        // Language toggle
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    el.innerHTML = text;
+                }
+            });
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+            if (langToggle) {
+                langToggle.textContent = lang === 'en' ? 'EN/中' : '中/EN';
+            }
+        }
+
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                const newLang = currentLang === 'en' ? 'zh' : 'en';
+                updateLanguage(newLang);
+            });
+        }
+
+        // Initialize language
+        updateLanguage(currentLang);
     </script>
 </body>
 </html>
